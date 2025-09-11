@@ -41,7 +41,7 @@ public class Login implements Serializable {
 		return errorMsg;
 	}
 
-	public void setErrorMessage(String errorMessage) {
+	public void setErrorMsg(String errorMessage) {
 		this.errorMsg = errorMessage;
 	}
 	

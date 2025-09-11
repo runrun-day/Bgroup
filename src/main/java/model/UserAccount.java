@@ -10,10 +10,17 @@ public class UserAccount implements Serializable {
     private String postcode;
     private String address;
     private String tel;
+    private String passward;
 	
 	public UserAccount() {}
 	
 	// コンストラクタ
+	public UserAccount(String email,String passward) {
+		this.email = email;
+		this. passward = passward;
+	}
+	
+	
 	//取得用
     public UserAccount(int userId, String name, String email, String postcode, String address, String tel) {
         this.userId = userId;
@@ -25,13 +32,22 @@ public class UserAccount implements Serializable {
     }
 
     // 新規登録
-    public UserAccount(String name, String email, String postcode, String address, String tel) {
+    public UserAccount(String name, String email, String postcode, String address, String tel, String passward) {
         this.name = name;
         this.email = email;
         this.postcode = postcode;
         this.address = address;
         this.tel = tel;
+        this. passward = passward;
     }
+
+	public String getPassward() {
+		return passward;
+	}
+
+	public void setPassward(String passward) {
+		this.passward = passward;
+	}
 
 	public int getUserId() {
 		return userId;

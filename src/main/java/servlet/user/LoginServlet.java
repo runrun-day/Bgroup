@@ -1,4 +1,4 @@
-package servlet;
+package servlet.user;
 
 import java.io.IOException;
 
@@ -11,8 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.Login;
-import model.LoginLogic;
-import service.UserLoginLogic;
+import service.user.UserLoginLogic;
 
 /**
  * Servlet implementation class LoginServlet
@@ -33,8 +32,8 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
+	      dispatcher.forward(request, response);
 	}
 
 	/**
@@ -46,12 +45,13 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 //		name="action"にvalue="signup" またはvalue="login"が入っているかで分岐
-		String action = request.getParameter("action");
-		switch(action) {
+		String next = request.getParameter("next");
+		System.out.println(next);
+		switch(next) {
 //		ユーザー登録へフォワード
 		case "signup" ->{
 			RequestDispatcher dispatcher =
-					request.getRequestDispatcher("WEB-INF/jsp/userRegistration.jsp");
+					request.getRequestDispatcher("WEB-INF/jsp/user/userRegistration.jsp");
 					dispatcher.forward(request,response);
 		}
 //		メルアド/パスワード認証でユーザーホームへフォワード 
@@ -62,20 +62,27 @@ public class LoginServlet extends HttpServlet {
 			
 			// ログイン処理の実行
 		    Login login = new Login(mail, password);
-		    UserLoginLogic bo = new LoginLogic();
+		    UserLoginLogic bo = new UserLoginLogic();
 		    boolean result = bo.execute(login);
+		    System.out.println(result);
 
 		    // ログイン処理の成否によって処理を分岐
 		    if (result) { // ログイン成功時
-		      // セッションスコープにユーザーIDを保存
+		      // セッションスコープにメルアドを保存
 		      HttpSession session = request.getSession();
-		      session.setAttribute("userId", userId);
+		      session.setAttribute("mail", mail);
 		      // フォワード
-		      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginOK.jsp");
+		      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
 		      dispatcher.forward(request, response);
 		    } else { // ログイン失敗時
-		      // リダイレクト
-		      response.sendRedirect("LoginServlet");
+		      // エラーメッセージ
+		     	login = new Login();
+		     	login.setErrorMsg("ユーザー名またはパスワードが違います");
+//				エラーメッセージをリクエストスコープに保存
+		     	request.setAttribute("login",login);
+		     	RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
+			    dispatcher.forward(request, response);
+		      
 				}
 
 		}

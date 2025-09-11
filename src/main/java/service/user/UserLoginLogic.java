@@ -1,13 +1,14 @@
-package service;
+package service.user;
 
-import dao.OrdersDAO;
+import dao.UserDAO;
 import model.Login;
 import model.UserAccount;
 
 public class UserLoginLogic {
 	public boolean execute(Login login) {
-		OrdersDAO dao = new OrdersDAO();
+		UserDAO dao = new UserDAO();
 		UserAccount account = dao.findByLogin(login);
+		System.out.println(account);
 	    return account != null;
 	  }
 }

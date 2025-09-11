@@ -10,30 +10,42 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	
 	<header>
-	    <h1>はたらく文具屋さん(仮)</h1>
+	  <%--  <%@ include file="inc/adminHeader.jsp" %> --%>
+
+	  <%--<%@ include file="inc/userHeader.jsp" %>--%>
+	  <%--<%@ include file="inc/loginUserHeader.jsp" %>--%>
+	  <%--<%@ include file="inc/newSubmitHeader.jsp" %>--%>
+	  
+	  <jsp:include page="inc/userHeader.jsp"/>
 	</header>
+	
+	
+	
 	<main>
 	<!--エラー時の表示処理-->
-		<c:if test="${not empty errorMsg}">
-			<p style="color:red;"><c:out value="${errorMsg}" /></p>
+		<c:if test="${not empty login.errorMsg}">
+			<p style="color:red;"><c:out value="${login.errorMsg}" /></p>
 		</c:if>
 	
 		<div class="form-buttons">
-			<form action="LoginServlet" method="post" name="action" value="signup">
+			<form action="LoginServlet" method="post" name="next" value="signup">
+				<input type="hidden" name="next" value="signup">
 				<input type="submit" value="新規登録">
 			</form>
-			<form action="LoginServlet" method="post" name="action" value="login">
+			<form action="LoginServlet" method="post" name="next" value="login">
+			 <input type="hidden" name="next" value="login">
 				メールアドレス<br>
-				<input type="text" name="mail" value=""><br>
+				<input type="text" name="mail" value="" required><br>
 				パスワード<br>
-				<input type="password" name="password" value=""><br>
+				<input type="password" name="password" value="" required><br>
 				<input type="submit" value="ログイン">
 			</form>
 		</div>
 	</main>
 	<footer>
-	    <p>&copy; はたらく文具屋さん(仮)</p>
+	  <%@ include file="inc/footer.jsp" %>	   
 	</footer>
 </body>
 </html>
