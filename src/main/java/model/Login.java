@@ -7,6 +7,7 @@ public class Login implements Serializable {
 	private String passward;
 //	ログインエラー用
 	private String errorMsg;
+
 	
 	public Login() {}
 	
@@ -41,9 +42,10 @@ public class Login implements Serializable {
 		return errorMsg;
 	}
 
-	public void setErrorMsg(String errorMessage) {
-		this.errorMsg = errorMessage;
+	public void setErrorMsg(String errorMsg1) {
+		this.errorMsg = errorMsg1;
 	}
-	
+
+
 	
 }

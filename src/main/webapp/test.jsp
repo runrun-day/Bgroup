@@ -18,15 +18,15 @@
 	  <%--<%@ include file="inc/loginUserHeader.jsp" %>--%>
 	  <%--<%@ include file="inc/newSubmitHeader.jsp" %>--%>
 	  
-	  <jsp:include page="/inc/userHeader.jsp"/>
+	  <jsp:include page="inc/userHeader.jsp"/>
 	</header>
 	
 	
 	
 	<main>
 	<!--エラー時の表示処理-->
-		<c:if test="${not empty login.errorMsg}">
-			<p style="color:red;"><c:out value="${login.errorMsg}" /></p>
+		<c:if test="${not empty login.errorMsg1}">
+			<p style="color:red;"><c:out value="${login.errorMsg1}" /></p>
 		</c:if>
 	
 		<div class="form-buttons">
@@ -48,7 +48,7 @@
 		</div>
 	</main>
 	<footer>
-	  <%@ include file="inc/userFooter.jsp" %>	   
+	  <%@ include file="inc/footer.jsp" %>	   
 	</footer>
 </body>
 </html>

@@ -10,7 +10,7 @@ import model.UserAccount;
 
 public class UserDAO {
 
-//	ユーザーログインの確認
+//	ユーザーログインの確認処理
 	public UserAccount findByLogin(Login login){
 		UserAccount account = null;
 //		DBManagerからgetConnection()でSQL接続
@@ -42,5 +42,88 @@ public class UserDAO {
 		return account;
 	}
 
+//	ユーザー登録画面でメールアドレスの重複がないか確認する処理
+	public UserAccount findbyemail(String email){
+		UserAccount account = null;
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "SELECT EMAIL FROM USER WHERE EMAIL = ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, email);
+		
+			
+			// SELECT文を実行し、結果表（ResultSet）を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表に格納されたレコードの内容を表示
+			if (rs.next()) {		
+				String mail = rs.getString("EMAIL");
+				account = new UserAccount();
+				account.setEmail(email);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return account;
+	
+	}
+	
+//	ユーザー登録画面でメールアドレスの重複がないか確認する処理
+	public UserAccount findbyetel(String tel){
+		UserAccount account = null;
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "SELECT TEL FROM USER WHERE TEL = ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, tel);
+		
+			
+			// SELECT文を実行し、結果表（ResultSet）を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表に格納されたレコードの内容を表示
+			if (rs.next()) {		
+				String tel2 = rs.getString("TEL");
+				account = new UserAccount();
+				account.setTel(tel2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return account;
+	}
+	
+//	ユーザー新規登録処理
+	public boolean userCreate(UserAccount account) {
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "INSERT INTO USER (NAME,EMAIL,POSTCODE,ADDRESS,TEL,PASSWORD) VALUES (?,?,?,?,?,?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+            pStmt.setString(1, account.getName());
+            pStmt.setString(2, account.getEmail());
+            pStmt.setString(3, account.getPostcode());
+            pStmt.setString(4, account.getAddress());
+            pStmt.setString(5, account.getTel());
+            pStmt.setString(6, account.getPassward());
+		
+			
+         // 実行結果（影響を受けた行数）を取得
+            int rows = pStmt.executeUpdate();
+            return rows > 0; // 1件以上登録できれば成功
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+	}
+	}
 
 }

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.Login;
+import model.UserAccount;
 import service.user.UserLoginLogic;
 
 /**
@@ -46,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 		
 //		name="action"にvalue="signup" またはvalue="login"が入っているかで分岐
 		String next = request.getParameter("next");
+		HttpSession session = request.getSession();
 		System.out.println(next);
 		switch(next) {
 //		ユーザー登録へフォワード
@@ -63,15 +65,18 @@ public class LoginServlet extends HttpServlet {
 			// ログイン処理の実行
 		    Login login = new Login(mail, password);
 		    UserLoginLogic bo = new UserLoginLogic();
-		    boolean result = bo.execute(login);
-		    System.out.println(result);
+		    UserAccount account = bo.execute(login);
+		    System.out.println(account);
 
 		    // ログイン処理の成否によって処理を分岐
-		    if (result) { // ログイン成功時
+		    if (account != null) { // ログイン成功時
 		      // セッションスコープにメルアドを保存
-		      HttpSession session = request.getSession();
-		      session.setAttribute("mail", mail);
+		      
+		      session.setAttribute("account", account);
+		      System.out.println(account.getUserId());
+		      
 		      // フォワード
+		      
 		      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
 		      dispatcher.forward(request, response);
 		    } else { // ログイン失敗時
@@ -82,9 +87,15 @@ public class LoginServlet extends HttpServlet {
 		     	request.setAttribute("login",login);
 		     	RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
 			    dispatcher.forward(request, response);
-		      
 				}
-
+		}
+		case "logout" ->{
+			//セッション破棄してTOPへ戻す
+			session.invalidate();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
+		    dispatcher.forward(request, response);
+			
 		}
 		}
 	}

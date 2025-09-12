@@ -5,10 +5,10 @@ import model.Login;
 import model.UserAccount;
 
 public class UserLoginLogic {
-	public boolean execute(Login login) {
+	public UserAccount execute(Login login) {
 		UserDAO dao = new UserDAO();
 		UserAccount account = dao.findByLogin(login);
 		System.out.println(account);
-	    return account != null;
+	    return account;
 	  }
 }

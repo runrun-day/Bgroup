@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--静的インクルード-->
-<header class="header right">
+<header class="header admin right">
     <p>管理者</p>
 </header>
