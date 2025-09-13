@@ -33,7 +33,7 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("top.jsp");
 	}
 
 	/**
@@ -42,6 +42,8 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
+//		エラーなければデフォルトの登録確認ページへ飛ぶ
+		String nextPage = "WEB-INF/jsp/user/userRegistrationConfirmation.jsp";
 		
 //		name="action"にvalue="signup" またはvalue="login"が入っているかで分岐
 		String next = request.getParameter("next");
@@ -62,48 +64,83 @@ public class SignUpServlet extends HttpServlet {
 		switch(next) {
 //		登録確認画面へ
 			case "check" ->{
-				// メルアドが固有であるかの確認分岐			
 				UserService bo = new UserService();
-				boolean result = bo.emailCheck(email);
-				if (result) { //accountがNullの場合trueなのでfalseのエラー処理
+//				passwardのパッケージマッチング
+				boolean result = passward.matches("[A-Z0-9]{12}");
+				System.out.println("result4:" + result);
+				if(!result) {
+	//				エラーメッセージをリクエストスコープに保存
+					request.setAttribute("errorMsg", "パスワードが条件を満たしていません");
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
+				}
+				
+	//			passwardとpassward2が同じかの確認分岐
+			    result = passward2.equals(passward);
+			    System.out.println("result5:" + result);
+				if(!result) {
+	//				エラーメッセージをリクエストスコープに保存
+					request.setAttribute("errorMsg", "パスワードと確認用パスワードが一致しません");
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
+				}
+				
+				// 電話番号が固有であるかの確認分岐
+				result = bo.telCheck(tel);
+				System.out.println("result3:" + result);
+				if (!result) { //accountがNullの場合trueなのでfalseのエラー処理
+	//				エラーメッセージをリクエストスコープに保存
+					request.setAttribute("errorMsg", "この電話番号は既にユーザー登録済みです");
+	//				登録画面へ
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
+				}
+				
+				//電話番号にハイフンが含まれていないか→含まれている場合true
+				result = !tel.contains("-");
+				System.out.println("result6:" + result);
+				if (!result) {
+	//				エラーメッセージをリクエストスコープに保存
+					request.setAttribute("errorMsg", "電話番号に-(ハイフン)が含まれています");
+	//				登録画面へ
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
+				}
+				
+//				郵便番号のパッケージマッチング
+				result = postcode.matches("[0-9]{7}")&& !postcode.contains("-");
+				System.out.println("result2:" + result);
+				if(!result) {
+	//				エラーメッセージをリクエストスコープに保存
+					request.setAttribute("errorMsg", "郵便番号の入力に誤りがあります(-(ハイフン)なしの7文字)");
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
+				}
+				
+				// メルアドが固有であるかの確認分岐			
+				result = bo.emailCheck(email);
+				System.out.println("result:" + result);
+				if (!result) { //accountがNullの場合trueなのでfalseのエラー処理
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "このメールアドレスは既にユーザー登録済みです");
 	//				登録画面へ
 					
 					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
-			     	RequestDispatcher dispatcher = request.getRequestDispatcher("userRegistration.jsp");
-				    dispatcher.forward(request, response);
+			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}	
-				
-				// 電話番号が固有であるかの確認分岐
-				result = bo.telCheck(tel);
-				if (result) { //accountがNullの場合trueなのでfalseのエラー処理
-	//				エラーメッセージをリクエストスコープに保存
-					request.setAttribute("errorMsg", "この電話番号は既にユーザー登録済みです");
-	//				登録画面へ
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
-			     	RequestDispatcher dispatcher = request.getRequestDispatcher("userRegistration.jsp");
-				    dispatcher.forward(request, response);
-				}
-				
-	//			passwardとpassward2が同じかの確認分岐
-			    boolean passCheck = passward2.equals(passward);
-				if(!passCheck) {
-	//				エラーメッセージをリクエストスコープに保存
-					request.setAttribute("errorMsg", "パスワードと確認用パスワードが一致しません");
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
-			     	RequestDispatcher dispatcher = request.getRequestDispatcher("userRegistration.jsp");
-				    dispatcher.forward(request, response);
-				}
 
-//				入力内容のユーザーインスタンス作成
-				UserAccount form = new UserAccount(name,email,postcode,address,tel, passward); 
-//				セッションスコープに保存
-				session.setAttribute("form", form);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("userRegistrationConfirmation.jsp");
+				if(result) {
+//					入力内容のユーザーインスタンス作成
+					UserAccount form = new UserAccount(name,email,postcode,address,tel, passward); 
+//					セッションスコープにユーザー登録内容を保存
+					session.setAttribute("form", form);
+				}
+				
+				System.out.println("nextPage:" + nextPage);
+				RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 			    dispatcher.forward(request, response);
-
 			}
+			
 			case "commit" ->{//登録確認から登録結果まで
 				UserAccount account = (UserAccount)session.getAttribute("form");				
 				UserService us = new UserService();
@@ -115,13 +152,13 @@ public class SignUpServlet extends HttpServlet {
 				if(!success) {
 					request.setAttribute("errorMsg", "登録に失敗しました");
 					
-					RequestDispatcher dispatcher = request.getRequestDispatcher("userRegistrationConfirmation.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userRegistration.jsp");
 				    dispatcher.forward(request, response);
 				}
 				//セッション削除
 		        session.removeAttribute("form");
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("registrationComplete.jsp");
+//				登録結果へ
+				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/registrationComplete.jsp");
 			    dispatcher.forward(request, response);
 			}
 			case "back" ->{//確認から戻る処理
@@ -130,6 +167,8 @@ public class SignUpServlet extends HttpServlet {
 				request.setAttribute("form",account);
 //				セッション削除
 				session.removeAttribute("form");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userRegistration.jsp");
+			    dispatcher.forward(request, response);
 			}
 		}
 	}

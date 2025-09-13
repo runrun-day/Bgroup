@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインTOP</title>
+    <title>新規登録</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
@@ -15,12 +15,11 @@
 	</header>
 	<main>
 	<!--エラー時の表示処理-->
-		<c:if test="${not empty errorMsg1}">
-			<p style="color:red;"><c:out value="${errorMsg1}" /></p>
+		<c:if test="${not empty errorMsg}">
+			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 	
 		<div class="form-buttons">
-<!--			戻るはページ移動 -->
 
 			<form action="SignUpServlet" method="post" name="next" value="check">
 			 <input type="hidden" name="next" value="check">
@@ -39,6 +38,11 @@
 				確認用パスワード<br>
 				<input type="password" name="passward2" value="" required><br>
 				<input type="submit" value="登録">
+			</form>
+			
+			<form action="LoginServlet" method="post" name="next" value="back">
+				<input type="hidden" name="next" value="back">
+				<input type="submit" value="戻る">
 			</form>
 		</div>
 	</main>

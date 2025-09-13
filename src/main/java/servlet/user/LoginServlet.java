@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
-		
+		String nextPage = "";
 //		name="action"にvalue="signup" またはvalue="login"が入っているかで分岐
 		String next = request.getParameter("next");
 		HttpSession session = request.getSession();
@@ -52,9 +52,7 @@ public class LoginServlet extends HttpServlet {
 		switch(next) {
 //		ユーザー登録へフォワード
 		case "signup" ->{
-			RequestDispatcher dispatcher =
-					request.getRequestDispatcher("WEB-INF/jsp/user/userRegistration.jsp");
-					dispatcher.forward(request,response);
+			nextPage ="WEB-INF/jsp/user/userRegistration.jsp";
 		}
 //		メルアド/パスワード認証でユーザーホームへフォワード 
 		case "login" ->{
@@ -75,29 +73,28 @@ public class LoginServlet extends HttpServlet {
 		      session.setAttribute("account", account);
 		      System.out.println(account.getUserId());
 		      
-		      // フォワード
-		      
-		      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
-		      dispatcher.forward(request, response);
+		      nextPage ="WEB-INF/jsp/user/userMenu.jsp";
 		    } else { // ログイン失敗時
 		      // エラーメッセージ
 		     	login = new Login();
 		     	login.setErrorMsg("ユーザー名またはパスワードが違います");
 //				エラーメッセージをリクエストスコープに保存
 		     	request.setAttribute("login",login);
-		     	RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
-			    dispatcher.forward(request, response);
+		     	nextPage ="top.jsp";
 				}
+		}
+		case "back" ->{
+			nextPage ="top.jsp";
 		}
 		case "logout" ->{
 			//セッション破棄してTOPへ戻す
 			session.invalidate();
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
-		    dispatcher.forward(request, response);
-			
+			nextPage ="top.jsp";
 		}
 		}
+		RequestDispatcher dispatcher =
+				request.getRequestDispatcher(nextPage);
+				dispatcher.forward(request,response);
 	}
 
 }
