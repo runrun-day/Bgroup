@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 // 注文明細
 public class Order implements Serializable {
@@ -11,7 +11,9 @@ public class Order implements Serializable {
     private int userId; //ユーザーID オート
     private int productId; //商品ID オート
     private int num; //注文個数
-    private LocalDateTime orderDate; //注文日
+    private Timestamp orderDate; //注文日時
+    //追加！
+    private String date; //注文日のみ
     private String userName; //ユーザー名
     private String email; //メールアドレス
     private String postcode; //郵便番号
@@ -25,7 +27,13 @@ public class Order implements Serializable {
 
     // コンストラクタは必要に応じて追加
 	public Order() {	}
-
+	
+	//注文一覧用
+	public Order(int orderId,String userName,String date) {	
+		this.orderId = orderId;
+		this.userName = userName;
+		this.date = date;
+	}
 
 	// ゲッターセッター
 	public int getOrderProductId() {
@@ -77,16 +85,24 @@ public class Order implements Serializable {
 		this.num = num;
 	}
 
-
-	public LocalDateTime getOrderDate() {
+	public Timestamp getOrderDate() {
 		return orderDate;
 	}
 
 
-	public void setOrderDate(LocalDateTime orderDate) {
+	public void setOrderDate(Timestamp orderDate) {
 		this.orderDate = orderDate;
 	}
 
+	
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -177,5 +193,15 @@ public class Order implements Serializable {
 		this.amount = amount;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [orderProductId=" + orderProductId + ", orderId=" + orderId + ", userId=" + userId
+				+ ", productId=" + productId + ", num=" + num + ", orderDate=" + orderDate + ", date=" + date
+				+ ", userName=" + userName + ", email=" + email + ", postcode=" + postcode + ", address=" + address
+				+ ", tel=" + tel + ", productName=" + productName + ", price=" + price + ", imageRename=" + imageRename
+				+ ", amount=" + amount + "]";
+	}
+
+	
 	
 }

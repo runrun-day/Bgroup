@@ -2,6 +2,7 @@ package servlet.admin;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,16 +20,20 @@ public class OrderListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//管理者メニューへ戻る
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/admin/adminMenu.jsp");
+	    dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+//		リクエストパラメータの取得
+		request.setCharacterEncoding("UTF-8");
+		String orderId = request.getParameter("orderId");
+		System.out.println(orderId);
+		
 	}
 
 }

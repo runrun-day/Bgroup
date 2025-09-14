@@ -27,9 +27,9 @@
 				<input type="text" name="name" value="${form.name}" required><br>
 				メールアドレス<br>
 				<input type="email" name="email" value="${form.email}" required><br>
-				郵便番号<br>
+				郵便番号  -(ハイフン)なし7桁<br>
 				<input type="text" name="postcode" value="${form.postcode}" required><br>
-				電話<br>
+				電話  -(ハイフン)なし<br>
 				<input type="text" name="tel" value="${form.tel}" required><br>
 				住所<br>
 				<input type="text" name="address" value="${form.address}" required><br>

@@ -34,7 +34,7 @@
 				<input type="password" name="password" value="" required><br>
 				<input type="submit" value="ログイン">
 			</form>
-			<form action="SignUpServlet" method="get">
+			<form action="AdminLoginServlet" method="get">
 				<input type="submit" value="管理者ログイン">
 			</form>
 		</div>

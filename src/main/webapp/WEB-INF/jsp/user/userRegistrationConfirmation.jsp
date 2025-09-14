@@ -19,7 +19,7 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 
-		<div class="form-buttons">
+		<div class="">
 			<h1>ユーザー情報確認</h1>
 			<table>
 				<tr>
