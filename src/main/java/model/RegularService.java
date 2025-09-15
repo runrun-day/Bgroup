@@ -1,7 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+
 
 // 定期便
 public class RegularService implements Serializable {
@@ -11,7 +12,11 @@ public class RegularService implements Serializable {
     private int userId; //ユーザーID オート
     private int productId; //商品ID オート
     private int num; //注文個数
-    private LocalDateTime orderDate; //注文日
+    private Timestamp orderDate; //注文日
+    
+    //追加
+    private String date; //注文日のみ
+    
     private String userName; //ユーザー名
     private String email; //メールアドレス
     private String postcode; //郵便番号
@@ -77,36 +82,37 @@ public class RegularService implements Serializable {
 		this.num = num;
 	}
 
-
-	public LocalDateTime getOrderDate() {
+	public Timestamp getOrderDate() {
 		return orderDate;
 	}
 
-
-	public void setOrderDate(LocalDateTime orderDate) {
+	public void setOrderDate(Timestamp orderDate) {
 		this.orderDate = orderDate;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public String getUserName() {
 		return userName;
 	}
 
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getPostcode() {
 		return postcode;

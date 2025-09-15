@@ -27,7 +27,7 @@
 				<td>${order.userName}</td>
 				<td>${order.date}</td>
 				<td>
-					<form action="SignUpServlet" method="post">
+					<form action="OrderListServlet" method="post">
 						<!--注文IDから詳細データ引っ張ってくるYO-->
 						<input type="hidden" name="orderId" value="${order.orderId}">
 						<input type="submit" value="詳細">

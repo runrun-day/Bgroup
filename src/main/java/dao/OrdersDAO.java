@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Order;
 
 public class OrdersDAO {
-	
 	
 	public ArrayList<Order> getOrders(){
 		ArrayList<Order> orderList = new ArrayList<>();
@@ -44,4 +44,56 @@ public class OrdersDAO {
 		System.out.println(orderList);
 		return orderList;
 		}
+
+//	orderIdから注文詳細データ(定期便利用ありなし含め)表示処理
+	public List<Order> getOrderDetail(int orderId) {
+        List<Order> list = new ArrayList<>();
+
+        String sql = 
+        		"SELECT \r\n"
+        		+ "u.name AS user_name,\r\n"
+        		+ "o.order_id,\r\n"
+        		+ "o.order_date,\r\n"
+        		+ "p.name AS product_name,\r\n"
+        		+ "od.num AS num,\r\n"
+        		+ "p.price,\r\n"
+        		+ "(od.num * p.price) AS subtotal,\r\n"
+        		+ "CASE WHEN rs.regular_service_id IS NULL THEN 0 ELSE 1 END AS regular_flag,\r\n"
+        		+ "rs.span AS span\r\n"
+        		+ "FROM orders o\r\n"
+        		+ "JOIN user u \r\n"
+        		+ "ON o.user_id = u.user_id\r\n"
+        		+ "JOIN order_detail od \r\n"
+        		+ "ON o.order_id = od.order_id\r\n"
+        		+ "JOIN products p \r\n"
+        		+ "ON od.product_id = p.product_id\r\n"
+        		+ "LEFT JOIN regular_service rs \r\n"
+        		+ "ON rs.user_id = u.user_id\r\n"
+        		+ "WHERE o.order_id = ?\r\n"
+        		+ "ORDER BY o.order_date DESC;";
+
+        try (Connection conn = DBManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, orderId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String userName = rs.getString("user_name");
+                Timestamp orderDate = rs.getTimestamp("order_date");
+                String productName = rs.getString("product_name");
+                int num = rs.getInt("num");
+                int price = rs.getInt("price");
+                int amount = rs.getInt("subtotal");
+//              定期便であれば１ true
+                boolean regularService = rs.getInt("regular_flag") == 1;
+
+                Order odv = new Order(userName, orderDate, productName, num, price, amount,regularService);
+                list.add(odv);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

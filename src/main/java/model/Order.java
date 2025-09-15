@@ -24,6 +24,8 @@ public class Order implements Serializable {
     private String imageRename; // 画像
     private int amount; //num*price
 
+    //追加
+    private boolean regularService; //定期便登録ありなしの判定
 
     // コンストラクタは必要に応じて追加
 	public Order() {	}
@@ -34,12 +36,24 @@ public class Order implements Serializable {
 		this.userName = userName;
 		this.date = date;
 	}
-
+	
+//	userName, orderDate, productName, num, price, amount,regularService
+	public Order(String userName, Timestamp orderDate, String productName, int num, int price, int amount,
+			boolean regularService) {
+		this.num = num;
+		this.orderDate = orderDate;
+		this.userName = userName;
+		this.productName = productName;
+		this.price = price;
+		this.amount = amount;
+		this.regularService = regularService;
+	}
+	
+	
 	// ゲッターセッター
 	public int getOrderProductId() {
 		return orderProductId;
 	}
-
 
 	public void setOrderProductId(int orderProductId) {
 		this.orderProductId = orderProductId;
@@ -191,6 +205,14 @@ public class Order implements Serializable {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	
+	public boolean isRegularService() {
+		return regularService;
+	}
+
+	public void setRegularService(boolean regularService) {
+		this.regularService = regularService;
 	}
 
 	@Override
