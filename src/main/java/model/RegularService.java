@@ -33,8 +33,8 @@ public class RegularService implements Serializable {
     public RegularService() {}
 
 //    定期便一覧
-    public RegularService(int regularServiceDetailId,String userName,String date) {
-    		this.regularServiceDetailId = regularServiceDetailId;
+    public RegularService(int regularServiceId,String userName,String date) {
+    		this.regularServiceId = regularServiceId;
     		this.userName = userName;
     		this.date = date;
     }

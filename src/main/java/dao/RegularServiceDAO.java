@@ -49,21 +49,22 @@ public class RegularServiceDAO {
         List<RegularService> list = new ArrayList<>();
 
         String sql = 
-        		"select \n"
-        		+ "B.regular_service_id,\n"
-        		+ "D.name AS user_name,\n"
-        		+ "B.start_date,\n"
-        		+ "C.name AS product_name,\n"
-        		+ "A.num,\n"
-        		+ "C.price,\n"
-        		+ "(A.num * C.price) AS subtotal,\n"
-        		+ "B.span AS span\n"
-        		+ "from regular_service_detail as A\n"
-        		+ "join shop.regular_service as B\n"
-        		+ "on A.regular_service_id = B.regular_service_id\n"
-        		+ "join products as C\n"
-        		+ "on A.product_id = C.product_id\n"
-        		+ "join user as D;";
+        		"select \r\n"
+        		+ "D.name AS user_name,\r\n"
+        		+ "B.start_date,\r\n"
+        		+ "C.name AS product_name,\r\n"
+        		+ "A.num AS quantity,\r\n"
+        		+ "C.price,\r\n"
+        		+ "(A.num * C.price) AS subtotal,\r\n"
+        		+ "B.span AS span\r\n"
+        		+ "from regular_service_detail as A\r\n"
+        		+ "join shop.regular_service as B\r\n"
+        		+ "on A.regular_service_id = B.regular_service_id\r\n"
+        		+ "join products as C\r\n"
+        		+ "on A.product_id = C.product_id\r\n"
+        		+ "join user as D\r\n"
+        		+ "on B.user_id = D.user_id\r\n"
+        		+ "where B.regular_service_id = ?";
 
         try (Connection conn = DBManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -75,10 +76,9 @@ public class RegularServiceDAO {
                 String userName = rs.getString("user_name");
                 Timestamp orderDate = rs.getTimestamp("start_date");
                 String productName = rs.getString("product_name");
-                int num = rs.getInt("num");
+                int num = rs.getInt("quantity");
                 int price = rs.getInt("price");
                 int amount = rs.getInt("subtotal");
-//              定期便であれば１ true
                 int span = rs.getInt("span");
                 RegularService rsOrder = new RegularService(userName, orderDate, productName, num, price, amount,span);
                 list.add(rsOrder);

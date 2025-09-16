@@ -44,8 +44,12 @@ public class SubscriptionListServlet extends HttpServlet {
 		System.out.println(rsorderId);
 		
 		orderList = bo.getrsOrderDetail(rsorderId);
-		//ここのフロー確認
-		int total = orderList.stream().mapToInt(RegularService::getAmount).sum();
+		int total = 0;
+		for (RegularService rs : orderList) {
+		    total += rs.getAmount(); 
+		}
+//		こういう書き方もある ストリーム構文
+//		int total = orderList.stream().mapToInt(RegularService::getAmount).sum();
 		System.out.println(total);
 		if (orderList != null) { 
 //		    リクエストスコープに保存

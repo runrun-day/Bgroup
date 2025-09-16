@@ -40,6 +40,11 @@
 		</table>
 		
 		<h3>総合計：${total}円</h3>
+		
+		<form action="OrderListServlet" method="get" name="next"value="back">
+			<input type="hidden" name="next"value="back">
+			<input type="submit" value="ホームへ戻る">
+		</form>
 	</main>
 	<footer>
 	  <%@ include file="../../../inc/userFooter.jsp" %>	   

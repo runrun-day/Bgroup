@@ -44,12 +44,14 @@ public class OrderListServlet extends HttpServlet {
 		System.out.println(orderId);
 		
 		orderList = bo.getOrderDetail(orderId);
-		//ここのフロー確認
-		int total = orderList.stream().mapToInt(Order::getAmount).sum();
+		int total = 0;
+		for (Order rs : orderList) {
+		    total += rs.getAmount(); 
+		}
+//		int total = orderList.stream().mapToInt(Order::getAmount).sum();
 		System.out.println(total);
 		if (orderList != null) { 
 //		    リクエストスコープに保存
-			
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("total", total);
 		    
