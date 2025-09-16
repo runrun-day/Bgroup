@@ -49,6 +49,7 @@ public class OrderListServlet extends HttpServlet {
 		System.out.println(total);
 		if (orderList != null) { 
 //		    リクエストスコープに保存
+			
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("total", total);
 		    

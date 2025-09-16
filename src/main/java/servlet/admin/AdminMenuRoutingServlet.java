@@ -2,6 +2,7 @@ package servlet.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,7 +12,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import model.Order;
+import model.RegularService;
 import service.admin.AdminOrdersService;
+import service.admin.AdminRegularServiceLogic;
 
 /**
  * Servlet implementation class AdminMenuRoutingServlet
@@ -58,6 +61,15 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 				}
 			}
 			case "regular" ->{//定期便
+				List<RegularService> orderList = new ArrayList<>();
+				AdminRegularServiceLogic bo = new AdminRegularServiceLogic();
+				orderList = bo.getOrdersList();
+				if (orderList != null) { 
+//				    リクエストスコープに保存
+					request.setAttribute("orderList", orderList);
+				    System.out.println(orderList);
+				    nextPage ="WEB-INF/jsp/admin/regularShipmentList.jsp";
+				}
 			}
 			case "users" ->{//ユーザー検索
 			}

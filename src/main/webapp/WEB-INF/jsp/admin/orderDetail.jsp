@@ -14,10 +14,10 @@
 	</header>
 	<main>
 		<h2>注文詳細</h2>
+		<p>ユーザー名:${orderList.get(0).userName}</p>
+		<p>注文日時：${orderList.get(0).orderDate}</p>
 		<table>
 		<tr>
-		  <th>ユーザー名</th>
-		  <th>注文日</th>
 		  <th>商品名</th>
 		  <th>個数</th>
 		  <th>単価</th>
@@ -26,8 +26,6 @@
 		</tr>
 		<c:forEach var="order" items="${orderList}">
 		<tr>
-		<td>${order.userName}</td>
-		<td>${order.orderDate}</td>
 		<td>${order.productName}</td>
 		<td>${order.num}</td>
 		<td>${order.price}</td>

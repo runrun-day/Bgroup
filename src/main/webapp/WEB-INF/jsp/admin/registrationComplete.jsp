@@ -4,22 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>商品登録完了画面</title>
+<title>ユーザー登録画面</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<header>
-		<%@ include file="inc/adminHeader.jsp"%>
+		<%@ include file="inc/loginUserHeader.jsp"%>
 	</header>
-
 	<main>
-		<p class="result-message">商品登録しました！</p><br> 
-		<a class="home-botton" href="#">ホームに戻る</a>
+		<p class="result-message">ユーザー登録しました！</p>
+		<br> <a class="home-botton" href="#">ホームに戻る</a>
 	</main>
-
-
 	<footer>
-		<%@ include file="inc/adminFooter.jsp"%>
+		<%@ include file="inc/userFooter.jsp"%>
 	</footer>
 </body>
 </html>

@@ -4,18 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>編集結果</title>
+<title>登録解除画面</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<header>
-		<%@ include file="inc/adminHeader.jsp"%>
+		<%@ include file="inc/loginUserHeader.jsp"%>
 	</header>
 	<main>
-		<p class="result-message">商品を修正しました！</p><br> 
-		<a class="home-botton" href="#">ホームに戻る</a>
+		<p class="result-message">登録を解除しました！</p><br>
+		 <a href="#" class="btn">ホームに戻る</a>
 	</main>
 	<footer>
-		<%@ include file="inc/adminFooter.jsp"%>
+		<%@ include file="inc/userFooter.jsp"%>
 	</footer>
 </body>
+</html>
