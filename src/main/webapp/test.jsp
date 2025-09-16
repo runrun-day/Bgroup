@@ -12,11 +12,11 @@
 <body>
 	
 	<header>
-	  <%--  <%@ include file="inc/adminHeader.jsp" %> --%>
+	  <%--  <%@ include file="../../../inc/adminHeader.jsp" %> --%>
 
-	  <%--<%@ include file="inc/userHeader.jsp" %>--%>
-	  <%--<%@ include file="inc/loginUserHeader.jsp" %>--%>
-	  <%--<%@ include file="inc/newSubmitHeader.jsp" %>--%>
+	  <%--<%@ include file=""../../../inc/userHeader.jsp" %>--%>
+	  <%--<%@ include file=""../../../inc/loginUserHeader.jsp" %>--%>
+	  <%--<%@ include file=""../../../inc/newSubmitHeader.jsp" %>--%>
 	  
 	  <jsp:include page="inc/userHeader.jsp"/>
 	</header>

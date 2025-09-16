@@ -12,7 +12,7 @@ public class Order implements Serializable {
     private int productId; //商品ID オート
     private int num; //注文個数
     private Timestamp orderDate; //注文日時
-    //追加！
+    //追加
     private String date; //注文日のみ
     private String userName; //ユーザー名
     private String email; //メールアドレス
@@ -22,6 +22,8 @@ public class Order implements Serializable {
     private String productName; //商品名
     private int price; //価格
     private String imageRename; // 画像
+  //追加
+    private int span; //定期便
     private int amount; //num*price
 
     //追加
@@ -39,7 +41,7 @@ public class Order implements Serializable {
 	
 //	userName, orderDate, productName, num, price, amount,regularService
 	public Order(String userName, Timestamp orderDate, String productName, int num, int price, int amount,
-			boolean regularService) {
+			boolean regularService, int span) {
 		this.num = num;
 		this.orderDate = orderDate;
 		this.userName = userName;
@@ -47,6 +49,7 @@ public class Order implements Serializable {
 		this.price = price;
 		this.amount = amount;
 		this.regularService = regularService;
+		this.span = span;
 	}
 	
 	
@@ -213,6 +216,15 @@ public class Order implements Serializable {
 
 	public void setRegularService(boolean regularService) {
 		this.regularService = regularService;
+	}
+	
+
+	public int getSpan() {
+		return span;
+	}
+
+	public void setSpan(int span) {
+		this.span = span;
 	}
 
 	@Override

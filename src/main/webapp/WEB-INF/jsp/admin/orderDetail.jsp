@@ -32,7 +32,11 @@
 		<td>${order.num}</td>
 		<td>${order.price}</td>
 		<td>${order.amount}</td>
-		<td>${order.regularService ? "あり" : "なし"}</td>
+		<td>
+		<c:if test="${order.span > 0}">
+		${order.span}ヵ月
+		</c:if>
+		</td>
 		</tr>
 		</c:forEach>
 		</table>

@@ -28,7 +28,7 @@ public class OrdersDAO {
 			// 結果表に格納されたレコードの内容を表示
 			while (rs.next()) {
 				int orderId = rs.getInt("A.order_id");
-				String name = rs.getString("B.name");
+				String name = rs.getString("B.name");//
 				Timestamp orderDate = rs.getTimestamp("A.order_date");
 //				注文日時の年月日のみ表示できるようフォーマット
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -68,7 +68,7 @@ public class OrdersDAO {
         		+ "JOIN products p \r\n"
         		+ "ON od.product_id = p.product_id\r\n"
         		+ "LEFT JOIN regular_service rs \r\n"
-        		+ "ON rs.user_id = u.user_id\r\n"
+        		+ "ON rs.user_id = u.user_id AND o.order_date = rs.start_date\r\n"
         		+ "WHERE o.order_id = ?\r\n"
         		+ "ORDER BY o.order_date DESC;";
 
@@ -87,8 +87,8 @@ public class OrdersDAO {
                 int amount = rs.getInt("subtotal");
 //              定期便であれば１ true
                 boolean regularService = rs.getInt("regular_flag") == 1;
-
-                Order odv = new Order(userName, orderDate, productName, num, price, amount,regularService);
+                int span = rs.getInt("span");
+                Order odv = new Order(userName, orderDate, productName, num, price, amount,regularService,span);
                 list.add(odv);
             }
         } catch (SQLException e) {

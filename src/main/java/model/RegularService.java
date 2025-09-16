@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 // 定期便
@@ -12,7 +12,7 @@ public class RegularService implements Serializable {
     private int userId; //ユーザーID オート
     private int productId; //商品ID オート
     private int num; //注文個数
-    private Timestamp orderDate; //注文日
+    private LocalDateTime orderDate; //注文日
     
     //追加
     private String date; //注文日のみ
@@ -25,6 +25,7 @@ public class RegularService implements Serializable {
     private String productName; //商品名
     private int price; //価格
     private String imageRename; // 画像
+    private int span; //定期便
     private int amount; //num*price
 	
     
@@ -82,11 +83,11 @@ public class RegularService implements Serializable {
 		this.num = num;
 	}
 
-	public Timestamp getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Timestamp orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -181,6 +182,16 @@ public class RegularService implements Serializable {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+
+	public int getSpan() {
+		return span;
+	}
+
+
+	public void setSpan(int span) {
+		this.span = span;
 	}
     
 
