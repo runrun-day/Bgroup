@@ -7,6 +7,7 @@ import dao.OrdersDAO;
 import model.Order;
 
 public class AdminOrdersService {
+
 	//注文
 	private OrdersDAO dao = new OrdersDAO();
 	
@@ -22,4 +23,5 @@ public class AdminOrdersService {
 		return orderList;
 	}
 	
+
 }

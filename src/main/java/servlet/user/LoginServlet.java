@@ -1,6 +1,8 @@
 package servlet.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,7 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.Login;
+import model.Product;
 import model.UserAccount;
+import service.user.ProductService;
 import service.user.UserLoginLogic;
 
 /**
@@ -45,10 +49,11 @@ public class LoginServlet extends HttpServlet {
 //		リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
 		String nextPage = "";
-//		name="action"にvalue="signup" またはvalue="login"が入っているかで分岐
+//		分岐
 		String next = request.getParameter("next");
 		HttpSession session = request.getSession();
 		System.out.println(next);
+		
 		switch(next) {
 //		ユーザー登録へフォワード
 		case "signup" ->{
@@ -68,12 +73,19 @@ public class LoginServlet extends HttpServlet {
 
 		    // ログイン処理の成否によって処理を分岐
 		    if (account != null) { // ログイン成功時
-		      // セッションスコープにメルアドを保存
 		      
-		      session.setAttribute("account", account);
-		      System.out.println(account.getUserId());
+			    	List<Product> products = new ArrayList<>();
+			    	ProductService pbo = new ProductService();
+			    	products = pbo.getProducts();
+			    	System.out.println(products);
+			    	
+			    	//メニュー画面表示の商品リストを保存
+			    	request.setAttribute("products", products);
+			    	// セッションスコープにユーザー情報保存
+			    session.setAttribute("account", account);
+			    System.out.println(account.getUserId());
 		      
-		      nextPage ="WEB-INF/jsp/user/userMenu.jsp";
+			    nextPage ="WEB-INF/jsp/user/userMenu.jsp";
 		    } else { // ログイン失敗時
 		      // エラーメッセージ
 		     	login = new Login();

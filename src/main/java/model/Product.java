@@ -17,6 +17,13 @@ public class Product implements Serializable {
 		this.price = price;
 		this.imageRename = imageRename;
 	}
+	
+	public Product(int productId,String name,int price,String imageRename) {
+		this.productId = productId;
+		this.name = name;
+		this.price = price;
+		this.imageRename = imageRename;
+	}
 
 	public int getProductId() {
 		return productId;

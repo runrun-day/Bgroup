@@ -47,6 +47,7 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 			case "prodacts" ->{//商品一覧
 			}
 			case "registration" ->{//商品登録
+				nextPage ="WEB-INF/jsp/admin/productCreate.jsp";
 			}
 			case "orders" ->{//注文一覧
 			//注文一覧表示処理
