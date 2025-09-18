@@ -57,4 +57,10 @@ public class Product implements Serializable {
 		this.imageRename = imageRename;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", name=" + name + ", price=" + price + ", imageRename="
+				+ imageRename + "]";
+	}
+
 }

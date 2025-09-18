@@ -12,9 +12,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import model.Order;
+import model.Product;
 import model.RegularService;
 import service.admin.AdminOrdersService;
 import service.admin.AdminRegularServiceLogic;
+import service.user.ProductService;
 
 /**
  * Servlet implementation class AdminMenuRoutingServlet
@@ -27,8 +29,8 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/admin/adminMenu.jsp");
+	    dispatcher.forward(request, response);
 	}
 
 	/**
@@ -45,6 +47,14 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 		switch(next) {
 //		登録確認画面へ
 			case "prodacts" ->{//商品一覧
+		 	List<Product> products = new ArrayList<>();
+		    	ProductService pbo = new ProductService();
+		    	products = pbo.getProducts();
+		    	System.out.println(products);
+		    	
+		    	//画面表示の商品リストを保存
+		    	request.setAttribute("products", products);
+		    	nextPage ="WEB-INF/jsp/admin/productList.jsp";	
 			}
 			case "registration" ->{//商品登録
 				nextPage ="WEB-INF/jsp/admin/productCreate.jsp";
@@ -76,6 +86,7 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 			}
 			case "dashboard" ->{//ダッシュボード
 			}
+
 		}//switch文終わり
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);

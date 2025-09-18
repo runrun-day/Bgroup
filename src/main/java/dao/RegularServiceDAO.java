@@ -88,4 +88,72 @@ public class RegularServiceDAO {
         }
         return list;
 	}
+	
+	// ユーザーごとの定期便注文一覧を取る用
+	public List<RegularService> getOrdersByUser(int userId) {
+		List<RegularService> list = new ArrayList<>();
+
+		String sql = "SELECT r.regular_service_id, "
+				+ "d.regular_service_detail_id, r.start_date, "
+				+ "p.name AS product_name, d.num, p.price, "
+				+ "(d.num * p.price) AS subtotal, r.span "
+				+ "FROM regular_service r "
+				+ "JOIN regular_service_detail d ON r.regular_service_id = d.regular_service_id "
+				+ "JOIN products p ON d.product_id = p.product_id "
+				+ "WHERE r.user_id = ? "
+				+ "ORDER BY r.start_date DESC";
+
+		try (Connection conn = DBManager.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setInt(1, userId);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int regularServiceId = rs.getInt("regular_service_id");
+				int regularServiceDetailId = rs.getInt("d.regular_service_detail_id");
+				Timestamp orderDate = rs.getTimestamp("start_date");
+				String productName = rs.getString("product_name");
+				int num = rs.getInt("num");
+				int price = rs.getInt("price");
+				int amount = rs.getInt("subtotal");
+				int span = rs.getInt("span");
+
+				RegularService rsOrder = new RegularService(null, regularServiceDetailId, orderDate, productName, num,
+						price, amount, span);
+				rsOrder.setRegularServiceId(regularServiceId);
+
+				// 日付を文字列にフォーマットしてセット
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				rsOrder.setDate(sdf.format(orderDate));
+
+				list.add(rsOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// 定期便削除用
+	public boolean delete(int regularServiceDetailId) {
+		String sql = "DELETE R, D FROM REGULAR_SERVICE AS R\n"
+				+ "JOIN REGULAR_SERVICE_DETAIL AS D\n"
+				+ "ON R.REGULAR_SERVICE_ID = D.REGULAR_SERVICE_ID\n"
+				+ "WHERE R.REGULAR_SERVICE_ID = ?;";
+
+		try (Connection conn = DBManager.getConnection(); // DBに接続
+				PreparedStatement pStmt = conn.prepareStatement(sql)) { // SQLを準備
+
+			// 削除対象のIDをセット
+			pStmt.setInt(1, regularServiceDetailId);
+
+			int rows = pStmt.executeUpdate();
+			return rows > 0; // 削除件数が1件以上なら成功
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

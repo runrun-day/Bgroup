@@ -50,6 +50,20 @@ public class RegularService implements Serializable {
 	    	this.amount = amount;
     }
     
+  
+//定期便削除用
+public RegularService(String userName,int regularServiceDetailId, Timestamp orderDate,String productName,int num,
+		int price,int amount,int span) {
+		this.regularServiceDetailId = regularServiceDetailId;
+	    	this.num = num;
+	    	this.orderDate = orderDate;
+	    	this.userName = userName;
+	    	this.productName = productName;
+	    	this.price = price;
+	    	this.span = span;
+	    	this.amount = amount;
+}
+    
 	// ゲッターセッター
 	public int getRegularServiceDetailId() {
 		return regularServiceDetailId;

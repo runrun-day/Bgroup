@@ -2,6 +2,7 @@ package service.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.servlet.ServletException;
@@ -89,5 +90,20 @@ public class AdminProductService {
 				return false;
 			}
 			return dao.create(product);
+		}
+		
+		public Product getProductInfo(int productId) {
+			return dao.getProductInfo(productId);
+			
+		}
+		
+		public boolean editProduct(int productId,String name,int price) {
+			return dao.editProduct(productId,name,price);
+		}
+		
+		public boolean deleteProduct(int productId,LocalDateTime datetime) {
+			return dao.deleteProduct(productId, datetime);
+				
+			
 		}
 }

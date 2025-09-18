@@ -20,31 +20,35 @@
 </style>
 
 	<header>
-		<%@ include file="../../../inc/userHeader.jsp"%>
+		<jsp:include page="../../../inc/userHomeHeader.jsp"/>
 	</header>
 	<main>
 		<div class="container-wide">
 
 			<div class="border-container">
 				<c:forEach var = "product" items ="${products}">
+				<table>
 					<tr>
 						<div class="item">
 							<td>${product.name}</td>
 							<td>${product.price}円</td>
 						</div>
-					<div class="img">
+						<div class="img">
 						<td>
 							<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200">
 						</td>
-					</div>
+						</div>
 						<td>
 						<form action="" method="post" name="next" value="cart">
 							<input type="hidden" name="orderId" value="${product.productId}">
 							<input type="submit" value="カートに追加" class="cart-button">
 						</form>
-					</td>
-					</div>
+						</td>
+					</tr>
+				</table>
 				</c:forEach>
+			</div>
+		</div>		
 	</main>
 
 	<footer>
