@@ -1,31 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ユーザー検索</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css">
 </head>
 <body>
-	<header>
-		<%@ include file="inc/adminHeader.jsp"%>
-	</header>
+    <header>
+        <%@ include file="../../../inc/adminHeader.jsp"%>
+    </header>
 
-	<main>
-		<h2>ユーザー検索</h2>
+    <main>
+        <h1>ユーザー検索</h1>
+		<!--ユーザーが見つからない場合のエラー表示-->
+		<c:if test="${not empty errorMsg}">
+			<p style="color:red;"><c:out value="${errorMsg}" /></p>
+		</c:if>
 
-		<form action="#" method="post">
-			<label for="tel">電話番号</label><br> <input type="text" id="tel"
-				name="tel"   required><br> <br>
-			<button type="submit" action="#" class="return-button">戻る</button>
-			<button type="submit" action="#" class="action-button">検索</button>
-		</form>
-	</main>
-	</main>
+        <form action="UserSearchServlet" method="post">
+        <input type="hidden" name="next"value="search">
+            <label for="tel">電話番号</label><br>
+            <input type="text" id="tel" name="tel" required><br><br>
+		<div class="form-buttons">
+    			<form action="UserSearchServlet" method="get">
+    				<input type="submit" value="戻る">
+			</form>
+    			<button type="submit" class="action-button">検索</button>
+		</div>
+        </form>
+    </main>
 
-	<footer>
-		<%@ include file="inc/adminFooter.jsp"%>
-	</footer>
+    <footer>
+        <%@ include file="../../../inc/adminFooter.jsp"%>
+    </footer>
 </body>
 </html>

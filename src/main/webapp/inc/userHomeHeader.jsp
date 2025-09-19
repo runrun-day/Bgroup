@@ -16,7 +16,7 @@
 			<input type="submit" value="定期便">
 	</form>
 	<form action="MenuNavigationServlet" method="post" name="next"value="user">
-			<input type="hidden" name="next"value="cart">
+			<input type="hidden" name="next"value="user">
 			<input type="submit" value="ユーザー情報">
 	</form>
 	</p>

@@ -72,7 +72,7 @@ public class UserDAO {
 	}
 	
 //	ユーザー登録画面でメールアドレスの重複がないか確認する処理
-	public UserAccount findbyetel(String tel){
+	public UserAccount checkByTel(String tel){
 		UserAccount account = null;
 //		DBManagerからgetConnection()でSQL接続
 		try (Connection conn = DBManager.getConnection()) {
@@ -123,7 +123,131 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+	}	
+		
 	}
-	}
+	
+	//ユーザー削除処理
+	public boolean userDeleteById(int userId) {
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
 
+			// SELECT文を準備
+			String sql = "INSERT INTO USER (NAME,EMAIL,POSTCODE,ADDRESS,TEL,PASSWORD) VALUES (?,?,?,?,?,?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+            pStmt.setInt(1, userId);
+            
+		
+			
+         // 実行結果（影響を受けた行数）を取得
+            int rows = pStmt.executeUpdate();
+            return rows > 0; // 1件以上登録できれば成功
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+	}	
+		
+//		try {
+//            // 1. データベース接続
+//            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+//            // 2. トランザクション開始
+//            connection.setAutoCommit(false);
+//
+//            // 3. 定期便明細テーブル（regular_service_detail）から該当するデータを削除
+//            String deleteRegularServiceDetailSql = "DELETE FROM regular_service_detail WHERE regular_service_id IN (SELECT regular_service_id FROM regular_service WHERE user_id = ?)";
+//            stmt = connection.prepareStatement(deleteRegularServiceDetailSql);
+//            stmt.setInt(1, userId);
+//            stmt.executeUpdate();
+//
+//            // 4. 定期便テーブル（regular_service）から該当するデータを削除
+//            String deleteRegularServiceSql = "DELETE FROM regular_service WHERE user_id = ?";
+//            stmt = connection.prepareStatement(deleteRegularServiceSql);
+//            stmt.setInt(1, userId);
+//            stmt.executeUpdate();
+//
+//            // 5. 注文明細テーブル（order_detail）から該当するデータを削除
+//            String deleteOrderDetailSql = "DELETE FROM order_detail WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
+//            stmt = connection.prepareStatement(deleteOrderDetailSql);
+//            stmt.setInt(1, userId);
+//            stmt.executeUpdate();
+//
+//            // 6. 注文履歴テーブル（orders）から該当するデータを削除
+//            String deleteOrderSql = "DELETE FROM orders WHERE user_id = ?";
+//            stmt = connection.prepareStatement(deleteOrderSql);
+//            stmt.setInt(1, userId);
+//            stmt.executeUpdate();
+//
+//            // 7. ユーザーテーブル（user）から該当するユーザーを削除
+//            String deleteUserSql = "DELETE FROM user WHERE user_id = ?";
+//            stmt = connection.prepareStatement(deleteUserSql);
+//            stmt.setInt(1, userId);
+//            stmt.executeUpdate();
+//
+//            // 8. コミットして変更を確定
+//            connection.commit();
+//            isSuccess = true;
+//
+//        } catch (SQLException e) {
+//            // エラーが発生した場合はロールバック
+//            if (connection != null) {
+//                try {
+//                    connection.rollback();
+//                } catch (SQLException rollbackEx) {
+//                    rollbackEx.printStackTrace();
+//                }
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            // リソースをクローズ
+//            try {
+//                if (stmt != null) {
+//                    stmt.close();
+//                }
+//                if (connection != null) {
+//                    connection.setAutoCommit(true);  // 自動コミットを元に戻す
+//                    connection.close();
+//                }
+//            } catch (SQLException closeEx) {
+//                closeEx.printStackTrace();
+//            }
+//        }
+//
+//        return isSuccess;
+//    }
+	}
+	
+	//
+	public UserAccount findByTel(String tel){
+		UserAccount account = null;
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "select user_id,name,email,postcode,address,tel\n"
+					+ "from user\n"
+					+ "where tel = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, tel);
+		
+			
+			// SELECT文を実行し、結果表（ResultSet）を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表に格納されたレコードの内容を表示
+			if (rs.next()) {		
+				int userId = rs.getInt("USER_ID");
+				String name = rs.getString("NAME");
+				String postcode = rs.getString("POSTCODE");
+				String address = rs.getString("ADDRESS");
+				String email = rs.getString("EMAIL");
+				account = new UserAccount(userId,name,email,postcode,address,tel);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return account;
+	}
 }

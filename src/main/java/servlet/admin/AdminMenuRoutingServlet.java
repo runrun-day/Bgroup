@@ -40,7 +40,6 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 //		リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
 		String next = request.getParameter("next");
-		System.out.println(next);
 //		異動ページ 初期値空欄
 		String nextPage = "";
 	
@@ -83,9 +82,11 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 				}
 			}
 			case "users" ->{//ユーザー検索
+				nextPage ="WEB-INF/jsp/admin/userSearch.jsp";
 			}
 			case "dashboard" ->{//ダッシュボード
 			}
+			
 
 		}//switch文終わり
 		

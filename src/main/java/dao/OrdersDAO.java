@@ -96,4 +96,42 @@ public class OrdersDAO {
         }
         return list;
     }
+	
+	// ユーザーの注文履歴表示
+		public List<Order> getOrdersByUser(int userId) {
+		    List<Order> orderList = new ArrayList<>();
+
+		    String sql =
+		        "SELECT o.order_id, o.order_date, p.name AS product_name, od.num, p.price, " +
+		        "(od.num * p.price) AS subtotal " +
+		        "FROM orders o " +
+		        "JOIN order_detail od ON o.order_id = od.order_id " +
+		        "JOIN products p ON od.product_id = p.product_id " +
+		        "WHERE o.user_id = ? " +
+		        "ORDER BY o.order_date DESC";
+
+		    try (Connection conn = DBManager.getConnection();
+		         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+		        pstmt.setInt(1, userId);
+		        ResultSet rs = pstmt.executeQuery();
+
+		        while (rs.next()) {
+		            int orderId = rs.getInt("order_id");
+		            Timestamp orderDate = rs.getTimestamp("order_date");
+		            String productName = rs.getString("product_name");
+		            int num = rs.getInt("num");
+		            int price = rs.getInt("price");
+		            int amount = rs.getInt("subtotal");
+
+		            Order order = new Order(orderId, orderDate, productName, num, price, amount);
+		            orderList.add(order);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+
+		    return orderList;
+		}
+
 }

@@ -18,7 +18,7 @@ public class UserService {
 //		ユーザー登録画面で電話番号の重複がないか確認する処理
 		public boolean telCheck(String tel) {
 			UserDAO dao = new UserDAO();
-			UserAccount account = dao.findbyetel(tel);
+			UserAccount account = dao.checkByTel(tel);
 			System.out.println(account);
 //			accountがNullの場合trueで返す処理
 		    return Objects.isNull(account);

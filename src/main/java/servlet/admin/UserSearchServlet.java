@@ -1,12 +1,18 @@
 package servlet.admin;
 
 import java.io.IOException;
+import java.util.Objects;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import model.UserAccount;
+import service.admin.AdminUserAccountService;
 
 /**
  * Servlet implementation class UserSearchServlet
@@ -20,15 +26,65 @@ public class UserSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		request.setCharacterEncoding("UTF-8");
+		String next = request.getParameter("next");
+		HttpSession session = request.getSession();
+//		異動ページ 初期値空欄
+		String nextPage = "";
+		switch(next) {
+//		登録確認画面へ
+			case "back_1" ->{
+					session.removeAttribute("userInfo");
+					nextPage = "WEB-INF/jsp/admin/userSearch.jsp";
+				}
+			}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/admin/userInfomartion.jsp");
+		dispatcher.forward(request, response);
+		}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+//		リクエストパラメータの取得
+		request.setCharacterEncoding("UTF-8");
+		String next = request.getParameter("next");
+//		異動ページ 初期値空欄
+		String nextPage = "";
+		HttpSession session = request.getSession();
+		AdminUserAccountService bo = new AdminUserAccountService();
+		
+		switch(next) {
+//		登録確認画面へ
+			case "search" ->{
+//				電話番号取得
+				String tel = request.getParameter("tel");
+				UserAccount userInfo = new UserAccount();
+				userInfo = bo.findByTel(tel);
+				
+//				ヒットしたユーザー情報をリクエストスコープに保存
+				request.setAttribute("userInfo", userInfo);
+				nextPage = "WEB-INF/jsp/admin/searchResult.jsp";
+			
+//			エラー処理 ユーザー情報がない
+				if(Objects.isNull(userInfo)) {
+					request.setAttribute("errorMsg","該当のユーザは存在しません");
+					nextPage = "WEB-INF/jsp/admin/userSearch.jsp";
+				}
+			}
+
+			case "deletCheck" ->{
+				String tel = request.getParameter("tel");
+				int userId = Integer.parseInt(request.getParameter("userId"));
+//					boolean result = bo.
+			}
+			case "deletCommit" ->{
+				
+			}
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+		dispatcher.forward(request, response);
 	}
 
 }
