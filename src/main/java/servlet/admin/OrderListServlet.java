@@ -41,15 +41,12 @@ public class OrderListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 //		intに変換
 		int orderId = Integer.parseInt(request.getParameter("orderId"));
-		System.out.println(orderId);
 		
 		orderList = bo.getOrderDetail(orderId);
 		int total = 0;
 		for (Order rs : orderList) {
 		    total += rs.getAmount(); 
 		}
-//		int total = orderList.stream().mapToInt(Order::getAmount).sum();
-		System.out.println(total);
 		if (orderList != null) { 
 //		    リクエストスコープに保存
 			request.setAttribute("orderList", orderList);

@@ -18,6 +18,7 @@ public class Product implements Serializable {
 		this.imageRename = imageRename;
 	}
 	
+	// カート画面に追加する用
 	public Product(int productId,String name,int price,String imageRename) {
 		this.productId = productId;
 		this.name = name;

@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <!--静的インクルード-->
 <header class = "header center">
-    <h1>はたらく文具屋さん(仮)</h1>
+    <h1>はたらく文房具屋さん(仮)</h1>
 </header>

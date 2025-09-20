@@ -9,9 +9,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
 	<%@ include file="../../../inc/adminHeader.jsp"%>
-	</header>
+
 	<main>
 		<h2>注文詳細</h2>
 		<p>ユーザー名:${orderList.get(0).userName}</p>
@@ -46,8 +45,7 @@
 			<input type="submit" value="ホームへ戻る">
 		</form>
 	</main>
-	<footer>
+
 	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
 </body>
 </html>

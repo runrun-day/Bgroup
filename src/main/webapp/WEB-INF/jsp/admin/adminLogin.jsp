@@ -4,15 +4,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>管理者ログイン</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
 	  <%@ include file="../../../inc/adminHeader.jsp" %>
-	</header>
+	  
 	<main>
 		<c:if test="${not empty requestScope.errorMsg}">
 			<p style="color:red;"><c:out value="${requestScope.errorMsg}" /></p>
@@ -29,8 +28,7 @@
 			<input type="submit" value="ユーザーログイン">
 		</form>
 	</main>
-	<footer>
-	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
+
+	  <%@ include file="../../../inc/adminFooter.jsp" %>	   
 </body>
 </html>

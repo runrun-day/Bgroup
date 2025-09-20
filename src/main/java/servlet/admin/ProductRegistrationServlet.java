@@ -45,7 +45,6 @@ public class ProductRegistrationServlet extends HttpServlet {
 		case "check" -> {
 			String name = request.getParameter("name");
 			int price = Integer.parseInt(request.getParameter("price"));
-			System.out.println(price);
 			
 			String uploadName = product.upload(request,getServletContext().getRealPath("/temp"));
 			

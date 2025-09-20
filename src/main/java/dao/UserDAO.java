@@ -133,12 +133,45 @@ public class UserDAO {
 		try (Connection conn = DBManager.getConnection()) {
 
 			// SELECT文を準備
-			String sql = "INSERT INTO USER (NAME,EMAIL,POSTCODE,ADDRESS,TEL,PASSWORD) VALUES (?,?,?,?,?,?)";
+			// 定期便明細テーブル
+			String sql = "DELETE FROM regular_service_detail WHERE regular_service_id IN (SELECT regular_service_id FROM regular_service WHERE user_id = ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// プレースホルダに値をセット
-            pStmt.setInt(1, userId);
-            
-		
+			pStmt.setInt(1, userId);
+			 // 実行結果（影響を受けた行数）を取得
+			pStmt.executeUpdate();
+			
+			// 定期便テーブル
+			sql = "DELETE FROM regular_service WHERE user_id = ?";
+			pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+			pStmt.setInt(1, userId);
+			 // 実行結果（影響を受けた行数）を取得
+			pStmt.executeUpdate();
+			
+			// 注文明細テーブル
+			sql = "DELETE FROM order_detail WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
+			pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+			pStmt.setInt(1, userId);
+			 // 実行結果（影響を受けた行数）を取得
+			pStmt.executeUpdate();
+			
+			// 注文履歴テーブル
+			sql = "DELETE FROM orders WHERE user_id = ?";
+			pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+			pStmt.setInt(1, userId);
+			 // 実行結果（影響を受けた行数）を取得
+			pStmt.executeUpdate();
+			
+			// ユーザーテーブル
+			sql = "DELETE FROM user WHERE user_id = ?";
+			pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+			pStmt.setInt(1, userId);
+			 // 実行結果（影響を受けた行数）を取得
+			pStmt.executeUpdate();
 			
          // 実行結果（影響を受けた行数）を取得
             int rows = pStmt.executeUpdate();
@@ -147,78 +180,10 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-	}	
-		
-//		try {
-//            // 1. データベース接続
-//            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-//            // 2. トランザクション開始
-//            connection.setAutoCommit(false);
-//
-//            // 3. 定期便明細テーブル（regular_service_detail）から該当するデータを削除
-//            String deleteRegularServiceDetailSql = "DELETE FROM regular_service_detail WHERE regular_service_id IN (SELECT regular_service_id FROM regular_service WHERE user_id = ?)";
-//            stmt = connection.prepareStatement(deleteRegularServiceDetailSql);
-//            stmt.setInt(1, userId);
-//            stmt.executeUpdate();
-//
-//            // 4. 定期便テーブル（regular_service）から該当するデータを削除
-//            String deleteRegularServiceSql = "DELETE FROM regular_service WHERE user_id = ?";
-//            stmt = connection.prepareStatement(deleteRegularServiceSql);
-//            stmt.setInt(1, userId);
-//            stmt.executeUpdate();
-//
-//            // 5. 注文明細テーブル（order_detail）から該当するデータを削除
-//            String deleteOrderDetailSql = "DELETE FROM order_detail WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
-//            stmt = connection.prepareStatement(deleteOrderDetailSql);
-//            stmt.setInt(1, userId);
-//            stmt.executeUpdate();
-//
-//            // 6. 注文履歴テーブル（orders）から該当するデータを削除
-//            String deleteOrderSql = "DELETE FROM orders WHERE user_id = ?";
-//            stmt = connection.prepareStatement(deleteOrderSql);
-//            stmt.setInt(1, userId);
-//            stmt.executeUpdate();
-//
-//            // 7. ユーザーテーブル（user）から該当するユーザーを削除
-//            String deleteUserSql = "DELETE FROM user WHERE user_id = ?";
-//            stmt = connection.prepareStatement(deleteUserSql);
-//            stmt.setInt(1, userId);
-//            stmt.executeUpdate();
-//
-//            // 8. コミットして変更を確定
-//            connection.commit();
-//            isSuccess = true;
-//
-//        } catch (SQLException e) {
-//            // エラーが発生した場合はロールバック
-//            if (connection != null) {
-//                try {
-//                    connection.rollback();
-//                } catch (SQLException rollbackEx) {
-//                    rollbackEx.printStackTrace();
-//                }
-//            }
-//            e.printStackTrace();
-//        } finally {
-//            // リソースをクローズ
-//            try {
-//                if (stmt != null) {
-//                    stmt.close();
-//                }
-//                if (connection != null) {
-//                    connection.setAutoCommit(true);  // 自動コミットを元に戻す
-//                    connection.close();
-//                }
-//            } catch (SQLException closeEx) {
-//                closeEx.printStackTrace();
-//            }
-//        }
-//
-//        return isSuccess;
-//    }
+        }	
 	}
 	
-	//
+	//ユーザー検索
 	public UserAccount findByTel(String tel){
 		UserAccount account = null;
 //		DBManagerからgetConnection()でSQL接続

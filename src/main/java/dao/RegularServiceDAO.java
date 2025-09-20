@@ -32,15 +32,13 @@ public class RegularServiceDAO {
 //				注文日時の年月日のみ表示できるようフォーマット
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 				String date = sdf.format(orderDate);
-				RegularService rsOrder = new RegularService(regularServiceId,name,date);
-				System.out.println(rsOrder);
+				RegularService rsOrder = new RegularService(regularServiceId,name,date);;
 				orderList.add(rsOrder);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println(orderList);
 		return orderList;
 		}
 

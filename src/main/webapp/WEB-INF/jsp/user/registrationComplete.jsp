@@ -10,9 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-	  <jsp:include page="../../../inc/userHeader.jsp"/>
-	</header>
+	  <%@ include file="../../../inc/newSubmitHeader.jsp" %>
 	<main>
 		<h1>ユーザー登録しました！</h1>
 		<p>ログイン画面より再度ログインをお願いします。</p>
@@ -21,8 +19,7 @@
 			<input type="submit" value="ホームに戻る">
 		</form>
 		</main>
-	<footer>
+		
 	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
 </body>
 </html>

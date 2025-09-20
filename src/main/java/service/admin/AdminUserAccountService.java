@@ -11,4 +11,7 @@ public class AdminUserAccountService {
 	public UserAccount findByTel(String tel){
 		return dao.findByTel(tel);
 }
+	public boolean userDeleteById(int userId) {
+		return dao.userDeleteById(userId);
+	}
 }

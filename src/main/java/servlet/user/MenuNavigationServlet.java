@@ -56,7 +56,7 @@ public class MenuNavigationServlet extends HttpServlet {
 		RegularServiceLogic rsLogic = new RegularServiceLogic();
 
 		switch (next) {
-		case "cart" -> {
+		case "カート" -> {
 			// セッションスコープ準備
 			HttpSession session = request.getSession();
 			
@@ -80,7 +80,7 @@ public class MenuNavigationServlet extends HttpServlet {
 			
 			nextPage = "/WEB-INF/jsp/user/cartIn.jsp";
 		}
-		case "orders" -> {
+		case "注文履歴" -> {
 			UserAccount account = (UserAccount) request.getSession().getAttribute("account");
 
 			if (account != null) {
@@ -109,7 +109,7 @@ public class MenuNavigationServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/jsp/user/orderLog.jsp";
 		}
-		case "regular" -> {
+		case "定期便" -> {
 			// ログインユーザー情報を取得
 			UserAccount account = (UserAccount) request.getSession().getAttribute("account");
 
@@ -148,7 +148,7 @@ public class MenuNavigationServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/jsp/user/regularService.jsp";
 		}
-		case "user" -> {
+		case "ユーザー情報" -> {
 			nextPage = "/WEB-INF/jsp/user/userInfomartion.jsp";
 		}
 		}

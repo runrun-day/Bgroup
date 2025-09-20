@@ -41,7 +41,6 @@ public class SubscriptionListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 //		intに変換
 		int rsorderId = Integer.parseInt(request.getParameter("rsorderId"));
-		System.out.println(rsorderId);
 		
 		orderList = bo.getrsOrderDetail(rsorderId);
 		int total = 0;
@@ -50,7 +49,6 @@ public class SubscriptionListServlet extends HttpServlet {
 		}
 //		こういう書き方もある ストリーム構文
 //		int total = orderList.stream().mapToInt(RegularService::getAmount).sum();
-		System.out.println(total);
 		if (orderList != null) { 
 //		    リクエストスコープに保存
 			request.setAttribute("orderList", orderList);

@@ -11,9 +11,7 @@
 </head>
 
 <body>
-	<header>
-	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
-	</header>
+	<jsp:include page="../../../inc/loginUserHeader.jsp"/>
 	
 	<main>
 	<!--エラー時の表示処理-->
@@ -51,9 +49,6 @@
 		
 	</main>
 	
-	<footer>
-	  <%@ include file="../../../inc/userFooter.jsp" %>
-	</footer>
-	 
+	<%@ include file="../../../inc/userFooter.jsp" %> 
 </body>
 </html>

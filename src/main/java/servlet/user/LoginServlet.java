@@ -69,7 +69,6 @@ public class LoginServlet extends HttpServlet {
 		    Login login = new Login(mail, password);
 		    UserLoginLogic bo = new UserLoginLogic();
 		    UserAccount account = bo.execute(login);
-		    System.out.println(account);
 
 		    // ログイン処理の成否によって処理を分岐
 		    if (account != null) { // ログイン成功時
@@ -77,13 +76,12 @@ public class LoginServlet extends HttpServlet {
 			    	List<Product> products = new ArrayList<>();
 			    	ProductService pbo = new ProductService();
 			    	products = pbo.getProducts();
-			    	System.out.println(products);
 			    	
 			    	//メニュー画面表示の商品リストを保存
 			    	request.setAttribute("products", products);
 			    	// セッションスコープにユーザー情報保存
 			    session.setAttribute("account", account);
-			    System.out.println(account.getUserId());
+
 		      
 			    nextPage ="WEB-INF/jsp/user/userMenu.jsp";
 		    } else { // ログイン失敗時

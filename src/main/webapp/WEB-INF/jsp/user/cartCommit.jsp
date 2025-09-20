@@ -9,14 +9,14 @@
 </head>
 <body>
 	<header>
-		<%@ include file="inc/loginUserHeader.jsp"%>
+		<jsp:include page="../../../inc/loginUserHeader.jsp"/>
 	</header>
 	<main>
 		<p class="result-message">注文が完了しました！</p><br>
 		 <a class="home-botton" href="#">ホームに戻る</a>
 	</main>
 	<footer>
-		<%@ include file="inc/userFooter.jsp"%>
+		<%@ include file="../../../inc/userFooter.jsp" %>
 	</footer>
 </body>
 </html>

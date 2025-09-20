@@ -1,42 +1,198 @@
 @charset "utf-8";
-
-.header,
-.footer {
-	background-color: #7fff00;
+body{
+margin:0;
 }
 
-.header{
+.link form {
+  display: inline-block;  /* 横並びになる */
+  margin-right: 10px;     /* 間隔調整 */
+}
+
+/*管理者ヘッダー・フッター*/
+.header.admin,
+.footer.admin{
+	background-color: #ccc;
+	padding:10px;
+}
+
+.header.admin{
+	font-size: 20px;
+	padding:10px;
+}
+
+/*ユーザー側ヘッダー・フッター*/
+.header,
+.footer{
+	background-color: #7fff00;
+	padding:10px;
+}
+
+/*両ヘッダー*/
+.header,
+.header.admin{
 	height:90px;
 	display: flex;
 	align-items: center;
+	padding:10px;
 }
 
-.right{
-	justify-content: flex-end;
-	text-align: right;
-	padding-right:20px;
+/*main*/
+main{
+	padding: 50px;
+}
+
+/*見出し*/
+.title{
 	font-size: 20px;
+}
+
+/*テキスト*/
+.result-message{
+	font-size: 	50px;
+/*	font-weight: */
 	
 }
 
+/*全ボタン*/
+[class*=button]{
+	border: none;
+	cursor: pointer;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 4px;
+	
+}
+
+[class*=button]:hover{
+  background-color: #0056b3;
+}
+
+/*トップボタンのみ*/
+.top-button{
+	
+}
+
+
+/*テーブルボタンのみ*/
+.table-button{
+	background-color: turquoise;	
+	width:50px;
+}
+
+/*ホームボタンのみ*/
+.home-button{
+	transform: scale(2);/*拡大*/
+	text-decoration: none;/*下線を削除する*/
+}
+
+/*戻る+アクションボタン*/
+.return-button,
+.action-button,
+.home-button{
+	background-color:blue;
+	margin-top: 20px; /*上に余白を入れる*/
+}
+
+/*ログイン+トップボタン*/
+.login-button,
+.top-button{
+	background-color: #7fff00;
+}
+
+
+
+/*ボタン1個の時の配置*/
+.btn-one{
+	display: flex;
+	justify-content: center; /* 横方向中央寄せ */
+	margin-top: 20px;
+}
+
+/*ボタン2個の時の配置*/
+.btn-two{
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+}
+
+/*左寄せボタン*/
+.top-button{
+	display: flex;
+	justify-content: center;
+	background-color:red;
+}
+
+
+/*テーブル*/
+/*table{
+	table-layout: fixed;
+	border-collapse: collapse; /*罫線を重ねる*/
+/*}
+
+td{
+	border: 2px solid #333;/*外枠*/
+	/*border-collapse: collapse; /*罫線を重ねる*/
+	/*justify-content: left;
+	text-align: left;
+	
+}
+
+/*画面構成2-テーブル*/
+.cartIn{
+	width: 100%;
+	
+}
+
+.boder-box{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	border: 2px solid #333;/*外枠*/
+}
+
+.product-name {
+	width: 30%;
+}
+
+.num {
+	width: 20%;
+}
+
+.num-items {
+	width: 20%;
+
+}
+
+.num-items input {
+	width: 3em;
+}
+
+.taikibin {
+	width: 20%;
+}
+
+/*テキスト位置*/
 .center{
 	justify-content: center;
 	text-align: center;
-	font-size: 15px;
-
 }
 
 .left{
+	justify-content: left;
 	text-align: left;
-	justify-content: flex-start;
 	padding-left:20px;
-	font-size: 13px;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 横方向の中央揃え */
-  gap: 1em; /* 各要素の間隔 */
-  padding: 20px; /* 必要に応じて余白を追加 */
+.right{
+	justify-content: right;
+	text-align: right;
+	padding-right:20px;
 }
+
+/*.link{*/
+/*	justify-content: flex;*/
+/*		text-align: right;*/
+/*		padding-right:20px;*/
+/*		font-size: 20px;*/
+/*}*/
+

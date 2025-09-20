@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!--静的インクルード-->
-<header class = "footer user center">
-    <p>はたらく文房具やさん(仮)</p>
-</header>
+<footer class = "footer user center">
+    <p>&copy;はたらく文房具屋さん(仮)</p>
+</footer>

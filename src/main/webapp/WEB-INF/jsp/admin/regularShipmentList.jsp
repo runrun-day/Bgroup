@@ -10,11 +10,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-	  <%@ include file="../../../inc/adminHeader.jsp" %>
-	</header>
+	<%@ include file="../../../inc/adminHeader.jsp" %>
+
 	<main>
-<p>定期便一覧</p>
+		<p>定期便一覧</p>
 		<table>
 			<tr>
 				<th>注文者</th>
@@ -43,8 +42,8 @@
 		</form>
 
 	</main>
-	<footer>
-	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
+
+	<%@ include file="../../../inc/adminFooter.jsp" %> 
+
 </body>
 </html>

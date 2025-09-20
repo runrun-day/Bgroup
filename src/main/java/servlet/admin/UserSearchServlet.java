@@ -37,6 +37,12 @@ public class UserSearchServlet extends HttpServlet {
 					session.removeAttribute("userInfo");
 					nextPage = "WEB-INF/jsp/admin/userSearch.jsp";
 				}
+			case "back_2" ->{
+				nextPage = "WEB-INF/jsp/admin/searchResult.jsp";
+			}
+			default -> {
+				nextPage = "WEB-INF/jsp/admin/adminMenu.jsp";
+            }
 			}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/admin/userInfomartion.jsp");
 		dispatcher.forward(request, response);
@@ -64,7 +70,7 @@ public class UserSearchServlet extends HttpServlet {
 				userInfo = bo.findByTel(tel);
 				
 //				ヒットしたユーザー情報をリクエストスコープに保存
-				request.setAttribute("userInfo", userInfo);
+				session.setAttribute("userInfo", userInfo);
 				nextPage = "WEB-INF/jsp/admin/searchResult.jsp";
 			
 //			エラー処理 ユーザー情報がない
@@ -75,12 +81,22 @@ public class UserSearchServlet extends HttpServlet {
 			}
 
 			case "deletCheck" ->{
-				String tel = request.getParameter("tel");
-				int userId = Integer.parseInt(request.getParameter("userId"));
-//					boolean result = bo.
+				nextPage = "WEB-INF/jsp/admin/userDeleteCheck.jsp";
+				
 			}
 			case "deletCommit" ->{
-				
+				int userId = Integer.parseInt(request.getParameter("userId"));
+//				データベース処理
+				boolean result = bo.userDeleteById(userId);
+//				ユーザー情報削除
+				session.removeAttribute("userInfo");
+//				完了画面
+				nextPage = "WEB-INF/jsp/admin/userDeleteResult.jsp";
+				if(!result)	{
+//					データベースの削除ができなかった場合
+					request.setAttribute("errorMsg","ユーザ削除ができませんでした");
+					nextPage = "WEB-INF/jsp/admin/userSearch.jsp";
+				}
 			}
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);

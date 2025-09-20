@@ -10,9 +10,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-	  <jsp:include page="../../../inc/adminHeader.jsp"/>
-	</header>
+ 	<%@ include file="../../../inc/adminHeader.jsp" %>	
+
 	
 	<main>
 		<h1 class="title">商品登録</h1>	
@@ -40,8 +39,6 @@
 		</div>
 	</main>
 
-	<footer>
-	  <%@ include file="../../../inc/adminFooter.jsp" %>
-	</footer>
+ 	<%@ include file="../../../inc/adminFooter.jsp" %>
 </body>
 </html>

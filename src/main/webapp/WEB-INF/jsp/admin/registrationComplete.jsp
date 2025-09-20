@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>ユーザー登録画面</title>
-<link rel="stylesheet" href="css/style.css">
+<title>商品登録画面</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-		<%@ include file="inc/loginUserHeader.jsp"%>
-	</header>
+	<%@ include file="../../../inc/adminHeader.jsp" %>	
+
 	<main>
-		<p class="result-message">ユーザー登録しました！</p>
-		<br> <a class="home-botton" href="#">ホームに戻る</a>
+		<p class="result-message">商品を登録しました！</p>
+		<a class="btn" href="ProductRegistrationServlet">ホームに戻る</a>
 	</main>
-	<footer>
-		<%@ include file="inc/userFooter.jsp"%>
-	</footer>
+
+	<%@ include file="../../../inc/adminFooter.jsp" %>
 </body>
 </html>

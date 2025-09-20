@@ -49,7 +49,6 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 		 	List<Product> products = new ArrayList<>();
 		    	ProductService pbo = new ProductService();
 		    	products = pbo.getProducts();
-		    	System.out.println(products);
 		    	
 		    	//画面表示の商品リストを保存
 		    	request.setAttribute("products", products);
@@ -66,7 +65,6 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 				if (orderList != null) { 
 //				    リクエストスコープに保存
 					request.setAttribute("orderList", orderList);
-				    System.out.println(orderList);
 				    nextPage ="WEB-INF/jsp/admin/orderList.jsp";
 				}
 			}
@@ -77,7 +75,6 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 				if (orderList != null) { 
 //				    リクエストスコープに保存
 					request.setAttribute("orderList", orderList);
-				    System.out.println(orderList);
 				    nextPage ="WEB-INF/jsp/admin/regularShipmentList.jsp";
 				}
 			}

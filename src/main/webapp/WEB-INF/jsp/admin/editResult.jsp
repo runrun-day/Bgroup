@@ -8,14 +8,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-		<%@ include file="../../../inc/adminHeader.jsp"%>
-	</header>
+	<%@ include file="../../../inc/adminHeader.jsp"%>
+
 	<main>
 		<p class="result-message">商品を修正しました！</p><br> 
-		<a class="home-botton" href="ProductListServlet">ホームに戻る</a>
+		<a class="btn" href="ProductListServlet">ホームに戻る</a>
 	</main>
-	<footer>
-		<%@ include file="../../../inc/adminFooter.jsp"%>
-	</footer>
+
+	<%@ include file="../../../inc/adminFooter.jsp"%>
 </body>

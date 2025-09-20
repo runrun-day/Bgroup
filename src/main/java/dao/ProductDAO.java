@@ -40,7 +40,6 @@ public class ProductDAO {
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println(products);
 		return products;
 	}
 	
@@ -134,5 +133,34 @@ public class ProductDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public List<Product> findAll() {
+		// 結果を格納するリスト
+		List<Product> pList = new ArrayList<>();
+		// 実行するSQL文
+		String sql = "SELECT PRODUCT_ID, NAME, PRICE, IMAGE_RENAME FROM PRODUCTS WHERE DELEAT_DATE IS NULL;";
+
+		// try-with-resources文を使うことで、close処理を自動で行ってくれる
+		try (Connection conn = DBManager.getConnection(); // DBに接続
+				PreparedStatement pStmt = conn.prepareStatement(sql); // SQLを準備
+				ResultSet rs = pStmt.executeQuery()) { // SQLを実行し、結果を取得
+
+			// 結果セットから1件ずつ取り出す
+			while (rs.next()) {
+				Product product = new Product(
+						rs.getInt("PRODUCT_ID"),
+						rs.getString("NAME"),
+						rs.getInt("PRICE"),
+						rs.getString("IMAGE_RENAME"));
+				pList.add(product); // リストに追加
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null; // 例外発生時は null を返す
+		}
+
+		return pList;
 	}
 }

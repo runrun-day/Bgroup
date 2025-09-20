@@ -10,9 +10,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
-	  <jsp:include page="../../../inc/userHeader.jsp"/>
-	</header>
+	  <%@ include file="../../../inc/newSubmitHeader.jsp" %>
+	  
 	<main>
 	<!--エラー時の表示処理-->
 		<c:if test="${not empty errorMsg}">
@@ -46,8 +45,6 @@
 			</form>
 		</div>
 	</main>
-	<footer>
 	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
 </body>
 </html>

@@ -67,7 +67,7 @@ public class SignUpServlet extends HttpServlet {
 				UserService bo = new UserService();
 //				passwardのパッケージマッチング
 				boolean result = passward.matches("[A-Z0-9]{12}");
-				System.out.println("result4:" + result);
+				
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "パスワードが条件を満たしていません");
@@ -77,7 +77,7 @@ public class SignUpServlet extends HttpServlet {
 				
 	//			passwardとpassward2が同じかの確認分岐
 			    result = passward2.equals(passward);
-			    System.out.println("result5:" + result);
+
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "パスワードと確認用パスワードが一致しません");
@@ -87,7 +87,7 @@ public class SignUpServlet extends HttpServlet {
 				
 				// 電話番号が固有であるかの確認分岐
 				result = bo.telCheck(tel);
-				System.out.println("result3:" + result);
+				
 				if (!result) { //accountがNullの場合trueなのでfalseのエラー処理
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "この電話番号は既にユーザー登録済みです");
@@ -98,7 +98,7 @@ public class SignUpServlet extends HttpServlet {
 				
 				//電話番号にハイフンが含まれていないか→含まれている場合true
 				result = !tel.contains("-");
-				System.out.println("result6:" + result);
+				
 				if (!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "電話番号に-(ハイフン)が含まれています");
@@ -109,7 +109,7 @@ public class SignUpServlet extends HttpServlet {
 				
 //				郵便番号のパッケージマッチング
 				result = postcode.matches("[0-9]{7}")&& !postcode.contains("-");
-				System.out.println("result2:" + result);
+				
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "郵便番号の入力に誤りがあります(-(ハイフン)なしの7文字)");
@@ -119,7 +119,7 @@ public class SignUpServlet extends HttpServlet {
 				
 				// メルアドが固有であるかの確認分岐			
 				result = bo.emailCheck(email);
-				System.out.println("result:" + result);
+				
 				if (!result) { //accountがNullの場合trueなのでfalseのエラー処理
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "このメールアドレスは既にユーザー登録済みです");
@@ -136,7 +136,7 @@ public class SignUpServlet extends HttpServlet {
 					session.setAttribute("form", form);
 				}
 				
-				System.out.println("nextPage:" + nextPage);
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 			    dispatcher.forward(request, response);
 			}

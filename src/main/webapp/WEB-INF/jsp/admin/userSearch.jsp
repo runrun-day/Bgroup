@@ -8,9 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css">
 </head>
 <body>
-    <header>
-        <%@ include file="../../../inc/adminHeader.jsp"%>
-    </header>
+	<%@ include file="../../../inc/adminHeader.jsp"%>
 
     <main>
         <h1>ユーザー検索</h1>
@@ -20,20 +18,20 @@
 		</c:if>
 
         <form action="UserSearchServlet" method="post">
-        <input type="hidden" name="next"value="search">
+        	<input type="hidden" name="next"value="search">
             <label for="tel">電話番号</label><br>
             <input type="text" id="tel" name="tel" required><br><br>
-		<div class="form-buttons">
-    			<form action="UserSearchServlet" method="get">
-    				<input type="submit" value="戻る">
-			</form>
-    			<button type="submit" class="action-button">検索</button>
-		</div>
+   			<input  class="action-button" type="submit" value="検索">
+   			<button type="submit"></button>
         </form>
+        
+        <div class="form-buttons">
+	        <form action="UserSearchServlet" method="get">
+				<input type="submit" value="戻る">
+			</form>
+		</div>
     </main>
 
-    <footer>
-        <%@ include file="../../../inc/adminFooter.jsp"%>
-    </footer>
+	<%@ include file="../../../inc/adminFooter.jsp"%>
 </body>
 </html>

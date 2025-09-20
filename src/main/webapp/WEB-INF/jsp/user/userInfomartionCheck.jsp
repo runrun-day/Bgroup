@@ -10,9 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
 	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
-	</header>
 
 <main>
 <h1 class="title">ユーザー情報確認</h1>
@@ -33,16 +31,8 @@
 <input type="submit" value="確定">
 </form>
 
-		
-
-
-
 </main>
 
-
-	<footer>
 	  <%@ include file="../../../inc/userFooter.jsp" %>
-	</footer>
-
 </body>
 </html>

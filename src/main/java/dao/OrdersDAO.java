@@ -34,14 +34,12 @@ public class OrdersDAO {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 				String date = sdf.format(orderDate);
 				Order order = new Order(orderId,name,date);
-				System.out.println(order);
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println(orderList);
 		return orderList;
 		}
 

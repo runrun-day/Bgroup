@@ -10,18 +10,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<style>
+input.nonbtn {
+  background: none;        /* 背景なし */
+  border: none;            /* 枠線なし */
+  color: #0070c9;          
+  padding: 0;              
+  margin: 0 10px;          
+  cursor: pointer;         /* カーソルをリンク風に */
+  text-decoration: underline; /* 下線 */
+}
+
+/* ホバー時の色変化 */
+input.nonbtn:hover {
+  color: #005799;
+  text-decoration: underline;
+}
+
+</style>
 </head>
 <body>
-	<style>
-.item-img {
-	width: 200px;
-	height: 200px;
-}
-</style>
 
-	<header>
 		<jsp:include page="../../../inc/userHomeHeader.jsp"/>
-	</header>
 	<main>
 		<div class="container-wide">
 
@@ -40,6 +50,7 @@
 						</div>
 						<td>
 						<form action="" method="post" name="next" value="cart">
+							<input type="hidden" name="next" value="cart">
 							<input type="hidden" name="orderId" value="${product.productId}">
 							<input type="submit" value="カートに追加" class="cart-button">
 						</form>
@@ -48,11 +59,13 @@
 				</table>
 				</c:forEach>
 			</div>
-		</div>		
+		</div>	
+		<form action="LoginServlet" method="post">
+		<input type="hidden" name="next" value="logout">
+		<input type="submit" value="ログアウト">
+	</form>	
 	</main>
 
-	<footer>
 		<%@ include file="../../../inc/userFooter.jsp"%>
-	</footer>
 </body>
 </html>

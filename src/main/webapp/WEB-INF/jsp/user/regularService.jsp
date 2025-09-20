@@ -2,61 +2,59 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>定期便</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-    <p>ようこそ、${account.name}さん！</p>
+	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
+	
+	<main>
 	・定期便注文一覧
 	<br>
-	<table>
-	<tr>
-		
-		<c:set var="prevDate" value="" scope="page" />
-
-		<c:forEach var="rs" items="${rsList}">
-			<c:if test="${rs.date ne prevDate}">
-				<p>注文日：${rs.date}</p>
-				<c:set var="prevDate" value="${rs.date}" scope="page" />
-			</c:if>
+	<c:forEach var="entry" items="${regularServiceList}">
+		<p>注文日：${entry.key}</p>
+		<table>
 			<tr>
-			<tr>
-                <td>
-                <table>
-                <tr>
-                <th>商品名</th>  
-                <th>個数</th>  
-                <th>単価</th>  
-                <th>金額</th>  
-                <th>定期便</th>
-		        </tr>  
-
-				<tr>
-                <td>・${rs.productName}</td>
-				<td>${rs.num}個</td>
-				<td>× @${rs.price}</td>
-				<td>${rs.amount}円</td>
-				<td>${rs.span}ヵ月</td>
-                </tr>
-                </table>
-                </td>
-				<td>
-					<form action="SubscriptionOrderServlet" method="post" name="next" value="rescission">
-						<input type="hidden" name="next"value="rescission"> 
-						<input type="hidden" name="regularServiceDetailId" value="${rs.regularServiceDetailId}">
-						<input type="submit" value="解除">
-					</form>
-				</td>
+				<td>商品名</td>
+				<td>個数</td>
+				<td>単価</td>
+				<td>金額</td>
+				<td>定期便</td>
 			</tr>
-		</c:forEach>
+			<c:forEach var="rs" items="${entry.value}">
+				<tr>
+					<td>・${rs.productName}</td>
+					<td>${rs.num}個</td>
+					<td>× @${rs.price}</td>
+					<td>${rs.amount}円</td>
+					<td>${rs.span}ヵ月</td>
+				</tr>
+			</c:forEach>
 		</table>
-	</table>
-	合計 ${total}円
-	<form action="MenuNavigationServlet" method="post" name="next" value="back">
+		
+		<p>合計金額：${dailyTotals[entry.key]}円</p>
+		
+		<!-- 注文日単位での解除ボタン -->
+		<form action="SubscriptionOrderServlet" method="post">
+			<input type="hidden" name="next" value="rescission">
+			<input type="hidden" name="orderDate" value="${entry.key}">
+			<!-- 複数商品の場合でもregularServiceIdは同じになるので、-->
+			<!--	 最初の1つだけを取得-->
+			<input type="hidden" name="regularServiceId" value="${entry.value[0].regularServiceId}">
+			<input type="submit" value="解除">
+		</form>
+	</c:forEach>
+
+	<form action="MenuNavigationServlet" method="get">
 		<input type="hidden" name="next" value="back">
 		<input type="submit" value="戻る">
 	</form>
+	</main>
+
+	  <%@ include file="../../../inc/userFooter.jsp" %>	   
 </body>
 </html>

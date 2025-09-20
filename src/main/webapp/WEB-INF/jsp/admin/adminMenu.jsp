@@ -10,9 +10,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<header>
 	<%@ include file="../../../inc/adminHeader.jsp"%>
-	</header>
+
 	<main>
 		<p>メニュー</p>
 		<div class="">
@@ -41,14 +40,13 @@
 				<input type="submit" value="ダッシュボード">
 			</form>
 			
-			<form action="AdminLoginServlet" method="post" name="next" value="back">
+			<form action="AdminLoginServlet" method="post" name="next" value="logout">
 				<input type="hidden" name="next" value="back">
 				<input type="submit" value="ログアウト">
 			</form>
 		</div>
 	</main>
-	<footer>
-	  <%@ include file="../../../inc/userFooter.jsp" %>	   
-	</footer> 
+
+	  <%@ include file="../../../inc/adminFooter.jsp" %>	   
 </body>
 </html>
