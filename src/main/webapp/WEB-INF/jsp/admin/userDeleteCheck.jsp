@@ -13,7 +13,7 @@
 	<%@ include file="../../../inc/adminHeader.jsp" %>
 	
 	<main>
-	<p>該当ユーザーの削除確認</p>
+	<h1>該当ユーザを削除します。</h1>
 	<table>
 				<tr>
 					<th>氏名</label></th>
@@ -40,8 +40,8 @@
 					<td>●●●●●●●●●●●●</td>
 				</tr>
 				<td colspan="2">
-					<form action="UserSearchServlet" method="post" name="next" value="deletCheck">
-							<input type="hidden" name="next" value="deletCheck">
+					<form action="UserSearchServlet" method="post">
+							<input type="hidden" name="next" value="deletCommit">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
 							<input type="submit" value="確定">
 					</form>

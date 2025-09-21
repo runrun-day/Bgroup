@@ -61,7 +61,7 @@ public class UserDAO {
 			if (rs.next()) {		
 				String mail = rs.getString("EMAIL");
 				account = new UserAccount();
-				account.setEmail(email);
+				account.setEmail(mail);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +139,8 @@ public class UserDAO {
 			// プレースホルダに値をセット
 			pStmt.setInt(1, userId);
 			 // 実行結果（影響を受けた行数）を取得
-			pStmt.executeUpdate();
+			int rows = pStmt.executeUpdate();
+			System.out.println(rows);
 			
 			// 定期便テーブル
 			sql = "DELETE FROM regular_service WHERE user_id = ?";
@@ -147,7 +148,8 @@ public class UserDAO {
 			// プレースホルダに値をセット
 			pStmt.setInt(1, userId);
 			 // 実行結果（影響を受けた行数）を取得
-			pStmt.executeUpdate();
+			rows = pStmt.executeUpdate();
+			System.out.println(rows);
 			
 			// 注文明細テーブル
 			sql = "DELETE FROM order_detail WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
@@ -155,7 +157,8 @@ public class UserDAO {
 			// プレースホルダに値をセット
 			pStmt.setInt(1, userId);
 			 // 実行結果（影響を受けた行数）を取得
-			pStmt.executeUpdate();
+			rows = pStmt.executeUpdate();
+			System.out.println(rows);
 			
 			// 注文履歴テーブル
 			sql = "DELETE FROM orders WHERE user_id = ?";
@@ -163,7 +166,8 @@ public class UserDAO {
 			// プレースホルダに値をセット
 			pStmt.setInt(1, userId);
 			 // 実行結果（影響を受けた行数）を取得
-			pStmt.executeUpdate();
+			rows = pStmt.executeUpdate();
+			System.out.println(rows);
 			
 			// ユーザーテーブル
 			sql = "DELETE FROM user WHERE user_id = ?";
@@ -171,10 +175,9 @@ public class UserDAO {
 			// プレースホルダに値をセット
 			pStmt.setInt(1, userId);
 			 // 実行結果（影響を受けた行数）を取得
-			pStmt.executeUpdate();
+			rows = pStmt.executeUpdate();
+			System.out.println(rows);
 			
-         // 実行結果（影響を受けた行数）を取得
-            int rows = pStmt.executeUpdate();
             return rows > 0; // 1件以上登録できれば成功
 
         } catch (SQLException e) {
@@ -214,5 +217,64 @@ public class UserDAO {
 			return null;
 		}
 		return account;
+	}
+	
+//	ユーザー情報変更で他ユーザーと電話番号の重複がないか確認する処理
+	public UserAccount otherCheckByTel(int id,String tel){
+		UserAccount account = null;
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "SELECT TEL FROM USER WHERE TEL = ? AND user_id <> ?;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, tel);
+			pStmt.setInt(2, id);
+		
+			
+			// SELECT文を実行し、結果表（ResultSet）を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表に格納されたレコードの内容を表示
+			while (rs.next()) {		
+				String tel2 = rs.getString("TEL");
+				account = new UserAccount();
+				account.setTel(tel2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return account;
+	}
+	
+//	ユーザー登録画面でメールアドレスの重複がないか確認する処理
+	public UserAccount otherEmailCheck(int id,String email){
+		UserAccount account = null;
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "SELECT EMAIL FROM USER WHERE EMAIL = ? AND user_id <> ?;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, email);
+			pStmt.setInt(2, id);
+		
+			
+			// SELECT文を実行し、結果表（ResultSet）を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表に格納されたレコードの内容を表示
+			if (rs.next()) {		
+				String mail = rs.getString("EMAIL");
+				account = new UserAccount();
+				account.setEmail(mail);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return account;
+	
 	}
 }

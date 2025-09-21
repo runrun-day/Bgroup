@@ -15,33 +15,33 @@
 	<main>
 		<p>メニュー</p>
 		<div class="">
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="prodacts">
+			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="prodacts">
 				<input type="submit" value="商品一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="registration">
+			<form action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="registration">
 				<input type="submit" value="商品登録">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="orders">
+			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="orders">
 				<input type="submit" value="注文一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="regular">
+			<form action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="regular">
 				<input type="submit" value="定期便一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="users">
+			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="users">
 				<input type="submit" value="ユーザー検索">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post" name="next"value="dashboard">
-			 	<input type="hidden" name="next" value="check">
+			<form action="AdminMenuRoutingServlet" method="post">
+			 	<input type="hidden" name="next" value="dashboard">
 				<input type="submit" value="ダッシュボード">
 			</form>
 			
-			<form action="AdminLoginServlet" method="post" name="next" value="logout">
-				<input type="hidden" name="next" value="back">
+			<form action="AdminLoginServlet" method="post">
+				<input type="hidden" name="next" value="logout">
 				<input type="submit" value="ログアウト">
 			</form>
 		</div>

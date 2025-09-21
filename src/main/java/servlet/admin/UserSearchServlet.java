@@ -44,7 +44,7 @@ public class UserSearchServlet extends HttpServlet {
 				nextPage = "WEB-INF/jsp/admin/adminMenu.jsp";
             }
 			}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/admin/userInfomartion.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 		}
 
@@ -66,12 +66,12 @@ public class UserSearchServlet extends HttpServlet {
 			case "search" ->{
 //				電話番号取得
 				String tel = request.getParameter("tel");
-				UserAccount userInfo = new UserAccount();
-				userInfo = bo.findByTel(tel);
+				UserAccount userInfo = bo.findByTel(tel);
 				
 //				ヒットしたユーザー情報をリクエストスコープに保存
 				session.setAttribute("userInfo", userInfo);
 				nextPage = "WEB-INF/jsp/admin/searchResult.jsp";
+				System.out.println(Objects.isNull(userInfo));
 			
 //			エラー処理 ユーザー情報がない
 				if(Objects.isNull(userInfo)) {
@@ -88,6 +88,7 @@ public class UserSearchServlet extends HttpServlet {
 				int userId = Integer.parseInt(request.getParameter("userId"));
 //				データベース処理
 				boolean result = bo.userDeleteById(userId);
+				System.out.println("削除" + result);
 //				ユーザー情報削除
 				session.removeAttribute("userInfo");
 //				完了画面

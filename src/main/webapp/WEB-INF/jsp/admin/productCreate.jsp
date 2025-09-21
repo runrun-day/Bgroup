@@ -18,7 +18,7 @@
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
-		<div class="form-buttons">
+		<div class="">
 		
 			<form action="ProductRegistrationServlet" method="post" name="next"value="check" enctype="multipart/form-data">
 			<input type="hidden" name="next"value="check">

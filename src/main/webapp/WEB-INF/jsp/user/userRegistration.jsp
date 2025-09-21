@@ -18,7 +18,7 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 	
-		<div class="form-buttons">
+		<div class="">
 
 			<form action="SignUpServlet" method="post" name="next" value="check">
 			 <input type="hidden" name="next" value="check">

@@ -46,6 +46,6 @@
 		</form>
 	</main>
 
-	  <%@ include file="../../../inc/userFooter.jsp" %>	   
+	  <%@ include file="../../../inc/adminFooter.jsp" %>	   
 </body>
 </html>

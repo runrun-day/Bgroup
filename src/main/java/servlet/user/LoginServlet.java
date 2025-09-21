@@ -1,7 +1,10 @@
 package servlet.user;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
@@ -64,6 +67,15 @@ public class LoginServlet extends HttpServlet {
 //			フォーム入力したメルアドとパスワードの取得
 			String mail = request.getParameter("mail");
 			String password = request.getParameter("password");
+//			入力パスワードのハッシュ化
+			try {
+				MessageDigest md = MessageDigest.getInstance("SHA-256");
+				md.update(password.getBytes());
+	      		byte[] hashBytes = md.digest();
+	      		password = Base64.getEncoder().encodeToString(hashBytes);
+			}catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+		    }
 			
 			// ログイン処理の実行
 		    Login login = new Login(mail, password);
@@ -73,23 +85,20 @@ public class LoginServlet extends HttpServlet {
 		    // ログイン処理の成否によって処理を分岐
 		    if (account != null) { // ログイン成功時
 		      
-			    	List<Product> products = new ArrayList<>();
-			    	ProductService pbo = new ProductService();
-			    	products = pbo.getProducts();
-			    	
-			    	//メニュー画面表示の商品リストを保存
-			    	request.setAttribute("products", products);
-			    	// セッションスコープにユーザー情報保存
+		    	List<Product> products = new ArrayList<>();
+		    	ProductService pbo = new ProductService();
+		    	products = pbo.getProducts();
+		    	
+		    	//メニュー画面表示の商品リストを保存
+		    	request.setAttribute("products", products);
+		    	// セッションスコープにユーザー情報保存
 			    session.setAttribute("account", account);
 
 		      
 			    nextPage ="WEB-INF/jsp/user/userMenu.jsp";
 		    } else { // ログイン失敗時
-		      // エラーメッセージ
-		     	login = new Login();
-		     	login.setErrorMsg("ユーザー名またはパスワードが違います");
 //				エラーメッセージをリクエストスコープに保存
-		     	request.setAttribute("login",login);
+		     	request.setAttribute("errorMsg","ユーザー名またはパスワードが違います");
 		     	nextPage ="top.jsp";
 				}
 		}

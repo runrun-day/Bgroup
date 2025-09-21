@@ -149,6 +149,7 @@ public class MenuNavigationServlet extends HttpServlet {
 			nextPage = "/WEB-INF/jsp/user/regularService.jsp";
 		}
 		case "ユーザー情報" -> {
+//			セッションスコープにユーザー情報あるのでそのままページ移動のみ
 			nextPage = "/WEB-INF/jsp/user/userInfomartion.jsp";
 		}
 		}

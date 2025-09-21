@@ -19,9 +19,9 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 	
-		<div class="form-buttons">
+		<div class="">
 
-			<form action="UserEditServlet" method="post" name="next" value="check">
+			<form action="UserEditServlet" method="post">
 			 <input type="hidden" name="next" value="check">
 				名前<br>
 				<input type="text" name="name" value="${account.name}" required><br>
@@ -40,8 +40,8 @@
 				<input type="submit" value="修正">
 			</form>
 			
-			<form action="LoginServlet" method="post" name="next" value="back">
-				<input type="hidden" name="next" value="back">
+			<form action="UserEditServlet" method="post">
+				<input type="hidden" name="next" value="back_1">
 				<input type="submit" value="戻る">
 			</form>
 			

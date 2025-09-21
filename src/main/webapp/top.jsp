@@ -14,11 +14,11 @@
 	
 	<main>
 	<!--エラー時の表示処理-->
-		<c:if test="${not empty login.errorMsg}">
-			<p style="color:red;"><c:out value="${login.errorMsg}" /></p>
+		<c:if test="${not empty errorMsg}">
+			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 	
-		<div class="form-buttons">
+		<div class="">
 			<form action="LoginServlet" method="post" name="next" value="signup">
 				<input type="hidden" name="next" value="signup">
 				<input type="submit" value="新規登録">

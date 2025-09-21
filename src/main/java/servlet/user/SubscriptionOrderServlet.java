@@ -8,8 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
+import model.UserAccount;
 import service.user.RegularServiceLogic;
+import service.user.UserService;
 
 /**
  * Servlet implementation class SubscriptionOrderServlet
@@ -40,7 +43,7 @@ public class SubscriptionOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "";
 		String next = request.getParameter("next");
-
+		HttpSession session = request.getSession();
 		switch (next) {
 		case "orderCommit" -> { //注文情報確認
 
@@ -68,8 +71,22 @@ public class SubscriptionOrderServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
 		}
-		case "update" -> { //修正確認
-
+		case "commit" ->{//登録確認から登録結果まで
+			UserAccount account = (UserAccount)session.getAttribute("form");				
+			UserService us = new UserService();
+			boolean success = false;
+			nextPage = "WEB-INF/jsp/user/userInfomartionCommit.jsp";
+			if(account != null) {
+				success = us.userCreat(account);
+			}
+//			登録できなかった場合エラーで返す
+			if(!success) {
+				request.setAttribute("errorMsg", "登録に失敗しました");
+				nextPage = "WEB-INF/jsp/user/userInfomartion.jsp";
+			}
+			//セッション削除
+	        session.removeAttribute("form");
+			
 		}
 		}
 	}

@@ -1,6 +1,9 @@
 package servlet.user;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -58,30 +61,30 @@ public class SignUpServlet extends HttpServlet {
 //		check
 	    String tel = request.getParameter("tel");
 //    		check
-	    String passward = request.getParameter("passward");
-	    String passward2 = request.getParameter("passward2");
+	    String password = request.getParameter("passward");
+	    String password2 = request.getParameter("passward2");
 	    
 		switch(next) {
 //		登録確認画面へ
 			case "check" ->{
 				UserService bo = new UserService();
 //				passwardのパッケージマッチング
-				boolean result = passward.matches("[A-Z0-9]{12}");
+				boolean result = password.matches("[A-Z0-9]{12}");
 				
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "パスワードが条件を満たしていません");
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}
 				
 	//			passwardとpassward2が同じかの確認分岐
-			    result = passward2.equals(passward);
+			    result = password2.equals(password);
 
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "パスワードと確認用パスワードが一致しません");
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}
 				
@@ -92,7 +95,7 @@ public class SignUpServlet extends HttpServlet {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "この電話番号は既にユーザー登録済みです");
 	//				登録画面へ
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}
 				
@@ -103,7 +106,7 @@ public class SignUpServlet extends HttpServlet {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "電話番号に-(ハイフン)が含まれています");
 	//				登録画面へ
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}
 				
@@ -113,7 +116,7 @@ public class SignUpServlet extends HttpServlet {
 				if(!result) {
 	//				エラーメッセージをリクエストスコープに保存
 					request.setAttribute("errorMsg", "郵便番号の入力に誤りがあります(-(ハイフン)なしの7文字)");
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 					nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}
 				
@@ -125,13 +128,23 @@ public class SignUpServlet extends HttpServlet {
 					request.setAttribute("errorMsg", "このメールアドレスは既にユーザー登録済みです");
 	//				登録画面へ
 					
-					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, passward));
+					request.setAttribute("form", new UserAccount(name,email,postcode,address,tel, password));
 			     	nextPage = "WEB-INF/jsp/user/userRegistration.jsp";
 				}	
 
 				if(result) {
+//					パスワードのハッシュ化 SHA-256ハッシュ化
+					try {
+						MessageDigest md = MessageDigest.getInstance("SHA-256");
+						md.update(password.getBytes());
+			      		byte[] hashBytes = md.digest();
+			      		password = Base64.getEncoder().encodeToString(hashBytes);
+					}catch (NoSuchAlgorithmException e) {
+						e.printStackTrace();
+				    }
+					
 //					入力内容のユーザーインスタンス作成
-					UserAccount form = new UserAccount(name,email,postcode,address,tel, passward); 
+					UserAccount form = new UserAccount(name,email,postcode,address,tel, password); 
 //					セッションスコープにユーザー登録内容を保存
 					session.setAttribute("form", form);
 				}

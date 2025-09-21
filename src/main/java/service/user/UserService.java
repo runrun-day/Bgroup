@@ -10,7 +10,6 @@ public class UserService {
 		public boolean emailCheck(String email) {
 			UserDAO dao = new UserDAO();
 			UserAccount account = dao.findbyemail(email);
-			System.out.println(account);
 //			accountがNullの場合trueで返す処理
 		    return Objects.isNull(account);
 		}
@@ -19,7 +18,6 @@ public class UserService {
 		public boolean telCheck(String tel) {
 			UserDAO dao = new UserDAO();
 			UserAccount account = dao.checkByTel(tel);
-			System.out.println(account);
 //			accountがNullの場合trueで返す処理
 		    return Objects.isNull(account);
 		}
@@ -30,4 +28,22 @@ public class UserService {
 //			登録されてればtrue
 			return dao.userCreate(account);
 		}
+		
+//		ユーザー情報変更で他ユーザーと電話番号の重複がないか確認する処理
+		public boolean otherTelCheck(int id,String tel) {
+			UserDAO dao = new UserDAO();
+			UserAccount account = dao.otherCheckByTel(id,tel);
+//			accountがNullの場合trueで返す処理
+		    return Objects.isNull(account);
+		}
+		
+//		ユーザー情報変更で他ユーザーとメールアドレスの重複がないか確認する処理
+		public boolean otherEmailCheck(int id,String email) {
+			UserDAO dao = new UserDAO();
+			UserAccount account = dao.otherEmailCheck(id,email);
+//			accountがNullの場合trueで返す処理
+		    return Objects.isNull(account);
+		}
 }
+
+
