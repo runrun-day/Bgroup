@@ -11,7 +11,6 @@
 </head>
 <body>
 	  <%@ include file="inc/userHeader.jsp" %>	 
-	
 	<main id="container">
 	<!--エラー時の表示処理-->
 		<c:if test="${not empty errorMsg}">
