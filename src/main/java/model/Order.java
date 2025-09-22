@@ -52,13 +52,14 @@ public class Order implements Serializable {
 		this.span = span;
 	}
 	// userIdごとの履歴取得用
-		public Order(int orderId, Timestamp orderDate, String productName, int num, int price, int amount) {
+		public Order(int orderId, Timestamp orderDate, String productName, int num, int price, int amount,int span) {
 		    this.orderId = orderId;
 		    this.orderDate = orderDate;
 		    this.productName = productName;
 		    this.num = num;
 		    this.price = price;
 		    this.amount = amount;
+		    this.span = span;
 		}
 	
 	// ゲッターセッター
