@@ -275,6 +275,34 @@ public class UserDAO {
 			return null;
 		}
 		return account;
+	}
 	
+//	ユーザー情報の変更
+	public boolean updateUserInfo(int id,UserAccount account) {
+//		DBManagerからgetConnection()でSQL接続
+		try (Connection conn = DBManager.getConnection()) {
+
+			// SELECT文を準備
+			String sql = "update user\n"
+					+ "set NAME = ? ,EMAIL = ? ,POSTCODE = ? ,ADDRESS = ? , TEL = ? ,PASSWORD  = ? \n"
+					+ "where USER_ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// プレースホルダに値をセット
+            pStmt.setString(1, account.getName());
+            pStmt.setString(2, account.getEmail());
+            pStmt.setString(3, account.getPostcode());
+            pStmt.setString(4, account.getAddress());
+            pStmt.setString(5, account.getTel());
+            pStmt.setString(6, account.getPassward());
+            pStmt.setInt(7, id);
+			
+         // 実行結果（影響を受けた行数）を取得
+            int rows = pStmt.executeUpdate();
+            return rows > 0; // 1件以上登録できれば成功
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
 	}
 }

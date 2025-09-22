@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 
 		    // ログイン処理の成否によって処理を分岐
 		    if (account != null) { // ログイン成功時
-		      
+//		    メニュー画面 商品表示処理
 		    	List<Product> products = new ArrayList<>();
 		    	ProductService pbo = new ProductService();
 		    	products = pbo.getProducts();

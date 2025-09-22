@@ -22,7 +22,7 @@
 		<div class="">
 
 			<form action="UserEditServlet" method="post">
-			 <input type="hidden" name="next" value="check">
+			 	<input type="hidden" name="next" value="check">
 				名前<br>
 				<input type="text" name="name" value="${account.name}" required><br>
 				メールアドレス<br>

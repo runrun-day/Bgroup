@@ -13,8 +13,8 @@
 	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
 	
 	<main>
-		注文確認<br>
-		・注文履歴一覧<br>
+		
+		<p>注文履歴一覧</p>
 		<c:forEach var="entry" items="${orderHistoryMap}">
 	    <p>注文日：${entry.key}</p>
 	    <table>

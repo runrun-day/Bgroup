@@ -1,6 +1,9 @@
 @charset "utf-8";
 body{
 margin:0;
+background-color: #ffffff;
+color: #333;
+font-size: 0.875em;
 }
 
 .link form {
@@ -39,6 +42,23 @@ margin:0;
 /*main*/
 main{
 	padding: 50px;
+	width: 740px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.login{
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+.login input{
+	margin: 20px;
+	text-align: center;
+}
+
+.adminlogin{
+	text-align: right;
 }
 
 /*見出し*/
@@ -96,7 +116,12 @@ main{
 /*ログイン+トップボタン*/
 .login-button,
 .top-button{
-	background-color: #7fff00;
+	background-color: #4d9407;
+}
+
+/*新規登録ボタン*/
+.signup-button{
+background-color: #d1971b;
 }
 
 
@@ -122,20 +147,42 @@ main{
 	background-color:red;
 }
 
+/*ログアウトボタン*/
+.logout-button{
+background-color: #6bb38e;
+}
+
+.cart-button{
+background-color: #54d3be;
+}
 
 /*テーブル*/
-/*table{
-	table-layout: fixed;
-	border-collapse: collapse; /*罫線を重ねる*/
-/*}
+table{
+	table-layout: auto;
+	border-collapse: collapse;  /* 罫線を重ねる */
+	width: 100%;
+	max-width: 700px;
+	margin: 16px auto;
+}
 
-td{
-	border: 2px solid #333;/*外枠*/
-	/*border-collapse: collapse; /*罫線を重ねる*/
-	/*justify-content: left;
+th,
+td {
+	border: 1px solid #ffffff;
+	padding: 8px 12px;
+}
+
+th {
+	background: #ffffff;
+	text-align: center;
+}
+
+/* td{
+	border: 2px solid #333; 
+	border-collapse: collapse;  /*罫線を重ねる*/
+	/* justify-content: left;
 	text-align: left;
 	
-}
+} */ 
 
 /*画面構成2-テーブル*/
 .cartIn{

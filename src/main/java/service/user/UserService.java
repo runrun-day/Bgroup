@@ -44,6 +44,13 @@ public class UserService {
 //			accountがNullの場合trueで返す処理
 		    return Objects.isNull(account);
 		}
+		
+//		ユーザー情報の変更
+		public boolean updateUserInfo(int id,UserAccount account){
+			UserDAO dao = new UserDAO();
+//			登録されてればtrue
+			return dao.updateUserInfo(id,account);
+			}
 }
 
 

@@ -39,10 +39,14 @@ public class UserEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String next = request.getParameter("next");
-		switch(next) {
-//		登録確認画面へ
-			case "check" ->{}}
+
+//	    メニュー画面 商品表示処理
+	    	List<Product> products = new ArrayList<>();
+	    	ProductService pbo = new ProductService();
+	    	products = pbo.getProducts();
+	    	//メニュー画面表示の商品リストを保存
+	    	request.setAttribute("products", products);
+	    	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
 	    dispatcher.forward(request, response);
 	}
@@ -159,24 +163,6 @@ public class UserEditServlet extends HttpServlet {
 					session.setAttribute("form", form);
 				}
 			}
-			
-//			case "commit" ->{//登録確認から登録結果まで
-//				UserAccount account = (UserAccount)session.getAttribute("form");				
-//				UserService us = new UserService();
-//				boolean success = false;
-//				nextPage = "WEB-INF/jsp/user/userInfomartionCommit.jsp";
-//				if(account != null) {
-//					success = us.userCreat(account);
-//				}
-////				登録できなかった場合エラーで返す
-//				if(!success) {
-//					request.setAttribute("errorMsg", "登録に失敗しました");
-//					nextPage = "WEB-INF/jsp/user/userInfomartion.jsp";
-//				}
-//				//セッション削除
-//		        session.removeAttribute("form");
-//				
-//			}
 			case "back_1" ->{//入力画面から戻る処理
 //				商品一覧表示用の処理
 				List<Product> products = new ArrayList<>();

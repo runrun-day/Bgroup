@@ -36,8 +36,8 @@ input.nonbtn:hover {
 		<div class="container-wide">
 
 			<div class="border-container">
+			<table>
 				<c:forEach var = "product" items ="${products}">
-				<table>
 					<tr>
 						<div class="item">
 							<td>${product.name}</td>
@@ -56,13 +56,13 @@ input.nonbtn:hover {
 						</form>
 						</td>
 					</tr>
-				</table>
 				</c:forEach>
+				</table>
 			</div>
 		</div>	
 		<form action="LoginServlet" method="post">
 		<input type="hidden" name="next" value="logout">
-		<input type="submit" value="ログアウト">
+		<input type="submit" class="logout-button" value="ログアウト">
 	</form>	
 	</main>
 

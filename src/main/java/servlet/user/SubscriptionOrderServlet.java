@@ -68,16 +68,16 @@ public class SubscriptionOrderServlet extends HttpServlet {
 				request.setAttribute("msg", "登録解除できませんでした。");
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-			dispatcher.forward(request, response);
 		}
-		case "commit" ->{//登録確認から登録結果まで
+		case "update" ->{//登録確認から登録結果まで
 			UserAccount account = (UserAccount)session.getAttribute("form");				
 			UserService us = new UserService();
 			boolean success = false;
 			nextPage = "WEB-INF/jsp/user/userInfomartionCommit.jsp";
 			if(account != null) {
-				success = us.userCreat(account);
+				UserAccount ac = (UserAccount)session.getAttribute("account");
+				int id = ac.getUserId();
+				success = us.updateUserInfo(id,account);
 			}
 //			登録できなかった場合エラーで返す
 			if(!success) {
@@ -89,6 +89,8 @@ public class SubscriptionOrderServlet extends HttpServlet {
 			
 		}
 		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+		dispatcher.forward(request, response);
 	}
 
 }

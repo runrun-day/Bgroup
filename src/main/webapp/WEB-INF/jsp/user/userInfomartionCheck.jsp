@@ -47,7 +47,7 @@
 				</tr>
 				<td colspan="2">
 					<form action="SubscriptionOrderServlet" method="post">
-						<input type="hidden" name="next" value="commit">
+						<input type="hidden" name="next" value="update">
 						<input type="submit" value="確定">
 					</form>
 					<form action="UserEditServlet" method="post">
