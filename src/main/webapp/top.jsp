@@ -22,13 +22,13 @@
 			パスワード<br>
 			<input type="password" name="password" value="" required><br>
 		 	<input type="hidden" name="next" value="login">
-			<div class="btn-two">
+			<div class="btn-two" reverse>
 				<input class="login-button" type="submit" value="ログイン">
 		</form>
 	
 			<form action="LoginServlet" method="post" >
 				<input type="hidden" name="next" value="signup">
-				<input class="new-submit-button" type="submit" value="新規登録">
+				<input class="signup-button" type="submit" value="新規登録">
 			</form>
 		</div>
 
