@@ -18,8 +18,7 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 
-		<div class="">
-			<h1>ユーザー情報確認</h1>
+			<h1 class="title left">ユーザー情報確認</h1>
 			<table>
 				<tr>
 					<th>氏名</label></th>
@@ -49,12 +48,14 @@
 					<form action="UserSearchServlet" method="post" name="next" value="deletCheck">
 							<input type="hidden" name="next" value="deletCheck">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
-							<input type="submit" value="削除">
+						<div class="btn-two reverse">	
+							<input class="action-button" type="submit" value="削除">
 					</form>
 					
 					<form action="UserSearchServlet" method="get">
 						<input type="hidden" name="next" value="back_1">
-						<input type="submit" value="戻る">
+						<input class="return-button" type="submit" value="戻る">
+						</div>
 					</form>
 				</td>
 			</table>

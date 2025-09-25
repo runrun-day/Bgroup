@@ -31,13 +31,14 @@
 			<div class="text-box"><p>価格</p></div>
 			<input class="form-narrow" type="number" min="1" max="10000" name="price" required> 円<br>
 			
+		<div class="btn-two reverse">
 			<input class="action-button" type="submit" value="登録">
 		</form>
 			
 			<form action="ProductListServlet" method="get">
 			<input class="return-button" type="submit" value="戻る">
 			</form>
-		
+		</div>	
 	</main>
 
  	<%@ include file="../../../inc/adminFooter.jsp" %>a

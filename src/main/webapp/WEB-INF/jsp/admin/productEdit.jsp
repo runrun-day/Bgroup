@@ -8,17 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品一覧画面</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<style>
-	.header.admin,
-	.footer.admin{
-		background-color: #ccc;
-	}
-
-</style>
 </head>
 <body>
  	<%@ include file="../../../inc/adminHeader.jsp" %>	
-
 	
 	<main>
 		<h1 class="title left">商品編集</h1>	
