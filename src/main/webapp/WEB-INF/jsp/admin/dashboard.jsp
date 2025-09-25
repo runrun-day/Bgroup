@@ -11,22 +11,23 @@
 </head>
 <body>
 	<%@ include file="../../../inc/adminHeader.jsp" %>
-	
+	<h1 class="title left heading">ダシュボード</h1>	
 	<main>
+	<div class="admin-container">
 		<form action="#" method="post">
 			<input type="hidden" name="next"value="">
-			<input type="submit" value="購入額ランキング">
+			<input class="action-button menu" type="submit" value="購入額ランキング">
 		</form>
 		<form action="#" method="post">
 			<input type="hidden" name="next"value="">
-			<input type="submit" value="取引数推移">
+			<input class="action-button menu" type="submit" value="取引数推移">
 		</form>
-		<form action="AdminMenuRoutingServlet" method="get">
+		</div>
+		<form class="login-box" action="AdminMenuRoutingServlet" method="get">
 			<input type="hidden" name="next"value="">
-			<input type="submit" value="ホームへ戻る">
+			<input class="home-button " type="submit" value="ホームへ戻る" value="home-button">
 		</form>
 	</main>
-	
 	<%@ include file="../../../inc/adminFooter.jsp" %>
 </body>
 </html>
