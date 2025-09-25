@@ -16,9 +16,9 @@
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
-		<form class="form-narrow" action="LoginServlet" method="post">
+		<form action="LoginServlet" method="post">
 			メールアドレス<br>
-			<input class="form-narrow" type="text" name="mail" value=""  required><br>
+			<input type="text" name="mail" value=""  required><br>
 			パスワード<br>
 			<input type="password" name="password" value="" required><br>
 		 	<input type="hidden" name="next" value="login">
@@ -34,7 +34,7 @@
 
 		<div class="adminlogin">
 			<form class="login-box" action="AdminLoginServlet" method="get">
-				<input class="top-button" type="submit" value="管理者ログイン" >
+				<input class="top-button" type="submit" value="管理者ログイン">
 			</form>
 		</div>	
 		
