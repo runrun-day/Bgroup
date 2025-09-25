@@ -42,10 +42,14 @@ font-size: 0.875em;
 
 /*main*/
 main{
+	display:flex;
+	justify-content: center;
+	flex-direction:column;
+	align-items:center;
+	
 	padding: 50px;
 	width: 740px;
 	margin: 0 auto;
-	text-align:center;
 }
 
 .login{
@@ -65,6 +69,9 @@ main{
 /*見出し*/
 .title{
 	font-size: 20px;
+	display:flex;
+	justify-content:flex-start;
+	width:100%;
 }
 
 /*テキスト*/
@@ -88,10 +95,7 @@ main{
   background-color: #0056b3;
 }
 
-/*トップボタンのみ*/
-.top-button{
-	
-}
+
 
 
 /*テーブルボタンのみ*/
@@ -120,6 +124,12 @@ main{
 	background-color: #4d9407;
 }
 
+.login-button{
+	display:flex;
+	justify-content:center;
+}
+
+
 /*新規登録ボタン*/
 .signup-button{
 background-color: #d1971b;
@@ -131,6 +141,7 @@ background-color: #d1971b;
 .btn-one{
 	display: flex;
 	justify-content: center; /* 横方向中央寄せ */
+	align-items:center;
 	margin-top: 20px;
 }
 
@@ -141,11 +152,11 @@ background-color: #d1971b;
 	gap: 50px;
 }
 
-/*左寄せボタン*/
+/*右寄せボタン*/
 .top-button{
 	display: flex;
-	justify-content: center;
-	background-color:red;
+	justify-content: flex-start;
+	background-color:blue;
 }
 
 /*ログアウトボタン*/
@@ -219,20 +230,50 @@ th {
 	width: 20%;
 }
 
+
 /*テキスト位置*/
 .center{
+	display:flex;
 	justify-content: center;
-	text-align: center;
 }
 
 .left{
-	justify-content: left;
-	text-align: left;
+	display:flex;
+	justify-content:flex-start;
 	padding-left:20px;
 }
 
 .right{
-	justify-content: right;
-	text-align: right;
-	padding-right:20px;
+/* text-align:right;*/
+	
+	display:flex;
+	justify-content:flex-end;
+
+}
+
+/*酒匂追加コード*/
+
+.text-box{
+	display:flex;
+	justify-content:start;
+	gap:10px;
+
+}
+
+.form-wide{
+	width:300px;
+}
+
+.form-narrow{
+	width:50px;
+}
+
+/*トップボタンのみ*/
+.login-box{
+	display:flex;
+	justify-content:flex-end;
+	align-items:flex-end;
+	gap:10px;
+	width:100%;
+	padding-top:50px;
 }
