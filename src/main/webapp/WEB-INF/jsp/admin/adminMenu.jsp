@@ -13,38 +13,37 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
 	<main>
-		<p>メニュー</p>
-		<div class="">
+		<h1 class="title left menu">メニュー </h1>
+		<div class="admin-content">
 			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="prodacts">
-				<input type="submit" value="商品一覧">
+				<input class="action-button menu" type="submit" value="商品一覧">
 			</form>
 			<form action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="registration">
-				<input type="submit" value="商品登録">
+				<input class="action-button menu" type="submit" value="商品登録">
 			</form>
 			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="orders">
-				<input type="submit" value="注文一覧">
+				<input class="action-button menu" type="submit" value="注文一覧">
 			</form>
 			<form action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="regular">
-				<input type="submit" value="定期便一覧">
+				<input class="action-button menu" type="submit" value="定期便一覧">
 			</form>
 			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="users">
-				<input type="submit" value="ユーザー検索">
+				<input class="action-button menu" type="submit" value="ユーザー検索">
 			</form>
 			<form action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next" value="dashboard">
-				<input type="submit" value="ダッシュボード">
-			</form>
-			
-			<form action="AdminLoginServlet" method="post">
-				<input type="hidden" name="next" value="logout">
-				<input type="submit" value="ログアウト">
+				<input class="action-button menu" type="submit" value="ダッシュボード">
 			</form>
 		</div>
+		<form class="logout-form" action="AdminLoginServlet" method="post">
+			<input type="hidden" name="next" value="logout">
+			<input class="logout-button" type="submit" value="ログアウト">
+		</form>
 	</main>
 
 	  <%@ include file="../../../inc/adminFooter.jsp" %>	   

@@ -205,12 +205,13 @@ public class UserDAO {
 
 			// 結果表に格納されたレコードの内容を表示
 			if (rs.next()) {		
-				int userId = rs.getInt("USER_ID");
-				String name = rs.getString("NAME");
-				String postcode = rs.getString("POSTCODE");
-				String address = rs.getString("ADDRESS");
-				String email = rs.getString("EMAIL");
-				account = new UserAccount(userId,name,email,postcode,address,tel);
+				int userId = rs.getInt("user_id");
+				String name = rs.getString("name");
+				String postcode = rs.getString("postcode");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String tel2 = rs.getString("tel");
+				account = new UserAccount(userId,name,email,postcode,address,tel2);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

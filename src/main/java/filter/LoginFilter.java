@@ -20,14 +20,21 @@ import model.UserAccount;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(
-		urlPatterns = { "/LoginFilter" }, 
-		servletNames = { 
-				"SubscriptionOrderServlet", 
-				"ConfirmContentServlet", 
-				"MenuNavigationServlet", 
-				"SubscriptionListServlet"
-		})
+//@WebFilter(
+////		urlPatterns = { "/LoginFilter" }, 
+//		servletNames = { 
+//				"/SubscriptionOrderServlet", 
+//				"/ConfirmContentServlet", 
+//				"/MenuNavigationServlet", 
+//				"/SubscriptionListServlet"
+//		})
+
+@WebFilter(urlPatterns = {
+	    "/SubscriptionOrderServlet",
+	    "/ConfirmContentServlet",
+	    "/MenuNavigationServlet",
+	    "/SubscriptionListServlet"
+	})
 public class LoginFilter extends HttpFilter implements Filter {
        
     /**
@@ -49,15 +56,16 @@ public class LoginFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		chain.doFilter(request, response);
+
 		// アカウントをセッションスコープに保持しているか確認
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		UserAccount account = (UserAccount) session.getAttribute("account");
-		System.out.println(Objects.isNull(account));
+		System.out.println("doFilter:" + Objects.isNull(account));
 		if(Objects.isNull(account)) {
 			((HttpServletResponse)response).sendRedirect("LoginServlet");
+			return; // ここで処理を終える。chain.doFilter は呼ばない。
 		}
+		chain.doFilter(request, response); // 認証済 → 次に進む
 	}
 
 	/**
