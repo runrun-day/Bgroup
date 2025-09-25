@@ -236,3 +236,70 @@ th {
 	text-align: right;
 	padding-right:20px;
 }
+
+/*.link{*/
+/*	justify-content: flex;*/
+/*		text-align: right;*/
+/*		padding-right:20px;*/
+/*		font-size: 20px;*/
+/*}*/
+
+/* -------- ↓管理者メニュー追加文 -------- */
+
+/*main*/
+/*main {*/
+/*	width : 90%;*/
+/*	padding : 10px;  上下左右10px*/
+/*	margin: 0 auto;  中央 */
+/*	justify-content: center; 水平方向*/
+/*	display: flex;*/
+/*	flex-wrap: wrap;*/
+/*}*/
+
+/*見出し*/
+.left.menu {
+	/* font-size: 20px; */
+	width : 10%;
+	height : 30px;
+	padding-left : 0;
+	margin : 0 10px 0; /* 上下0px(上寄せ) 左右10px */
+}
+
+/* メニューコンテナ */
+.admin-content {
+	width : 60%;
+	min-width : 90px;
+	display : block;
+	align-items: center;
+	text-align: center;
+	margin : 0 10px 0; /**/
+}
+
+/* メニューボタン */
+.action-button-menu {
+	width : 100%; 
+	min-width : 300px;
+	height : 65px;
+	font-weight: bold;
+	font-size: clamp(1rem, 5vw, 2.2rem);
+	margin : 0 0 5px 0;	
+	text-align: center;
+}
+
+/*ログアウト*/
+.logout-form {
+	width : 15%;
+	margin: auto 5px 5px 5px;
+	justify-content: center;
+}
+
+.logout-button {
+	width : 100%;
+	min-width : 100px;
+	height : 50px;
+	text-align: center;
+	font-size: clamp( 1rem, 5vw, 1.2rem);
+	background-color: #0056b3;
+}
+/* -------- ↑管理者メニュー追加文 -------- */
+
