@@ -96,25 +96,37 @@ public class MenuNavigationServlet extends HttpServlet {
 			if (account != null) {
 				int userId = account.getUserId();
 
+//				2025/09/22 定期便情報と重複してたので修正しました。牛島
+				
 				// ユーザー用のサービスで通常注文と定期便を取得
 				OrdersService ordersService = new OrdersService();
-				orderList = ordersService.getOrdersByUser(userId);
-				rsList = rsLogic.getOrdersListByUser(userId);
-
+//				orderList = ordersService.getOrdersByUser(userId);
+//				rsList = rsLogic.getOrdersListByUser(userId);
+//
+//				// 日付ごとにまとめる（共通リスト）
+//				Map<Timestamp, List<Object>> orderHistoryMap = new LinkedHashMap<>();
+//
+//				// 通常注文を追加
+//				for (Order o : orderList) {
+//					Timestamp orderDate = o.getOrderDate();
+//					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(o);
+//				}
+//
+//				// 定期便注文を追加
+//				for (RegularService rs : rsList) {
+//					Timestamp orderDate = rs.getOrderDate();
+//					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(rs);
+//				}
+				orderList = ordersService.getOrderListByUser(userId);
+				
 				// 日付ごとにまとめる（共通リスト）
 				Map<Timestamp, List<Object>> orderHistoryMap = new LinkedHashMap<>();
-
-				// 通常注文を追加
+				
 				for (Order o : orderList) {
 					Timestamp orderDate = o.getOrderDate();
 					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(o);
 				}
-
-				// 定期便注文を追加
-				for (RegularService rs : rsList) {
-					Timestamp orderDate = rs.getOrderDate();
-					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(rs);
-				}
+				
 				request.setAttribute("orderHistoryMap", orderHistoryMap);
 			}
 			nextPage = "/WEB-INF/jsp/user/orderLog.jsp";

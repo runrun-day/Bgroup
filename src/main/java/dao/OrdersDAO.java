@@ -95,18 +95,68 @@ public class OrdersDAO {
         return list;
     }
 	
-	// ユーザーの注文履歴表示
-		public List<Order> getOrdersByUser(int userId) {
+//	// ユーザーの注文履歴表示
+//		public List<Order> getOrdersByUser(int userId) {
+//		    List<Order> orderList = new ArrayList<>();
+//
+//		    String sql =
+//		        "SELECT o.order_id, o.order_date, p.name AS product_name, od.num, p.price, " +
+//		        "(od.num * p.price) AS subtotal " +
+//		        "FROM orders o " +
+//		        "JOIN order_detail od ON o.order_id = od.order_id " +
+//		        "JOIN products p ON od.product_id = p.product_id " +
+//		        "WHERE o.user_id = ? " +
+//		        "ORDER BY o.order_date DESC";
+//
+//		    try (Connection conn = DBManager.getConnection();
+//		         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//
+//		        pstmt.setInt(1, userId);
+//		        ResultSet rs = pstmt.executeQuery();
+//
+//		        while (rs.next()) {
+//		            int orderId = rs.getInt("order_id");
+//		            Timestamp orderDate = rs.getTimestamp("order_date");
+//		            String productName = rs.getString("product_name");
+//		            int num = rs.getInt("num");
+//		            int price = rs.getInt("price");
+//		            int amount = rs.getInt("subtotal");
+//
+//		            Order order = new Order(orderId, orderDate, productName, num, price, amount);
+//		            orderList.add(order);
+//		        }
+//		    } catch (SQLException e) {
+//		        e.printStackTrace();
+//		    }
+//
+//		    return orderList;
+//		}
+		
+		// ユーザーの注文履歴(定期便含めて)表示
+		public List<Order> getOrderListByUser(int userId) {
 		    List<Order> orderList = new ArrayList<>();
 
 		    String sql =
-		        "SELECT o.order_id, o.order_date, p.name AS product_name, od.num, p.price, " +
-		        "(od.num * p.price) AS subtotal " +
-		        "FROM orders o " +
-		        "JOIN order_detail od ON o.order_id = od.order_id " +
-		        "JOIN products p ON od.product_id = p.product_id " +
-		        "WHERE o.user_id = ? " +
-		        "ORDER BY o.order_date DESC";
+		        "SELECT \r\n"
+		        + "u.name AS user_name,\r\n"
+		        + "o.order_id,\r\n"
+		        + "o.order_date,\r\n"
+		        + "p.name AS product_name,\r\n"
+		        + "od.num AS num,\r\n"
+		        + "p.price,\r\n"
+		        + "(od.num * p.price) AS subtotal,\r\n"
+		        + "rs.span AS span\r\n"
+		        + "FROM orders o\r\n"
+		        + "JOIN order_detail od\r\n"
+		        + "ON o.order_id = od.order_id\r\n"
+		        + "JOIN user u \r\n"
+		        + "ON o.user_id = u.user_id\r\n"
+		        + "JOIN products p \r\n"
+		        + "ON od.product_id = p.product_id\r\n"
+		        + "LEFT JOIN regular_service rs \r\n"
+		        + "ON o.order_date = rs.start_date\r\n"
+		        + "WHERE o.user_id = ? \r\n"
+		        + "ORDER BY o.order_date DESC";
 
 		    try (Connection conn = DBManager.getConnection();
 		         PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -121,8 +171,9 @@ public class OrdersDAO {
 		            int num = rs.getInt("num");
 		            int price = rs.getInt("price");
 		            int amount = rs.getInt("subtotal");
+		            int span = rs.getInt("span");
 
-		            Order order = new Order(orderId, orderDate, productName, num, price, amount);
+		            Order order = new Order(orderId, orderDate, productName, num, price, amount,span);
 		            orderList.add(order);
 		        }
 		    } catch (SQLException e) {
@@ -131,5 +182,4 @@ public class OrdersDAO {
 
 		    return orderList;
 		}
-
 }

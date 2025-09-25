@@ -12,6 +12,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.UserAccount;
@@ -48,13 +49,15 @@ public class LoginFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
+		chain.doFilter(request, response);
 		// アカウントをセッションスコープに保持しているか確認
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		UserAccount account = (UserAccount) session.getAttribute("account");
+		System.out.println(Objects.isNull(account));
 		if(Objects.isNull(account)) {
-			
+			((HttpServletResponse)response).sendRedirect("LoginServlet");
 		}
-		chain.doFilter(request, response);
 	}
 
 	/**

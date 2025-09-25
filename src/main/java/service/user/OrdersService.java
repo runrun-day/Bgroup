@@ -24,11 +24,14 @@ public class OrdersService {
 			return orderList;
 		}
 		
-		// ユーザーごとの注文履歴一覧を取得
-		public List<Order> getOrdersByUser(int userId) {
-			List<Order> orderList = dao.getOrdersByUser(userId);
-			return orderList;
+//		// ユーザーごとの注文履歴一覧を取得
+//		public List<Order> getOrdersByUser(int userId) {
+//			List<Order> orderList = dao.getOrdersByUser(userId);
+//			return orderList;
+//		}
+		
+		// ユーザーの注文履歴(定期便含めて)表示
+		public List<Order> getOrderListByUser(int userId){
+			return dao.getOrderListByUser(userId);
 		}
-
-
 }
