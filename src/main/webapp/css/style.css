@@ -114,6 +114,15 @@ main{
 	margin-top: 20px; /*上に余白を入れる*/
 }
 
+/* 戻るボタン */
+.return-button {
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
 /*ログイン+トップボタン*/
 .login-button,
 .top-button{
@@ -124,8 +133,6 @@ main{
 .signup-button{
 background-color: #d1971b;
 }
-
-
 
 /*ボタン1個の時の配置*/
 .btn-one{
@@ -247,36 +254,36 @@ th {
 /* -------- ↓管理者メニュー追加文 -------- */
 
 /*main*/
-/*main {*/
-/*	width : 90%;*/
-/*	padding : 10px;  上下左右10px*/
-/*	margin: 0 auto;  中央 */
-/*	justify-content: center; 水平方向*/
-/*	display: flex;*/
-/*	flex-wrap: wrap;*/
-/*}*/
+main.container {
+	width : 90%;
+	padding : 10px;  上下左右10px
+	margin: 0 auto;  中央 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
 
 /*見出し*/
-.left.menu {
+.left.heading  {
 	/* font-size: 20px; */
-	width : 10%;
+	width : 12%;
 	height : 30px;
 	padding-left : 0;
 	margin : 0 10px 0; /* 上下0px(上寄せ) 左右10px */
 }
 
 /* メニューコンテナ */
-.admin-content {
+.admin-container {
 	width : 60%;
 	min-width : 90px;
-	display : block;
+	display : inline-block;
 	align-items: center;
 	text-align: center;
-	margin : 0 10px 0; /**/
+	margin : auto 10px;
 }
 
 /* メニューボタン */
-.action-button-menu {
+.action-button.menu {
 	width : 100%; 
 	min-width : 300px;
 	height : 65px;
@@ -290,7 +297,7 @@ th {
 .logout-form {
 	width : 15%;
 	margin: auto 5px 5px 5px;
-	justify-content: center;
+	text-align : right;
 }
 
 .logout-button {
@@ -298,8 +305,37 @@ th {
 	min-width : 100px;
 	height : 50px;
 	text-align: center;
-	font-size: clamp( 1rem, 5vw, 1.2rem);
+	font-size: clamp( 0.8rem, 5vw, 1.2rem);
 	background-color: #0056b3;
 }
+
+/* 一覧表示 */
+.admin-container > .table-button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+ .admin-container > table {
+  border-collapse: collapse;
+  border: 2px solid #333;
+  margin: 0;
+  width: 600px;
+}
+
+td {
+  border: 1px solid #999;
+  padding: 10px;
+  text-align: center;
+}
+
+td.name {
+	width : 600px;
+	text-align: left;
+}
+
 /* -------- ↑管理者メニュー追加文 -------- */
 
