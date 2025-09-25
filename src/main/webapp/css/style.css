@@ -357,32 +357,43 @@ main.container {
 
 /* 一覧表示 */
 .admin-container > .table-button{
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
+	 background-color: #007bff;
+	 color: white;
+	 border: none;
+	 padding: 5px 10px;
+	 cursor: pointer;
+	 border-radius: 4px;
 }
 
  .admin-container > table {
-  border-collapse: collapse;
-  border: 2px solid #333;
-  margin: 0;
-  width: 600px;
+	border: 2px solid #333;
+ 	margin: 0;
+ 	width: 600px;
 }
+
 
 th,td{
   border: 1px solid #999;
   padding: 10px;
   text-align: center;
+
 }
 
 td.name {
 	width : 600px;
 	text-align: left;
 }
+/* 注文一覧 */
+.tr-under {
+	border-bottom: 2px solid #999;
+}
 
 
+/*.td-button {
+	border: 1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 60px;
+}確認中-酒匂*/
 
 /* -------- ↑管理者メニュー追加文 -------- */

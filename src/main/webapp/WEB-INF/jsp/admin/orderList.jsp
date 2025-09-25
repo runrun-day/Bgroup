@@ -13,35 +13,35 @@
 	  <%@ include file="../../../inc/adminHeader.jsp" %>
 
 	<main>
-		<p>注文一覧</p>
-		<table>
-			<tr>
-				<th>注文者</th>
-				<th>注文日</th>
-				<th></th>
-				
-			</tr>
-			<c:forEach var = "order" items ="${orderList}"> 
-			<tr>
-				<td>${order.userName}</td>
-				<td>${order.date}</td>
-				<td>
-					<form action="OrderListServlet" method="post">
-						<!--注文IDから詳細データ引っ張ってくるYO-->
-						<input type="hidden" name="orderId" value="${order.orderId}">
-						<input type="submit" value="詳細">
-					</form>
+		<h1 class="title left">注文一覧</h1>
+			<table>
+				<tr class="tr-under">
+					<th>注文者</th>
+					<th>注文日</th>
+					<th></th>
+				</tr>
+				<c:forEach var = "order" items ="${orderList}"> 
+				<tr>
+					<td>${order.userName}</td>
+					<td>${order.date}</td>
+					<td class="td-button">
+						<form action="OrderListServlet" method="post">
+							<!--注文IDから詳細データ引っ張ってくるYO-->
+							<input type="hidden" name="orderId" value="${order.orderId}">
+							<input type="submit" class="table-button right" value="詳細">
+						</form>
 					</td>
-			</tr>
-			</c:forEach>
-			
-		</table>
-		<form action="OrderListServlet" method="get" name="next"value="back">
-			<input type="hidden" name="next"value="back">
-			<input type="submit" value="戻る">
-		</form>
-		
-		
+				</tr>
+				</c:forEach>
+			</table>
+	
+		<div class="btn-one">
+			<form action="OrderListServlet" method="get" name="next"value="back">
+				<input type="hidden" name="next"value="back">
+				<input type="submit" class="return-button" value="戻る">
+			</form>
+		</div>
+
 	</main>
 
 	  <%@ include file="../../../inc/adminFooter.jsp" %>  

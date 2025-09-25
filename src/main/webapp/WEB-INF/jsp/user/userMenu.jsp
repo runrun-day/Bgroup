@@ -19,6 +19,7 @@ input.nonbtn {
   margin: 0 10px;          
   cursor: pointer;         /* カーソルをリンク風に */
   text-decoration: underline; /* 下線 */
+  font-size: 2em;
 }
 
 /* ホバー時の色変化 */
@@ -31,39 +32,37 @@ input.nonbtn:hover {
 </head>
 <body>
 
-		<jsp:include page="../../../inc/userHomeHeader.jsp"/>
-	<main>
-		<div class="container-wide">
-
-			<div class="border-container">
-			<table>
-				<c:forEach var = "product" items ="${products}">
-					<tr>
-						<div class="item">
-							<td>${product.name}</td>
-							<td>${product.price}円</td>
-						</div>
-						<div class="img">
-						<td>
-							<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200">
-						</td>
-						</div>
-						<td>
-						<form action="" method="post" name="next" value="cart">
-							<input type="hidden" name="next" value="cart">
-							<input type="hidden" name="orderId" value="${product.productId}">
-							<input type="submit" value="カートに追加" class="cart-button">
-						</form>
-						</td>
-					</tr>
-				</c:forEach>
-				</table>
-			</div>
-		</div>	
-		<form action="LoginServlet" method="post">
-		<input type="hidden" name="next" value="logout">
-		<input type="submit" class="logout-button" value="ログアウト">
-	</form>	
+	<jsp:include page="../../../inc/userHomeHeader.jsp"/>
+	
+	<main class="main container">
+		<table>
+			<c:forEach var = "product" items ="${products}">
+				<tr>
+					<div class="item">
+						<td>${product.name}</td>
+						<td>${product.price}円</td>
+					</div>
+					<div class="img">
+					<td>
+						<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200">
+					</td>
+					</div>
+					<td>
+					<form class="cart-button" action="" method="post" name="next" value="cart">
+						<input type="hidden" name="next" value="cart">
+						<input type="hidden" name="orderId" value="${product.productId}">
+						<input type="submit" value="カートに追加" class="cart-button">
+					</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="login-box">	
+			<form action="LoginServlet" method="post">
+				<input type="hidden" name="next" value="logout">
+				<input class="logout-button" type="submit" class="logout-button" value="ログアウト">
+			</form>	
+		</div>
 	</main>
 
 		<%@ include file="../../../inc/userFooter.jsp"%>

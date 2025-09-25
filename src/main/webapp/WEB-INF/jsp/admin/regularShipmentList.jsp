@@ -13,9 +13,9 @@
 	<%@ include file="../../../inc/adminHeader.jsp" %>
 
 	<main>
-		<p>定期便一覧</p>
+		<h1 class="title left">定期便一覧</h1>
 		<table>
-			<tr>
+			<tr class="tr-under">
 				<th>注文者</th>
 				<th>注文日</th>
 				<th></th>
@@ -25,11 +25,11 @@
 			<tr>
 				<td>${order.userName}</td>
 				<td>${order.date}</td>
-				<td>
+				<td class="td-button">
 					<form action="SubscriptionListServlet" method="post">
 						<!--注文IDから詳細データ引っ張ってくるYO-->
 						<input type="hidden" name="rsorderId" value="${order.regularServiceId}">
-						<input type="submit" value="詳細">
+						<input type="submit" class="table-button right" value="詳細">
 					</form>
 					</td>
 			</tr>
@@ -42,7 +42,6 @@
 		</form>
 
 	</main>
-
 	<%@ include file="../../../inc/adminFooter.jsp" %> 
 
 </body>
