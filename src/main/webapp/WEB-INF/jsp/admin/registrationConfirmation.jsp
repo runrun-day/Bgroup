@@ -14,7 +14,8 @@
 	
 	<main>
 		<h1 class="title">商品情報確認</h1>	
-		<div class="container-wide">
+	
+	<div class="container-wide">
 		
 			名前：${product.name}
 			<br>
@@ -22,9 +23,10 @@
 			<br>
 			価格：${product.price} 円
 			<br>
-				
+			
+		<div class="btn-two">
 			<form action="ProductRegistrationServlet" method="get">
-			<input type="submit" value="戻る">
+			<input class="return-button" type="submit" value="戻る">
 			</form>
 		
 			<form action="ProductRegistrationServlet" method="post">
@@ -32,10 +34,10 @@
 			<input type="hidden" name="name" value="${product.name}">
 			<input type="hidden" name="price" value="${product.price}">
 			<input type="hidden" name="imageRename" value="${product.imageRename}">
-			<input type="submit" value="確定">
+			<input class="action-button" type="submit" value="確定">
 			</form>
-		
-		</div>
+		</div>	
+	</div>
 	</main>
 
  	<%@ include file="../../../inc/adminFooter.jsp" %>

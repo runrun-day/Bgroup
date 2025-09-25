@@ -18,19 +18,19 @@
 		</c:if>
 		
 		<form action="AdminLoginServlet" method="post" name="next" value="login">
-			<input class="#" type="hidden" name="next" value="login">
-			<div class="text-box">
-			 	<div class="left"><p>パスワード</p></div><br> 
-				<input class="passward-form"type="password" name="password" value="" required><br>
-			</div>
+			<input type="hidden" name="next" value="login">
+		
+			 	<div class="text-box"><p>パスワード</p></div> 
+				<input class="form-wide"type="password" name="password" value="" required>
 			
 			<div class="btn-one">
 				<input class="login-button" type="submit" value="ログイン">
-			</div>
+		 	</div>
 		</form>
-		<form class="userlogin-box" action="AdminLoginServlet" method="post" name="next" value="userlogin">
+		
+		<form class="login-box" action="AdminLoginServlet" method="post" name="next" value="userlogin">
 			<input type="hidden" name="next" value="userlogin">
-			<input class="top-button" type="submit" value="ユーザーログイン">
+			<input class="login-button" type="submit" value="ユーザーログイン">
 		</form>
 	</main>
 
