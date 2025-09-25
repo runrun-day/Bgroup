@@ -17,15 +17,20 @@
 			<p style="color:red;"><c:out value="${requestScope.errorMsg}" /></p>
 		</c:if>
 		
-		<p>管理者ログイン</p>
 		<form action="AdminLoginServlet" method="post" name="next" value="login">
-			<input type="hidden" name="next" value="login"> パスワード<br>
-			<input type="password" name="password" value="" required><br>
-			<input type="submit" value="ログイン">
+			<input type="hidden" name="next" value="login">
+		
+			 	<div class="text-box"><p>パスワード</p></div> 
+				<input class="form-wide"type="password" name="password" value="" required>
+			
+			<div class="btn-one">
+				<input class="login-button" type="submit" value="ログイン">
+		 	</div>
 		</form>
-		<form action="AdminLoginServlet" method="post" name="next" value="userlogin">
+		
+		<form class="login-box" action="AdminLoginServlet" method="post" name="next" value="userlogin">
 			<input type="hidden" name="next" value="userlogin">
-			<input type="submit" value="ユーザーログイン">
+			<input class="login-button" type="submit" value="ユーザーログイン">
 		</form>
 	</main>
 

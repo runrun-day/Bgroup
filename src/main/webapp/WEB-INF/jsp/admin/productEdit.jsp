@@ -24,25 +24,32 @@
 		<h1 class="title left">商品編集</h1>	
 		
 		<form action="ProductListServlet" method="post">
-		商品名<br>
-		<input type="text" name="name" value="${product.name}" required><br>
-		価格<br>
-		<input type="number" min="1" max="10000" name="price" value="${product.price}" required>円<br>
-		画像<br>
-		<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200"><br>
-		<input type="hidden" name="productId" value="${product.productId}">
-		<input type="hidden" name="next" value="editCommit">
-		<input type="submit" value="修正">
+			<div class="text-box"><p>商品名</p></div>
+			<input class="form-wide" type="text" name="name" value="${product.name}" required><br>
+		
+			<div class="text-box"><p>価格</p></div>
+			<input class="form-narrow" type="number" min="1" max="10000" name="price" value="${product.price}" required>円<br>
+		
+			<div class="text-box"><p>画像</p></div>
+			<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200"><br>
+			<input type="hidden" name="productId" value="${product.productId}">
+			<input type="hidden" name="next" value="editCommit">
+		
+		<div class="btn-two">	
+			<input class="action-button" type="submit" value="修正">
+	
 		</form>
 		
 		<form action="ProductListServlet" method="post">
 			<input type="hidden" name="productId" value="${product.productId}">
 			<input type="hidden" name="next" value="deleteCommit">
-		<input type="submit" value="削除">
+		<input class="action-button" type="submit" value="削除">
 		</form>
+		
+		</div>
 
-		<form action="ProductListServlet" method="get">
-		<input type="submit" value="戻る">
+		<form class="login-box" action="ProductListServlet" method="get">
+		<input class="return-button"type="submit" value="戻る">
 		</form>
 		
 	</main>

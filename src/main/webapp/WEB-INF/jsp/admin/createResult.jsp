@@ -12,7 +12,10 @@
 
 	<main>
 		<p class="result-message">商品を登録しました！</p>
-		<a class="btn" href="ProductRegistrationServlet">ホームに戻る</a>
+		
+		<div class="btn-one">
+		<a class="home-button" href="ProductRegistrationServlet">ホームに戻る</a>
+	</div> 
 	</main>
 
 	<%@ include file="../../../inc/adminFooter.jsp"%>
