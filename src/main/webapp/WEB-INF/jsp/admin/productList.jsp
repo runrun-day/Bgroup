@@ -13,29 +13,29 @@
 	  <%@ include file="../../../inc/adminHeader.jsp" %>
 	
 	<main class="main container">
-		<h1 class="title left heading">商品一覧</h1>	
+		<h1 class="title left">商品一覧</h1>	
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 		<div class="admin-container">
-			<c:forEach var = "product" items ="${products}">
-				<table>
-					<tr>
-						<td class="name">${product.name}</td>
-						<td>
-							<form action="ProductListServlet" method="post" name="next" value="edit">
-								<input type="hidden" name="next" value="edit">
-								<input type="hidden" name="productId" value="${product.productId}">
-								<input class="table-button right" type="submit" value="編集">
-							</form>
-						</td>
-					</tr>
-				</table>
-			</c:forEach>
+			<table>
+				<c:forEach var = "product" items ="${products}">
+						<tr>
+							<td class="name">${product.name}</td>
+							<td>
+								<form action="ProductListServlet" method="post" name="next" value="edit">
+									<input type="hidden" name="next" value="edit">
+									<input type="hidden" name="productId" value="${product.productId}">
+									<input class="table-button right" type="submit" value="編集">
+								</form>
+							</td>
+						</tr>
+				</c:forEach>
+			</table>
 		</div>
 		<div class="btn-one">			
 			<form action="AdminMenuRoutingServlet" method="get">
-				<input class=return-button type="submit" value="戻る">
+				<input class="return-button" type="submit" value="戻る">
 			</form>
 		</div>
 	</main>

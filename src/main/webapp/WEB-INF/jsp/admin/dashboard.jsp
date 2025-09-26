@@ -14,11 +14,11 @@
 	<h1 class="title left">ダッシュボード</h1>	
 	<main>
 	<div class="admin-container">
-		<form action="#" method="post">
+		<form action="#" method="">
 			<input type="hidden" name="next"value="">
 			<input class="action-button menu" type="submit" value="購入額ランキング">
 		</form>
-		<form action="#" method="post">
+		<form action="#" method="">
 			<input type="hidden" name="next"value="">
 			<input class="action-button menu" type="submit" value="取引数推移">
 		</form>
