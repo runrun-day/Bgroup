@@ -45,17 +45,17 @@
 					<th>パスワード</th>
 					<td>●●●●●●●●●●●●</td>
 				</tr>
-				<td colspan="2">
+				</table>
+				<div class="btn-two" reverse>
 					<form action="SubscriptionOrderServlet" method="post">
 						<input type="hidden" name="next" value="update">
-						<input type="submit" value="確定">
+						<input class="action-button" type="submit" value="確定">
 					</form>
 					<form action="UserEditServlet" method="post">
 						<input type="hidden" name="next" value="back_2">
-						<input type="submit" value="戻る">
+						<input class="return-button" type="submit" value="戻る">
 					</form>
-				</td>
-			</table>
+				</div>
 		</div>
 	</main>
 
