@@ -14,6 +14,7 @@
 
 	<main>
 		<h1 class="title left">注文一覧</h1>
+
 			<table>
 				<tr class="tr-under">
 					<th>注文者</th>
@@ -24,7 +25,7 @@
 				<tr>
 					<td>${order.userName}</td>
 					<td>${order.date}</td>
-					<td class="td-button">
+					<td class="td-detail">
 						<form action="OrderListServlet" method="post">
 							<!--注文IDから詳細データ引っ張ってくるYO-->
 							<input type="hidden" name="orderId" value="${order.orderId}">
@@ -34,7 +35,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-	
+
 		<div class="btn-one">
 			<form action="OrderListServlet" method="get" name="next"value="back">
 				<input type="hidden" name="next"value="back">

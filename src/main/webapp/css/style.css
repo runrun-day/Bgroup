@@ -290,11 +290,11 @@ th {
 	margin-top:10px;
 }
 
-div.text-box > p{
+div.text-box > p,
+div.text-box > label{
 	margin:0;
 	font-weight:bold;
 	text-align:center;
-
 }
 
 .form-wide{
@@ -389,7 +389,7 @@ main.container {
 	text-align: center;
 }
 
- .admin-container > th,td{
+ .admin-container > tr,th,td{
   border: 1px solid #999;
   padding: 10px;
   text-align: center;
@@ -399,9 +399,17 @@ td.name {
 	width : 600px;
 	text-align: left;
 }
+.td-detail {
+	border:1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 30px;
+}
 /* 注文一覧 */
-.tr-under {
-	border-bottom: 2px solid #999;
+.tr-under > th {
+	border-top: none;
+	border-right: none;
+	border-left: none;
 }
 
 .td-button {
