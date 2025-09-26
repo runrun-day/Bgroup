@@ -290,11 +290,11 @@ th {
 	margin-top:10px;
 }
 
-div.text-box > p{
+div.text-box > p,
+div.text-box > label{
 	margin:0;
 	font-weight:bold;
 	text-align:center;
-
 }
 
 .form-wide{
