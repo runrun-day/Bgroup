@@ -36,14 +36,14 @@ public class MenuNavigationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//	    メニュー画面 商品表示処理
-		List<Product> products = new ArrayList<>();
-		ProductService pbo = new ProductService();
-		products = pbo.getProducts();
-
-		//メニュー画面表示の商品リストを保存
-		request.setAttribute("products", products);
-
+//	    メニュー画面 商品表示処理
+	    	List<Product> products = new ArrayList<>();
+	    	ProductService pbo = new ProductService();
+	    	products = pbo.getProducts();
+	    	
+	    	//メニュー画面表示の商品リストを保存
+	    	request.setAttribute("products", products);
+		
 		// ユーザーホームに戻る
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
 		dispatcher.forward(request, response);
@@ -56,20 +56,6 @@ public class MenuNavigationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "";
 		String next = request.getParameter("next");
-		String numStr = request.getParameter("num");
-		String regular = request.getParameter("regular");
-		String spanStr = request.getParameter("span");
-
-		int num = 1;
-		if (numStr != null) {
-			num = Integer.parseInt(numStr);
-		}
-
-		boolean isRegular = "true".equals(regular);
-		int span = 0;
-		if (spanStr != null) {
-			span = Integer.parseInt(spanStr);
-		}
 
 		//注文履歴を取得
 		List<Order> orderList = new ArrayList<>();
@@ -81,6 +67,27 @@ public class MenuNavigationServlet extends HttpServlet {
 
 		switch (next) {
 		case "カート" -> {
+			// セッションスコープ準備
+			HttpSession session = request.getSession();
+			
+			List<String> orders = (List<String>)session.getAttribute("orders");
+			// 注文リストがなければ新たに作成
+				if (orders == null) {
+					orders = new ArrayList<>();
+				}
+
+				// ユーザーホーム兼商品画面から商品名を取得
+				String productName = request.getParameter("productName");
+				
+				// 注文リストに商品名を追加
+				if (productName != null && !productName.isEmpty()) {
+					orders.add(productName);
+				}
+				System.out.println("productName" + orders);
+			
+			// セッションスコープに保存
+			session.setAttribute("orders", orders);
+			
 			nextPage = "/WEB-INF/jsp/user/cartIn.jsp";
 		}
 		case "注文履歴" -> {
@@ -89,19 +96,37 @@ public class MenuNavigationServlet extends HttpServlet {
 			if (account != null) {
 				int userId = account.getUserId();
 
+//				2025/09/22 定期便情報と重複してたので修正しました。牛島
+				
 				// ユーザー用のサービスで通常注文と定期便を取得
 				OrdersService ordersService = new OrdersService();
-
+//				orderList = ordersService.getOrdersByUser(userId);
+//				rsList = rsLogic.getOrdersListByUser(userId);
+//
+//				// 日付ごとにまとめる（共通リスト）
+//				Map<Timestamp, List<Object>> orderHistoryMap = new LinkedHashMap<>();
+//
+//				// 通常注文を追加
+//				for (Order o : orderList) {
+//					Timestamp orderDate = o.getOrderDate();
+//					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(o);
+//				}
+//
+//				// 定期便注文を追加
+//				for (RegularService rs : rsList) {
+//					Timestamp orderDate = rs.getOrderDate();
+//					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(rs);
+//				}
 				orderList = ordersService.getOrderListByUser(userId);
-
+				
 				// 日付ごとにまとめる（共通リスト）
 				Map<Timestamp, List<Object>> orderHistoryMap = new LinkedHashMap<>();
-
+				
 				for (Order o : orderList) {
 					Timestamp orderDate = o.getOrderDate();
 					orderHistoryMap.computeIfAbsent(orderDate, k -> new ArrayList<>()).add(o);
 				}
-
+				
 				request.setAttribute("orderHistoryMap", orderHistoryMap);
 			}
 			nextPage = "/WEB-INF/jsp/user/orderLog.jsp";
@@ -146,105 +171,9 @@ public class MenuNavigationServlet extends HttpServlet {
 			nextPage = "/WEB-INF/jsp/user/regularService.jsp";
 		}
 		case "ユーザー情報" -> {
-			//			セッションスコープにユーザー情報あるのでそのままページ移動のみ
+//			セッションスコープにユーザー情報あるのでそのままページ移動のみ
 			nextPage = "/WEB-INF/jsp/user/userInfomartion.jsp";
 		}
-		case "cartIn" -> {
-			HttpSession session = request.getSession();
-
-			List<Order> cart = (List<Order>) session.getAttribute("cart");
-			if (cart == null) {
-				cart = new ArrayList<>();
-			}
-
-			// productId を取得
-			String productIdStr = request.getParameter("productId");
-			int productId = (productIdStr != null) ? Integer.parseInt(productIdStr) : 0;
-
-			String productName = request.getParameter("productName");
-			int price = Integer.parseInt(request.getParameter("price"));
-
-			num = 1;
-			int amount = price * num;
-			boolean regularService = false;
-			span = 0;
-
-			Timestamp now = new Timestamp(System.currentTimeMillis());
-
-			// Order インスタンス作成
-			Order newItem = new Order("", now, productName, num, price, amount, regularService, span);
-			newItem.setProductId(productId); // ←ここ追加！！
-
-			boolean exists = false;
-			for (Order item : cart) {
-				if (item.getProductId() == productId) { // productId で比較
-					item.setNum(item.getNum() + 1);
-					item.setAmount(item.getPrice() * item.getNum());
-					exists = true;
-					break;
-				}
-			}
-
-			if (!exists) {
-				cart.add(newItem);
-			}
-
-			session.setAttribute("cart", cart);
-			nextPage = "/WEB-INF/jsp/user/cartIn.jsp";
-		}
-		case "updateCart" -> {
-			HttpSession session = request.getSession();
-			List<Order> cart = (List<Order>) session.getAttribute("cart");
-
-			if (cart != null) {
-				String productIdStr = request.getParameter("productId");
-				if (productIdStr != null) {
-					int productId = Integer.parseInt(productIdStr);
-
-					for (Order item : cart) {
-						if (item.getProductId() == productId) {
-							numStr = request.getParameter("num_" + productId);
-							String regularStr = request.getParameter("regular_" + productId);
-							spanStr = request.getParameter("span_" + productId);
-
-							if (numStr != null) {
-								num = Integer.parseInt(numStr);
-								item.setNum(num);
-								item.setAmount(item.getPrice() * num);
-							}
-
-							// 定期便チェック
-							item.setRegularService("true".equals(regularStr));
-
-							// 定期便の期間
-							if (spanStr != null && !spanStr.isEmpty()) {
-								item.setSpan(Integer.parseInt(spanStr));
-							} else {
-								item.setSpan(0);
-							}
-							break;
-						}
-					}
-					session.setAttribute("cart", cart);
-				}
-			}
-
-			nextPage = "/WEB-INF/jsp/user/cartIn.jsp";
-		}
-
-		case "deleteCart" -> {
-			HttpSession session = request.getSession();
-			List<Order> cart = (List<Order>) session.getAttribute("cart");
-
-			if (cart != null) {
-				String productName = request.getParameter("productName");
-				cart.removeIf(item -> item.getProductName().equals(productName));
-				session.setAttribute("cart", cart);
-			}
-
-			nextPage = "/WEB-INF/jsp/user/cartIn.jsp";
-		}
-
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher(nextPage);
