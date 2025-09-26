@@ -17,12 +17,13 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 		<form action="LoginServlet" method="post">
-			メールアドレス<br>
+			<div class="text-box"><p>メールアドレス</p></div>
 			<input class="form-wide" type="text" name="mail" value=""  required><br>
-			パスワード<br>
+			
+			<div class="text-box"><p>パスワード</p></div>
 			<input class="form-wide" type="password" name="password" value="" required><br>
 		 	<input type="hidden" name="next" value="login"><br>
-		<div class="btn-two" reverse>
+		<div class="btn-two reverse">
 			<input class="login-button" type="submit" value="ログイン">
 		</form>
 	

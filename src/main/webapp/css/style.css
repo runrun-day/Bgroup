@@ -180,7 +180,14 @@ background-color: #d1971b;
 	margin-bottom: 30px;
 }
 
-
+/*ボタン2個の時の配置 逆向き-酒匂追加*/
+.btn-two.reverse{
+	display: flex;
+	justify-content: center;
+	flex-direction:row-reverse;
+	gap: 50px;
+	
+}
 
 /*右寄せボタン*/
 .top-button{
@@ -314,14 +321,7 @@ div.text-box > label{
 	padding-top:30px;
 }
 
-/*ボタン2個の時の配置 逆向き-酒匂追加*/
-.btn-two.reverse{
-	display: flex;
-	justify-content: center;
-	flex-direction:row-reverse;
-	gap: 50px;
-	
-}
+
 
 
 /* -------- ↓管理者メニュー追加文 -------- */
