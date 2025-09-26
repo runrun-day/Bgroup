@@ -175,11 +175,10 @@ main{
 .return-button,
 .action-button{
 	background-color:blue;
-	margin: 20px 30px 10px ;
+	margin: 20px 30px 10px;
 	width:50px;	
 	transform: scale(1.5);
 }
-
 
 
 .cart-button{
@@ -193,7 +192,7 @@ main{
 	align-items:center;
 	
 	margin-top: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	gap: 40px;
 }
 	
@@ -209,7 +208,7 @@ main{
 }*/
 
 /*ボタン2個の時の配置 逆向き*/
-.btn-two.reverse{
+.btn-two.reverse{		
 	flex-direction:row-reverse;
 }
 

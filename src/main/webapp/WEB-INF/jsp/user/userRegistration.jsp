@@ -21,24 +21,29 @@
 			</p>
 		</c:if>
 
-
 			<form action="SignUpServlet" method="post" name="next" value="check">
 				<input type="hidden" name="next" value="check"> <br>
-				名前<br>
+				<div class="text-box"><p>名前</p></div>
 				<input class="form-wide" type="text" name="name"	value="${form.name}" required> <br>
-				メールアドレス<br> 
+				
+				<div class="text-box"><p>メールアドレス</p></div> 
 				<input class="form-wide" type="email" name="email" value="${form.email}"	required><br>
-				郵便番号 -(ハイフン)なし7桁<br> 
+				
+				<div class="text-box"><p>郵便番号 -(ハイフン)なし7桁</p></div>  
 				<input class="form-wide" type="text" name="postcode"	value="${form.postcode}" required> <br>
-				電話 -(ハイフン)なし<br>
+				
+				<div class="text-box"><p>電話 -(ハイフン)なし</p></div>
 				<input class="form-wide" type="text" name="tel" value="${form.tel}" required><br>
-				住所<br> 
+				
+				<div class="text-box"><p>住所</p></div> 
 				<input class="form-wide" type="text" name="address" value="${form.address}" required><br>
-				パスワード<br> 
+				
+				<div class="text-box"><p>パスワード</p></div>  
 				<input class="form-wide" type="password"	name="passward" value="" required><br>
-				確認用パスワード<br>
-				<input class="form-wide" type="password" name="passward2" value="" required><br>
-				<div class="btn-two" reverse>
+				
+				<div class="text-box"><p>確認用パスワード</p></div> 
+					<input class="form-wide" type="password" name="passward2" value="" required><br>
+				<div class="btn-two reverse">
 					<input class="action-button" type="submit" value="登録">
 			</form>
 
