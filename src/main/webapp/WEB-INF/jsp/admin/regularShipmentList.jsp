@@ -24,7 +24,7 @@
 			<tr>
 				<td>${order.userName}</td>
 				<td>${order.date}</td>
-				<td class="td-button">
+				<td class="td-detail">
 					<form action="SubscriptionListServlet" method="post">
 						<!--注文IDから詳細データ引っ張ってくるYO-->
 						<input type="hidden" name="rsorderId" value="${order.regularServiceId}">
