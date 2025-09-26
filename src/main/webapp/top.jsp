@@ -18,12 +18,12 @@
 		</c:if>
 		<form action="LoginServlet" method="post">
 			メールアドレス<br>
-			<input type="text" name="mail" value=""  required><br>
+			<input class="form-wide" type="text" name="mail" value=""  required><br>
 			パスワード<br>
-			<input type="password" name="password" value="" required><br>
-		 	<input type="hidden" name="next" value="login">
-			<div class="btn-two" reverse>
-				<input class="login-button" type="submit" value="ログイン">
+			<input class="form-wide" type="password" name="password" value="" required><br>
+		 	<input type="hidden" name="next" value="login"><br>
+		<div class="btn-two" reverse>
+			<input class="login-button" type="submit" value="ログイン">
 		</form>
 	
 			<form action="LoginServlet" method="post" >
@@ -34,7 +34,7 @@
 
 <!--		<div class="adminlogin">-->
 			<form class="login-box" action="AdminLoginServlet" method="get">
-				<input class="top-button " type="submit" value="管理者ログイン">
+				<input class="top-button" type="submit" value="管理者ログイン"><br>
 			</form>
 <!--		</div>	-->
 		
