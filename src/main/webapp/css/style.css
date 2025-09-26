@@ -17,11 +17,17 @@ font-size: 0.875em;
 .footer.admin{
 	background-color: #ccc;
 	padding:10px;
+	font-weight:bold;
 }
 
+/*管理者側ヘッダー*/
 .header.admin{
-	font-size: 20px;
-	padding:10px;
+	font-size: 30px;
+}
+
+/*ヘッダーの右寄せ*/
+header.right > p{
+	margin-right: 10px;
 }
 
 /*ユーザー側ヘッダー・フッター*/
@@ -29,15 +35,21 @@ font-size: 0.875em;
 .footer{
 	background-color: #7fff00;
 	padding:10px;
+	font-weight:bold;
 }
 
 /*両ヘッダー*/
 .header,
 .header.admin{
 	height:90px;
-	display: flex;
-	align-items: center;
 	padding:10px;
+}
+
+/*両フッター*/
+.footer,
+.footer.admin{
+	font-size:20px;
+	font-weight:bold;
 }
 
 /*main*/
@@ -88,6 +100,10 @@ main{
 	color: white;
 	padding: 5px 10px;
 	border-radius: 4px;
+	height:30px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
 	
 }
 
@@ -116,6 +132,7 @@ main{
 .home-button{
 	background-color:blue;
 	margin-top: 20px; /*上に余白を入れる*/
+
 }
 
 /* 戻るボタン */
@@ -136,6 +153,7 @@ main{
 .login-button{
 	display:flex;
 	justify-content:center;
+	
 }
 
 
@@ -150,13 +168,16 @@ background-color: #d1971b;
 	justify-content: center; /* 横方向中央寄せ */
 	align-items:center;
 	margin-top: 20px;
+	margin-bottom: 30px;
 }
 
 /*ボタン2個の時の配置*/
 .btn-two{
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	gap: 50px;
+	margin-top: 20px;
+	margin-bottom: 30px;
 }
 
 
@@ -244,20 +265,20 @@ th {
 .center{
 	display:flex;
 	justify-content: center;
+	align-items:center;
 }
 
 .left{
 	display:flex;
 	justify-content:flex-start;
+	align-items:center;
 	padding-left:20px;
 }
 
 .right{
-/* text-align:right;*/
-	
 	display:flex;
 	justify-content:flex-end;
-
+	align-items:center;
 }
 
 /*酒匂追加コード*/
@@ -266,6 +287,13 @@ th {
 	display:flex;
 	justify-content:start;
 	gap:10px;
+	margin-top:10px;
+}
+
+div.text-box > p{
+	margin:0;
+	font-weight:bold;
+	text-align:center;
 
 }
 
@@ -281,10 +309,9 @@ th {
 .login-box{
 	display:flex;
 	justify-content:flex-end;
-	align-items:flex-end;
 	gap:10px;
 	width:100%;
-	padding-top:50px;
+	padding-top:30px;
 }
 
 /*ボタン2個の時の配置 逆向き-酒匂追加*/
