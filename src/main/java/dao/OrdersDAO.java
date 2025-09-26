@@ -185,7 +185,7 @@ public class OrdersDAO {
 		
 		// 注文情報をINSERTする用
 		public boolean insertOrder(int userId, List<Order> cart) {
-		    String sqlOrder = "INSERT INTO orders (user_id, order_date) VALUES (?, NOW())";
+		    String sqlOrder = "INSERT INTO orders (user_id, order_date) VALUES (?, ?)";
 		    String sqlDetail = "INSERT INTO order_detail (order_id, product_id, num) VALUES (?, ?, ?)";
 
 		    try (Connection conn = DBManager.getConnection()) {
@@ -195,6 +195,7 @@ public class OrdersDAO {
 
 		        try (PreparedStatement ps = conn.prepareStatement(sqlOrder, PreparedStatement.RETURN_GENERATED_KEYS)) {
 		            ps.setInt(1, userId);
+		            ps.setTimestamp(2, cart.get(0).getOrderDate());
 		            ps.executeUpdate();
 
 		            try (ResultSet rs = ps.getGeneratedKeys()) {

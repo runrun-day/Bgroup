@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Order;
 import model.RegularService;
 
 public class RegularServiceDAO {
@@ -154,4 +155,58 @@ public class RegularServiceDAO {
 			return false;
 		}
 	}
+	
+	// 定期便登録用
+		public boolean rsinsertOrder(int userId, List<Order> cart) {
+			
+			String sqlOrder = "INSERT INTO orders (user_id, order_date) VALUES (?, ?)";
+		    String sqlDetail = "INSERT INTO order_detail (order_id, product_id, num) VALUES (?, ?, ?)";
+
+		    try (Connection conn = DBManager.getConnection()) {
+
+		        int orderId = 0;
+		        
+		        try (PreparedStatement ps = conn.prepareStatement(sqlOrder, PreparedStatement.RETURN_GENERATED_KEYS)) {
+		            ps.setInt(1, userId);
+		            ps.setTimestamp(2, cart.get(0).getOrderDate());
+		            ps.executeUpdate();
+
+		            try (ResultSet rs = ps.getGeneratedKeys()) {
+		                if (rs.next()) {
+		                    orderId = rs.getInt(1); 
+		                }
+		            }
+		        }
+		        
+		        System.out.println("=== Debug: OrdersDAO.insertOrder ===");
+		        System.out.println("userId: " + userId);
+
+		        // orders INSERT の直後
+		        System.out.println("新規 orderId = " + orderId);
+
+		        // order_detail INSERT の直前
+		        for (Order item : cart) {
+		            System.out.println("Detail登録 → orderId=" + orderId
+		                               + " / productId=" + item.getProductId()
+		                               + " / num=" + item.getNum());
+		        }
+
+
+		        try (PreparedStatement ps = conn.prepareStatement(sqlDetail)) {
+		            for (Order item : cart) {
+		                ps.setInt(1, orderId);
+		                ps.setInt(2, item.getProductId());
+		                ps.setInt(3, item.getNum());
+		                ps.addBatch(); 
+		            }
+		            ps.executeBatch();
+		        }
+
+		        return true;
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        return false;
+		    }
+		}
 }

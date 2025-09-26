@@ -3,6 +3,7 @@ package service.user;
 import java.util.List;
 
 import dao.RegularServiceDAO;
+import model.Order;
 import model.RegularService;
 
 public class RegularServiceLogic {
@@ -35,4 +36,10 @@ public class RegularServiceLogic {
         }
         return rsDao.delete(regularServiceDetailId);
     }
+    
+ // 定期便登録
+    public boolean rsinsertOrder(int userId, List<Order> cart) {
+        return rsDao.rsinsertOrder(userId, cart);
+    }
+    
 }
