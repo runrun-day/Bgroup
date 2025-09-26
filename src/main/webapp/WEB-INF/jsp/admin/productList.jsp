@@ -13,7 +13,7 @@
 	  <%@ include file="../../../inc/adminHeader.jsp" %>
 	
 	<main class="main container">
-		<h1 class="title left">商品一覧</h1>	
+		<h1 class="title">商品一覧</h1>	
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>

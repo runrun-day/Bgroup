@@ -23,6 +23,7 @@
 			<div class="text-box"><p>パスワード</p></div>
 			<input class="form-wide" type="password" name="password" value="" required><br>
 		 	<input type="hidden" name="next" value="login"><br>
+
 		<div class="btn-two reverse">
 			<input class="login-button" type="submit" value="ログイン">
 		</form>
@@ -33,12 +34,9 @@
 			</form>
 		</div>
 
-<!--		<div class="adminlogin">-->
 			<form class="login-box" action="AdminLoginServlet" method="get">
-				<input class="top-button" type="submit" value="管理者ログイン"><br>
-			</form>
-<!--		</div>	-->
-		
+				<input class="login-button" type="submit" value="管理者ログイン"><br>
+			</form>		
 	</main>
 
 	  <%@ include file="inc/userFooter.jsp" %>	   

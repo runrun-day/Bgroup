@@ -13,9 +13,9 @@
 
 	<main>
 		<h1 class="title">注文詳細</h1>
-		<p>ユーザー名:${orderList.get(0).userName} </p>
+		<p>ユーザー名 :  ${orderList.get(0).userName} </p>
 		<p>注文日時：${orderList.get(0).orderDate}</p>
-		<table class="table_non">
+		<table>
 		<tr>
 		  <th>商品名</th>
 		  <th>個数</th>

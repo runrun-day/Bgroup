@@ -16,7 +16,7 @@
 		<h1 class="title left">注文一覧</h1>
 
 			<table>
-				<tr class="tr-under">
+				<tr>
 					<th>注文者</th>
 					<th>注文日</th>
 					<th></th>

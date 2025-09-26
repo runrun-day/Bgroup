@@ -80,39 +80,83 @@ main{
 
 /*見出し*/
 .title{
-	font-size: 20px;
 	display:flex;
 	justify-content:flex-start;
+	
 	width:100%;
+	padding-left:20px;
+	font-size: 20px;
 }
 
-/*テキスト*/
+/*結果メッセージ*/
 .result-message{
-	font-size: 	50px;
-/*	font-weight: */
-	
+	font-size: 	50px;	
 }
+
 
 /*全ボタン*/
 [class*=button]{
-	border: none;
-	cursor: pointer;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 4px;
-	height:30px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	
+	height:30px;
+	padding: 5px 10px;
+	border-radius: 4px;	
+	border: none;
+	cursor: pointer;
+	color: white;
+	text-decoration: none;/*下線を削除する*/
+/*	font-weight:bold;*/	
 }
 
 [class*=button]:hover{
   background-color: #0056b3;
 }
 
+/*新規登録ボタン*/
+.signup-button{
+	background-color: #d1971b;
+}
 
+/*ログイン+トップボタン*/
+.login-button{
+	background-color: #4d9407;
+}
 
+/*トップボタン-配置(右下)*/
+.login-box,
+.logout-box{
+	display:flex;
+	justify-content:flex-end;
+	
+	gap:10px;
+	width:100%;
+	padding-top:5px;
+}
+
+/* 画面構成16-メニューボタン */
+.menu-button{
+	width : 60%; 
+	min-width : 300px;
+	height : 65px;
+	font-weight: bold;
+	font-size: clamp(1rem, 5vw, 2.2rem);
+	margin : 0 0 5px 0;	
+	text-align: center;
+	background-color:blue;
+}
+
+/*ログアウトボタン*/
+.logout-button{
+	width : 20%;
+	min-width : 110px;
+	height : 50px;
+	margin: 0 0 0 auto;
+	text-align: center;
+	font-size: clamp( 0.8rem, 5vw, 1.2rem);
+	background-color: #0056b3;
+}
 
 /*テーブルボタンのみ*/
 .table-button{
@@ -122,96 +166,63 @@ main{
 
 /*ホームボタンのみ*/
 .home-button{
+	background-color:blue;
+	margin: 20px 30px 10px ;
 	transform: scale(2);/*拡大*/
-	text-decoration: none;/*下線を削除する*/
 }
 
-/*戻る+アクションボタン*/
+/*主要ボタン(戻る、登録等)*/
 .return-button,
-.action-button,
-.home-button{
+.action-button{
 	background-color:blue;
-	margin-top: 20px; /*上に余白を入れる*/
-
-}
-
-/* 戻るボタン */
-.return-button {
-	color: white;
-	border: none;
-	padding: 5px 10px;
-	cursor: pointer;
-	border-radius: 4px;
-}
-
-/*ログイン+トップボタン*/
-.login-button,
-.top-button{
-	background-color: #4d9407;
-}
-
-.login-button{
-	display:flex;
-	justify-content:center;
-	
+	margin: 20px 30px 10px ;
+	width:50px;	
+	transform: scale(1.5);
 }
 
 
-/*新規登録ボタン*/
-.signup-button{
-background-color: #d1971b;
-}
-
-/*ボタン1個の時の配置*/
-.btn-one{
-	display: flex;
-	justify-content: center; /* 横方向中央寄せ */
-	align-items:center;
-	margin-top: 20px;
-	margin-bottom: 30px;
-}
-
-/*ボタン2個の時の配置*/
-.btn-two{
-	display: flex;
-	justify-content: space-around;
-	gap: 50px;
-	margin-top: 20px;
-	margin-bottom: 30px;
-}
-
-/*ボタン2個の時の配置 逆向き-酒匂追加*/
-.btn-two.reverse{
-	display: flex;
-	justify-content: center;
-	flex-direction:row-reverse;
-	gap: 50px;
-	
-}
-
-/*右寄せボタン*/
-.top-button{
-	display: flex;
-	justify-content: flex-start;
-	background-color:blue;
-}
- 
-/*ログアウトボタン*/
-.logout-button{
-background-color: #6bb38e;
-}
 
 .cart-button{
-background-color: #54d3be;
+	background-color: #54d3be;
 }
 
-/*テーブル*/
+/*ボタン位置共通*/
+[class*=btn]{
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	
+	margin-top: 20px;
+	margin-bottom: 30px;
+	gap: 40px;
+}
+	
+/*ボタン1個の時の配置
+.btn-one{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}*/
+
+/*ボタン2個の時の配置
+.btn-two{
+
+}*/
+
+/*ボタン2個の時の配置 逆向き*/
+.btn-two.reverse{
+	flex-direction:row-reverse;
+}
+
+
+
+/*全テーブル*/
 table{
 	table-layout: auto;
 	border-collapse: collapse;  /* 罫線を重ねる */
 	width: 100%;
 	max-width: 700px;
 	margin: 16px auto;
+	
 }
 
 th,
@@ -268,6 +279,9 @@ th {
 }
 
 
+
+
+
 /*テキスト位置*/
 .center{
 	display:flex;
@@ -279,7 +293,6 @@ th {
 	display:flex;
 	justify-content:flex-start;
 	align-items:center;
-	padding-left:20px;
 }
 
 .right{
@@ -312,14 +325,7 @@ div.text-box > label{
 	width:50px;
 }
 
-/*トップボタンのみ*/
-.login-box{
-	display:flex;
-	justify-content:flex-end;
-	gap:10px;
-	width:100%;
-	padding-top:30px;
-}
+
 
 
 
@@ -336,43 +342,18 @@ main.container {
 	justify-content: center;
 }
 
-/* メニューコンテナ */
-.admin-container {
-	width : 60%;
-	min-width : 90px;
-	display : inline-block;
-	align-items: center;
-	text-align: center;
-	margin : auto 10px;
-}
 
-/* メニューボタン */
-.action-button.menu {
-	width : 100%; 
-	min-width : 300px;
-	height : 65px;
-	font-weight: bold;
-	font-size: clamp(1rem, 5vw, 2.2rem);
-	margin : 0 0 5px 0;	
-	text-align: center;
-}
 
-/*ログアウト*/
-.logout-form {
-	width : 15%;
-	margin: 0 0 0 auto;
-}
-
-.logout-button {
+/* 画面構成17-テーブル */
+.admin-container{
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
 	width : 100%;
-	min-width : 100px;
-	height : 50px;
-	text-align: center;
-	font-size: clamp( 0.8rem, 5vw, 1.2rem);
-	background-color: #0056b3;
+	min-width : 90px;
+	margin:0;
+	/*margin : auto 10px;*/
 }
-
-/* 一覧表示 */
 .admin-container > .table-button{
 	 background-color: #007bff;
 	 color: white;
@@ -405,6 +386,7 @@ td.name {
 	text-align: center;
 	width : 30px;
 }
+
 /* 注文一覧 */
 .tr-under > th {
 	border-top: none;
@@ -445,10 +427,10 @@ input.nonbtn:hover {
   color: #005799;
   text-decoration: underline;
 }
-
+/*
 .table_non,
 .table_non th,
 .table_non td {
   border: none;
 }
-/* -------- ↑管理者メニュー追加文 -------- */
+ -------- ↑管理者メニュー追加文 -------- */

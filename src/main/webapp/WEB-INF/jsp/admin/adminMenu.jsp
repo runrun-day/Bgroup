@@ -13,34 +13,35 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
 	<main class="main container">
-		<h1 class="title left">メニュー</h1>
+		<h1 class="title">メニュー</h1>
 		<div class="admin-container">
-			<form action="AdminMenuRoutingServlet" method="post">
+			<form class="center" action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="prodacts">
-				<input class="action-button menu" type="submit" value="商品一覧">
+				<input class="menu-button" type="submit" value="商品一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post">
+			
+			<form class="center"action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="registration">
-				<input class="action-button menu" type="submit" value="商品登録">
+				<input class="menu-button" type="submit" value="商品登録">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post">
+			<form class="center"action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="orders">
-				<input class="action-button menu" type="submit" value="注文一覧">
+				<input class="menu-button" type="submit" value="注文一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post">
+			<form class="center" action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next"value="regular">
-				<input class="action-button menu" type="submit" value="定期便一覧">
+				<input class="menu-button" type="submit" value="定期便一覧">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post">
+			<form class="center"action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="users">
-				<input class="action-button menu" type="submit" value="ユーザー検索">
+				<input class="menu-button" type="submit" value="ユーザー検索">
 			</form>
-			<form action="AdminMenuRoutingServlet" method="post">
+			<form class="center"action="AdminMenuRoutingServlet" method="post">
 			 	<input type="hidden" name="next" value="dashboard">
-				<input class="action-button menu" type="submit" value="ダッシュボード">
+				<input class="menu-button" type="submit" value="ダッシュボード">
 			</form>
 		</div>
-		<form class="logout-form" action="AdminLoginServlet" method="post">
+		<form class="logout-box" action="AdminLoginServlet" method="post">
 			<input type="hidden" name="next" value="logout">
 			<input class="logout-button" type="submit" value="ログアウト">
 		</form>
