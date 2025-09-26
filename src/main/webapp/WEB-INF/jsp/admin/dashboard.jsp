@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file="../../../inc/adminHeader.jsp" %>
-	<h1 class="title left heading">ダシュボード</h1>	
+	<h1 class="title left">ダッシュボード</h1>	
 	<main>
 	<div class="admin-container">
 		<form action="#" method="post">
@@ -29,5 +29,5 @@
 		</form>
 	</main>
 	<%@ include file="../../../inc/adminFooter.jsp" %>
-</body>
+</body> 
 </html>
