@@ -411,4 +411,36 @@ td.name {
 	width : 30px;
 }
 
+/*渡邉さん追加コード*/
+.underline {
+      border-bottom: 2px solid #b3b1b1;
+      padding:10px;
+	  width:700px;
+}
+
+/*牛島さん変更*/
+input.nonbtn {
+
+  background: none;        /* 背景なし */
+  border: none;            /* 枠線なし */
+  color: #0070c9;          
+  padding: 0;              
+  margin: 0 10px;          
+  cursor: pointer;         /* カーソルをリンク風に */
+  text-decoration: underline; /* 下線 */
+  font-size: 2em;
+
+}
+
+/* ホバー時の色変化 */
+input.nonbtn:hover {
+  color: #005799;
+  text-decoration: underline;
+}
+
+.table_non,
+.table_non th,
+.table_non td {
+  border: none;
+}
 /* -------- ↑管理者メニュー追加文 -------- */
