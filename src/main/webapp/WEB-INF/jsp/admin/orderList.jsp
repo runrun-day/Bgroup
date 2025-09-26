@@ -14,7 +14,7 @@
 
 	<main>
 		<h1 class="title left">注文一覧</h1>
-			<div class="admin-container">
+
 			<table>
 				<tr class="tr-under">
 					<th>注文者</th>
@@ -35,8 +35,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-		</div>
-		
+
 		<div class="btn-one">
 			<form action="OrderListServlet" method="get" name="next"value="back">
 				<input type="hidden" name="next"value="back">
