@@ -34,4 +34,9 @@ public class OrdersService {
 		public List<Order> getOrderListByUser(int userId){
 			return dao.getOrderListByUser(userId);
 		}
+		
+		// 注文登録処理用
+	    public boolean insertOrder(int userId, List<Order> cart) {
+	        return dao.insertOrder(userId, cart);
+	    }
 }
