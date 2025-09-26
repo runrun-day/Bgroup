@@ -290,11 +290,11 @@ th {
 	margin-top:10px;
 }
 
-div.text-box > p{
+div.text-box > p,
+div.text-box > label{
 	margin:0;
 	font-weight:bold;
 	text-align:center;
-
 }
 
 .form-wide{
@@ -389,7 +389,7 @@ main.container {
 	text-align: center;
 }
 
- .admin-container > th,td{
+ .admin-container > tr,th,td{
   border: 1px solid #999;
   padding: 10px;
   text-align: center;

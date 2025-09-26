@@ -16,7 +16,7 @@
 		
 		<p>ユーザー名:${orderList.get(0).userName}</p>
 		<p>注文日時：${orderList.get(0).orderDate}</p>
-		<table>
+		<table class="table_non">
 		<tr>
 		  <th>商品名</th>
 		  <th>個数</th>
@@ -43,7 +43,7 @@
 		
 		<form action="OrderListServlet" method="get" name="next"value="back">
 			<input type="hidden" name="next"value="back">
-			<input type="submit" value="ホームへ戻る">
+			<input type="submit" value="ホームへ戻る" class="home-button">
 		</form>
 	</main>
 
