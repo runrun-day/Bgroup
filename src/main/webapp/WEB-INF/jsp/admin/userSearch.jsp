@@ -30,7 +30,7 @@
         </form>
         
         <form action="UserSearchServlet" method="get">
-        	<input type="hidden" name="next"value="">
+        	<input type="hidden" name="next"value="back_3">
 			<input class="return-button"type="submit" value="戻る">
 			</div>
 		</form>

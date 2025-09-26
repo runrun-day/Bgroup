@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBManager {
 	/** データベース接続URL */
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/shop?useSSL=false&serverTimezone=UTC";
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/shop?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
 
 	/** データベース接続ユーザー */
 	private static final String DB_USER = "root";
