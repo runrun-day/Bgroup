@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <style>
 input.nonbtn {
-
   background: none;        /* 背景なし */
   border: none;            /* 枠線なし */
   color: #0070c9;          
@@ -21,15 +20,13 @@ input.nonbtn {
   cursor: pointer;         /* カーソルをリンク風に */
   text-decoration: underline; /* 下線 */
   font-size: 2em;
-
+  text-align:right
 }
-
 /* ホバー時の色変化 */
 input.nonbtn:hover {
   color: #005799;
   text-decoration: underline;
 }
-
 </style>
 </head>
 <body>

@@ -34,7 +34,7 @@
 
 <!--		<div class="adminlogin">-->
 			<form class="login-box" action="AdminLoginServlet" method="get">
-				<input class="top-button" type="submit" value="管理者ログイン">
+				<input class="top-button " type="submit" value="管理者ログイン">
 			</form>
 <!--		</div>	-->
 		
