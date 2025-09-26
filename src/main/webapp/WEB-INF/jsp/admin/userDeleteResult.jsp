@@ -15,7 +15,7 @@
 
 	<main>
 		<p class="result-message">ユーザーを削除しました！</p>
-		<a class="home-button" href="UserSearchServlet">ホームに戻る</a>
+		<a class="home-button" href="UserSearchServlet?next=back_3">ホームに戻る</a>
 		 
 	</main>
 	<footer>
