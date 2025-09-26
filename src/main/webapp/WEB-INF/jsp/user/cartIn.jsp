@@ -5,36 +5,76 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>カート画面</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
+	<jsp:include page="../../../inc/loginUserHeader.jsp" />
 
-<main>
-	<c:forEach var="product" items="${cart}" > 
-		<p>商品名
-			数量<input type="number" name="quantity" value="1" min="1">
-			定期便<input type="checkbox">する
-			<select name="span">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-			</select>ヶ月 
-			<form action="#" method="post">
+	<main>
+		<c:forEach var="item" items="${cart}">
+			<form class="cart-form"
+				action="${pageContext.request.contextPath}/MenuNavigationServlet"
+				method="post" style="display: inline;">
+				<input type="hidden" name="next" value="updateCart"> <input
+					type="hidden" name="productName" value="${item.productName}">
+				<input type="hidden" name="productId" value="${item.productId}">
+				${item.productName} 数量 <input type="number"
+					name="num_${item.productId}" value="${item.num}" min="1">
+				定期便 <input type="checkbox" name="regular_${item.productId}"
+					value="true" ${item.regularService ? "checked" : ""}> 定期期間
+				<select name="span_${item.productId}">
+					<option value="1" ${item.span == 1 ? "selected" : ""}>1</option>
+					<option value="2" ${item.span == 2 ? "selected" : ""}>2</option>
+					<option value="3" ${item.span == 3 ? "selected" : ""}>3</option>
+				</select> ヶ月
+			</form>
+
+
+			<!-- 削除専用フォーム -->
+			<form
+				action="${pageContext.request.contextPath}/MenuNavigationServlet"
+				method="post" style="display: inline;">
+				<input type="hidden" name="next" value="deleteCart"> <input
+					type="hidden" name="productName" value="${item.productName}">
+				<input type="hidden" name="productId" value="${item.productId}">
 				<input type="submit" value="削除">
 			</form>
-		</p>
-	</c:forEach>
-	<form action="MenuNavigationServlet" method="get">
-		<input type="submit" value="戻る">
-	</form>
-	<form action="ConfirmContentServlet" method="post">
-		<input type="submit" value="注文する">
-	</form>
-</main>
+			<br>
+		</c:forEach>
 
-	  <%@ include file="../../../inc/userFooter.jsp" %> 
+		<script>
+  // changeイベントで自動submit
+  document.querySelectorAll(".cart-form input, .cart-form select").forEach(el => {
+    el.addEventListener("change", function() {
+      this.form.submit();
+    });
+  });
+</script>
+
+		<form action="MenuNavigationServlet" method="get">
+			<input type="submit" value="戻る">
+		</form>
+		<form action="ConfirmContentServlet" method="post">
+			<input type="hidden" name="next" value="order">
+
+			<c:forEach var="item" items="${cart}">
+				<input type="hidden" name="num_${item.productId}"
+					value="${item.num}">
+				<input type="hidden" name="regular_${item.productId}"
+					value="${item.regularService}">
+				<input type="hidden" name="span_${item.productId}"
+					value="${item.span}">
+			</c:forEach>
+
+			<input type="submit" value="注文する">
+		</form>
+
+	</main>
+	</main>
+
+	<%@ include file="../../../inc/userFooter.jsp"%>
 </body>
 </html>

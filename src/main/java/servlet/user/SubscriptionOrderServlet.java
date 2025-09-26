@@ -46,7 +46,7 @@ public class SubscriptionOrderServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		switch (next) {
 		case "orderCommit" -> { //注文情報確認
-
+			nextPage = "/WEB-INF/jsp/user/cartCommit.jsp";
 		}
 		case "rescission" -> { //ユーザー定期便
 			nextPage = "/WEB-INF/jsp/user/regularServiceDelete.jsp";

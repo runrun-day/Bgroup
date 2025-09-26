@@ -50,9 +50,11 @@ input.nonbtn:hover {
 					</td>
 					</div>
 					<td>
-					<form class="cart-button" action="" method="post" name="next" value="cart">
-						<input type="hidden" name="next" value="cart">
-						<input type="hidden" name="orderId" value="${product.productId}">
+					<form class="cart-button" action="MenuNavigationServlet" method="post" name="next" value="cart">
+						<input type="hidden" name="next" value="cartIn">
+						<input type="hidden" name="productId" value="${product.productId}">
+						<input type="hidden" name="productName" value="${product.name}">
+						<input type="hidden" name="price" value="${product.price}">
 						<input type="submit" value="カートに追加" class="cart-button">
 					</form>
 					</td>
