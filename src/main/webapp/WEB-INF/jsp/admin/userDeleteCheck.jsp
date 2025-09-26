@@ -39,7 +39,7 @@
 					<th>パスワード</th>
 					<td>●●●●●●●●●●●●</td>
 				</tr>
-				<td colspan="2">
+				<td class=""colspan="2">
 					<form action="UserSearchServlet" method="post">
 							<input type="hidden" name="next" value="deletCommit">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
