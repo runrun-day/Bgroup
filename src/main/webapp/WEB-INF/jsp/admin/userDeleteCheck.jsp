@@ -43,12 +43,14 @@
 					<form action="UserSearchServlet" method="post">
 							<input type="hidden" name="next" value="deletCommit">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
-							<input type="submit" value="確定">
+						<div class="btn-two reverse">	
+							<input class="action-button"type="submit" value="確定">
 					</form>
 					
 					<form action="UserSearchServlet" method="get">
 						<input type="hidden" name="next" value="back_2">
-						<input type="submit" value="戻る">
+						<input class="return-button" type="submit" value="戻る">
+						</div>
 					</form>
 				</td>
 			</table>

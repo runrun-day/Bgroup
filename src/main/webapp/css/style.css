@@ -159,6 +159,8 @@ background-color: #d1971b;
 	gap: 50px;
 }
 
+
+
 /*右寄せボタン*/
 .top-button{
 	display: flex;
@@ -285,12 +287,15 @@ th {
 	padding-top:50px;
 }
 
-/*.link{*/
-/*	justify-content: flex;*/
-/*		text-align: right;*/
-/*		padding-right:20px;*/
-/*		font-size: 20px;*/
-/*}*/
+/*ボタン2個の時の配置 逆向き-酒匂追加*/
+.btn-two.reverse{
+	display: flex;
+	justify-content: center;
+	flex-direction:row-reverse;
+	gap: 50px;
+	
+}
+
 
 /* -------- ↓管理者メニュー追加文 -------- */
 
@@ -352,30 +357,43 @@ main.container {
 
 /* 一覧表示 */
 .admin-container > .table-button{
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
+	 background-color: #007bff;
+	 color: white;
+	 border: none;
+	 padding: 5px 10px;
+	 cursor: pointer;
+	 border-radius: 4px;
 }
 
  .admin-container > table {
-  border-collapse: collapse;
-  border: 2px solid #333;
-  margin: 0;
-  width: 600px;
+	border: 2px solid #333;
+ 	margin: 0;
+ 	width: 600px;
 }
 
-td {
+
+th,td{
   border: 1px solid #999;
   padding: 10px;
   text-align: center;
+
 }
 
 td.name {
 	width : 600px;
 	text-align: left;
 }
+/* 注文一覧 */
+.tr-under {
+	border-bottom: 2px solid #999;
+}
+
+
+/*.td-button {
+	border: 1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 60px;
+}確認中-酒匂*/
 
 /* -------- ↑管理者メニュー追加文 -------- */
