@@ -12,8 +12,8 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
 	<main>
-		<h2>注文詳細</h2>
-		<p>ユーザー名:${orderList.get(0).userName}</p>
+		<h1 class="title">注文詳細</h1>
+		<p>ユーザー名:${orderList.get(0).userName} </p>
 		<p>注文日時：${orderList.get(0).orderDate}</p>
 		<table>
 		<tr>
@@ -42,7 +42,7 @@
 		
 		<form action="OrderListServlet" method="get" name="next"value="back">
 			<input type="hidden" name="next"value="back">
-			<input type="submit" value="ホームへ戻る">
+			<input class="home-button" type="submit" value="ホームへ戻る">
 		</form>
 	</main>
 
