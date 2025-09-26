@@ -45,7 +45,8 @@
 					<th>パスワード</th>
 					<td>●●●●●●●●●●●●</td>
 				</tr>
-				<td colspan="2">
+				</table>
+				<div class="btn-two" reverse>
 					<form action="SignUpServlet" method="post" name="next" value="commit">
 							<input type="hidden" name="next" value="commit">
 							<input type="submit" value="確定">
@@ -54,8 +55,8 @@
 							<input type="hidden" name="next" value="back">
 							<input type="submit" value="戻る">
 					</form>
-				</td>
-			</table>
+				</div>
+			
 		</div>
 	</main>
 

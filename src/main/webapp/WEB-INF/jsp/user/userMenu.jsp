@@ -10,27 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<style>
-input.nonbtn {
 
-  background: none;        /* 背景なし */
-  border: none;            /* 枠線なし */
-  color: #0070c9;          
-  padding: 0;              
-  margin: 0 10px;          
-  cursor: pointer;         /* カーソルをリンク風に */
-  text-decoration: underline; /* 下線 */
-  font-size: 2em;
-
-}
-
-/* ホバー時の色変化 */
-input.nonbtn:hover {
-  color: #005799;
-  text-decoration: underline;
-}
-
-</style>
 </head>
 <body>
 
