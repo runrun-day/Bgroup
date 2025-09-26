@@ -33,7 +33,7 @@ import model.UserAccount;
 	    "/SubscriptionOrderServlet",
 	    "/ConfirmContentServlet",
 	    "/MenuNavigationServlet",
-	    "/SubscriptionListServlet"
+	    "/UserEditServlet"
 	})
 public class LoginFilter extends HttpFilter implements Filter {
        

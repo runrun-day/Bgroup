@@ -19,7 +19,6 @@
 				<th>注文者</th>
 				<th>注文日</th>
 				<th></th>
-				
 			</tr>
 			<c:forEach var = "order" items ="${orderList}"> 
 			<tr>
@@ -38,7 +37,7 @@
 		</table>
 		<form action="OrderListServlet" method="get" name="next"value="back">
 			<input type="hidden" name="next"value="back">
-			<input type="submit" value="戻る">
+			<input type="submit" class="return-button" value="戻る">
 		</form>
 
 	</main>

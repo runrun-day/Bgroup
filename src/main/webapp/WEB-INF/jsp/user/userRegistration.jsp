@@ -21,33 +21,32 @@
 			</p>
 		</c:if>
 
-		<div class="">
 
 			<form action="SignUpServlet" method="post" name="next" value="check">
-				<input type="hidden" name="next" value="check"> 名前<br>
-				<input class="form-wide" type="text" name="name"
-					value="${form.name}" required><br> メールアドレス<br> <input
-					class="form-wide" type="email" name="email" value="${form.email}"
-					required><br> 郵便番号 -(ハイフン)なし7桁<br> <input
-					class="form-wide" type="text" name="postcode"
-					value="${form.postcode}" required><br> 電話 -(ハイフン)なし<br>
-				<input class="form-wide" type="text" name="tel" value="${form.tel}"
-					required><br> 住所<br> <input class="form-wide"
-					type="text" name="address" value="${form.address}" required><br>
-				パスワード<br> <input class="form-wide" type="password"
-					name="passward" value="" required><br> 確認用パスワード<br>
-				<input class="form-wide" type="password" name="passward2" value=""
-					required><br>
-				<div class="btn-two">
-					<input type="submit" value="登録" class="action-button">
+				<input type="hidden" name="next" value="check"> <br>
+				名前<br>
+				<input class="form-wide" type="text" name="name"	value="${form.name}" required> <br>
+				メールアドレス<br> 
+				<input class="form-wide" type="email" name="email" value="${form.email}"	required><br>
+				郵便番号 -(ハイフン)なし7桁<br> 
+				<input class="form-wide" type="text" name="postcode"	value="${form.postcode}" required> <br>
+				電話 -(ハイフン)なし<br>
+				<input class="form-wide" type="text" name="tel" value="${form.tel}" required><br>
+				住所<br> 
+				<input class="form-wide" type="text" name="address" value="${form.address}" required><br>
+				パスワード<br> 
+				<input class="form-wide" type="password"	name="passward" value="" required><br>
+				確認用パスワード<br>
+				<input class="form-wide" type="password" name="passward2" value="" required><br>
+				<div class="btn-two" reverse>
+					<input class="action-button" type="submit" value="登録">
 			</form>
 
-			<form action="LoginServlet" method="post" name="next" value="back">
-				<input type="hidden" name="next" value="back"> <input
-					type="submit" value="戻る" class="return-button">
-			</form>
-		</div>
-		</div>
+					<form action="LoginServlet" method="post" name="next" value="back">
+						<input type="hidden" name="next" value="back">
+						<input class="return-button" type="submit" value="戻る"><br>
+					</form>
+				</div>
 	</main>
 	<%@ include file="../../../inc/userFooter.jsp"%>
 </body>

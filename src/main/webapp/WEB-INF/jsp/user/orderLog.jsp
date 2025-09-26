@@ -8,16 +8,23 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>注文履歴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<style>
+.underline {
+      border-bottom: 2px solid #b3b1b1;
+      padding:10px;
+	  width:700px;
+	  }
+</style>
 </head>
 <body>
 	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
 	
 	<main>
 		
-		<p>注文履歴一覧</p>
+		<h1 class="title left">注文履歴一覧</h1>
 		<c:forEach var="entry" items="${orderHistoryMap}">
-	    <p>注文日：${entry.key}</p>
-	    <table>
+	    <p class="title left">注文日：${entry.key}</p>
+	    <table> 
 	        <tr>
 	            <td>商品名</td>
 	            <td>個数</td>
@@ -37,13 +44,16 @@
 					  </c:if>
 	                </td>
 	            </tr>
+	            
+	       
 	        </c:forEach>
 	    </table>
+	    <div class="underline"></div>
 	</c:forEach>
 	
 		<form action="MenuNavigationServlet" method="get">
 			<input type="hidden" name="next" value="home">
-			<input type="submit" value="ホームに戻る">
+			<input type="submit" value="ホームに戻る" class="home-button">
 		</form>
 	</main>
 

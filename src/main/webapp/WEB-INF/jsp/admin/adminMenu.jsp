@@ -13,7 +13,7 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
 	<main class="main container">
-		<h1 class="title left heading">メニュー</h1>
+		<h1 class="title left">メニュー</h1>
 		<div class="admin-container">
 			<form action="AdminMenuRoutingServlet" method="post">
 				<input type="hidden" name="next"value="prodacts">

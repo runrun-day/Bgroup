@@ -12,12 +12,15 @@
 
 	<main>
 		<p class="result-message">商品を修正しました！</p><br> 
+
 		
 		<div class="btn-one">
 			<a class="home-button" href="ProductListServlet?next=non">ホームに戻る</a>
 		</div>
 	
+
 	</main>
 
-	<%@ include file="../../../inc/adminFooter.jsp"%>
+	<%@ include file="../../../inc/adminFooter.jsp" %>	 
 </body>
+</html>
