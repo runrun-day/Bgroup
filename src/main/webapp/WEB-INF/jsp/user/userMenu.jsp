@@ -15,6 +15,7 @@
 	href="${pageContext.request.contextPath}/css/style.css">
 <style>
 input.nonbtn {
+<<<<<<< HEAD
 	background: none; /* 背景なし */
 	border: none; /* 枠線なし */
 	color: #0070c9;
@@ -22,6 +23,16 @@ input.nonbtn {
 	margin: 0 10px;
 	cursor: pointer; /* カーソルをリンク風に */
 	text-decoration: underline; /* 下線 */
+=======
+  background: none;        /* 背景なし */
+  border: none;            /* 枠線なし */
+  color: #0070c9;          
+  padding: 0;              
+  margin: 0 10px;          
+  cursor: pointer;         /* カーソルをリンク風に */
+  text-decoration: underline; /* 下線 */
+  font-size: 2em;
+>>>>>>> branch 'master' of https://github.com/runrun-day/Bgroup.git
 }
 
 /* ホバー時の色変化 */
@@ -33,6 +44,7 @@ input.nonbtn:hover {
 </head>
 <body>
 
+<<<<<<< HEAD
 	<jsp:include page="../../../inc/userHomeHeader.jsp" />
 	<main>
 		<div class="container-wide">
@@ -69,6 +81,39 @@ input.nonbtn:hover {
 			<input type="hidden" name="next" value="logout"> <input
 				type="submit" class="logout-button" value="ログアウト">
 		</form>
+=======
+	<jsp:include page="../../../inc/userHomeHeader.jsp"/>
+	
+	<main class="main container">
+		<table>
+			<c:forEach var = "product" items ="${products}">
+				<tr>
+					<div class="item">
+						<td>${product.name}</td>
+						<td>${product.price}円</td>
+					</div>
+					<div class="img">
+					<td>
+						<img src="${pageContext.request.contextPath}/image?name=${product.imageRename}" width="200">
+					</td>
+					</div>
+					<td>
+					<form class="cart-button" action="" method="post" name="next" value="cart">
+						<input type="hidden" name="next" value="cart">
+						<input type="hidden" name="orderId" value="${product.productId}">
+						<input type="submit" value="カートに追加" class="cart-button">
+					</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="login-box">	
+			<form action="LoginServlet" method="post">
+				<input type="hidden" name="next" value="logout">
+				<input class="logout-button" type="submit" class="logout-button" value="ログアウト">
+			</form>	
+		</div>
+>>>>>>> branch 'master' of https://github.com/runrun-day/Bgroup.git
 	</main>
 
 	<%@ include file="../../../inc/userFooter.jsp"%>
