@@ -1,6 +1,8 @@
 package servlet.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,7 +12,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import model.Product;
 import model.UserAccount;
+import service.user.ProductService;
 import service.user.RegularServiceLogic;
 import service.user.UserService;
 
@@ -33,6 +37,13 @@ public class SubscriptionOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	    メニュー画面 商品表示処理
+	    	List<Product> products = new ArrayList<>();
+	    	ProductService pbo = new ProductService();
+	    	products = pbo.getProducts();
+	    	//メニュー画面表示の商品リストを保存
+	    	request.setAttribute("products", products);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/userMenu.jsp");
 		dispatcher.forward(request, response);
 	}
