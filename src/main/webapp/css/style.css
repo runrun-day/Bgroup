@@ -309,15 +309,6 @@ main.container {
 	justify-content: center;
 }
 
-/*見出し*/
-.left.heading  {
-	/* font-size: 20px; */
-	width : 12%;
-	height : 30px;
-	padding-left : 0;
-	margin : 0 10px 0; /* 上下0px(上寄せ) 左右10px */
-}
-
 /* メニューコンテナ */
 .admin-container {
 	width : 60%;
@@ -342,8 +333,7 @@ main.container {
 /*ログアウト*/
 .logout-form {
 	width : 15%;
-	margin: auto 5px 5px 5px;
-	text-align : right;
+	margin: 0 0 0 auto;
 }
 
 .logout-button {
@@ -359,24 +349,23 @@ main.container {
 .admin-container > .table-button{
 	 background-color: #007bff;
 	 color: white;
-	 border: none;
+/*	 border: none;*/
 	 padding: 5px 10px;
 	 cursor: pointer;
 	 border-radius: 4px;
 }
 
  .admin-container > table {
-	border: 2px solid #333;
- 	margin: 0;
+	border: 1px solid #333;
+ 	margin: 0 auto;
  	width: 600px;
+	text-align: center;
 }
 
-
-th,td{
+ .admin-container > th,td{
   border: 1px solid #999;
   padding: 10px;
   text-align: center;
-
 }
 
 td.name {
@@ -388,6 +377,12 @@ td.name {
 	border-bottom: 2px solid #999;
 }
 
+.td-button {
+	border:1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 30px;
+}
 
 /*.td-button {
 	border: 1px solid #999;
