@@ -96,22 +96,25 @@ public class SubscriptionOrderServlet extends HttpServlet {
                 RegularServiceLogic regularServiceLogic = new RegularServiceLogic();
 //              通常注文insert
                 boolean order_success = ordersService.insertOrder(account.getUserId(), cart);
-
+                System.out.println("通常注文" + order_success);
 //              定期便用リスト作成
                 List<Order> rsOrder = new ArrayList<>();
 //              通常注文から定期便チェックtrueのもののみrsOrderrリストへ追加
                 for(Order order : cart) {
-                		if(order.isRegularService()) {
-                			rsOrder.add(order);
-                		}
+                	System.out.println(order.toString());
+            		if(order.isRegularService()) {
+            			rsOrder.add(order);
+            		}
                 }
-//              定期便insert
-                boolean rsorder_success = ordersService.insertOrder(account.getUserId(), cart);
-
-                
+//              定期便insert 差分リストがあれば処理する
+                if(!rsOrder.isEmpty()) {
+                	order_success = regularServiceLogic.rsinsertOrder(account.getUserId(), rsOrder);
+                	System.out.println("定期便" + order_success);
+                }
                 
                 if (order_success) {
                     // 登録成功 → 完了画面へ
+                	session.removeAttribute("cart");
                     nextPage = "/WEB-INF/jsp/user/cartCommit.jsp";
                     // カートをクリア
                     session.removeAttribute("cart");

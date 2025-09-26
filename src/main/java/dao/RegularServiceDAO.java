@@ -159,12 +159,12 @@ public class RegularServiceDAO {
 	// 定期便登録用
 		public boolean rsinsertOrder(int userId, List<Order> cart) {
 			
-			String sqlOrder = "INSERT INTO orders (user_id, order_date) VALUES (?, ?)";
-		    String sqlDetail = "INSERT INTO order_detail (order_id, product_id, num) VALUES (?, ?, ?)";
+			String sqlOrder = "INSERT INTO regular_service (user_id, start_date) VALUES (?, ?)";
+		    String sqlDetail = "INSERT INTO regular_service_detail (regular_service_id, product_id, num,span) VALUES (?, ?, ?,?)";
 
 		    try (Connection conn = DBManager.getConnection()) {
 
-		        int orderId = 0;
+		        int rsorderId = 0;
 		        
 		        try (PreparedStatement ps = conn.prepareStatement(sqlOrder, PreparedStatement.RETURN_GENERATED_KEYS)) {
 		            ps.setInt(1, userId);
@@ -173,7 +173,7 @@ public class RegularServiceDAO {
 
 		            try (ResultSet rs = ps.getGeneratedKeys()) {
 		                if (rs.next()) {
-		                    orderId = rs.getInt(1); 
+		                	rsorderId = rs.getInt(1); 
 		                }
 		            }
 		        }
@@ -182,26 +182,25 @@ public class RegularServiceDAO {
 		        System.out.println("userId: " + userId);
 
 		        // orders INSERT の直後
-		        System.out.println("新規 orderId = " + orderId);
+		        System.out.println("新規 orderId = " + rsorderId);
 
 		        // order_detail INSERT の直前
 		        for (Order item : cart) {
-		            System.out.println("Detail登録 → orderId=" + orderId
+		            System.out.println("Detail登録 → orderId=" + rsorderId
 		                               + " / productId=" + item.getProductId()
 		                               + " / num=" + item.getNum());
 		        }
 
-
 		        try (PreparedStatement ps = conn.prepareStatement(sqlDetail)) {
 		            for (Order item : cart) {
-		                ps.setInt(1, orderId);
+		                ps.setInt(1, rsorderId);
 		                ps.setInt(2, item.getProductId());
 		                ps.setInt(3, item.getNum());
+		                ps.setInt(4, item.getSpan());
 		                ps.addBatch(); 
 		            }
 		            ps.executeBatch();
 		        }
-
 		        return true;
 
 		    } catch (SQLException e) {

@@ -17,6 +17,10 @@
 <body>
 	<jsp:include page="../../../inc/loginUserHeader.jsp" />
 	<main>
+		<c:if test="${not empty msg}">
+			<p style="color:red;"><c:out value="${msg}" /></p>
+		</c:if>
+	
 		<form action="SubscriptionOrderServlet" method="post">
 			<input type="hidden" name="next" value="orderCommit"> 
 			<p>注文確認</p>
