@@ -15,7 +15,7 @@
 	<main>
 	<p class="result-message">登録を解除しました！</p>
 	<form action="SubscriptionOrderServlet" method="get">
-		<input type="submit" value="ホームに戻る">
+		<input type="submit" value="ホームに戻る" class="home-botton">
 	</form>
 		</main>
 

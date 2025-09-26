@@ -12,11 +12,12 @@
 <body>
 	  <%@ include file="../../../inc/newSubmitHeader.jsp" %>
 	<main>
-		<h1>ユーザー登録しました！</h1>
+		<h1 class="result-message">ユーザー登録しました！</h1>
 		<p>ログイン画面より再度ログインをお願いします。</p>
 		
 		<form action="SignUpServlet" method="get" name="next" value="back">
-			<input type="submit" value="ホームに戻る">
+		 <a class="home-button" href="SubscriptionOrderServlet?next=non">ホームに戻る</a>
+			
 		</form>
 		</main>
 		
