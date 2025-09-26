@@ -17,43 +17,46 @@
 <body>
 	<jsp:include page="../../../inc/loginUserHeader.jsp" />
 	<main>
-		<p>注文確認</p>
-		${account.name}さん<br> 〒${account.postcode}<br>
-		${account.address}<br> ${account.tel}<br>
-
-		<table>
-			<tr>
-				<td>商品</td>
-				<td>個数</td>
-				<td>単価</td>
-				<td>金額</td>
-				<td>定期便</td>
-			</tr>
-			<c:forEach var="item" items="${cart}">
+		<form action="SubscriptionOrderServlet" method="post">
+			<input type="hidden" name="next" value="orderCommit"> 
+			<p>注文確認</p>
+			${account.name}さん<br> 
+			〒${account.postcode}<br>
+			${account.address}<br> 
+			${account.tel}<br>
+	
+			<table>
 				<tr>
-					<td>・${item.productName}</td>
-					<td>${item.num}個</td>
-					<td>${item.price}円</td>
-					<td>${item.amount}円</td>
-					<td><c:choose>
-							<c:when test="${item.regularService}">
-      						${item.span} ヶ月
-    						</c:when>
-							<c:otherwise>-</c:otherwise>
-						</c:choose></td>
-
+					<td>商品</td>
+					<td>個数</td>
+					<td>単価</td>
+					<td>金額</td>
+					<td>定期便</td>
 				</tr>
-			</c:forEach>
-		</table>
-
-		<p>合計 ${totalAmount} 円</p>
+				<c:forEach var="item" items="${cart}">
+					<tr>
+						<td>・${item.productName}</td>
+						<td>${item.num}個</td>
+						<td>${item.price}円</td>
+						<td>${item.amount}円</td>
+						<td><c:choose>
+								<c:when test="${item.regularService}">
+	      						${item.span} ヶ月
+	    						</c:when>
+								<c:otherwise>-</c:otherwise>
+							</c:choose></td>
+	
+					</tr>
+				</c:forEach>
+			</table>
+			<p>合計 ${totalAmount} 円</p>
+			<input type="submit" value="確定">
+		</form>
+		
 		<form action="ConfirmContentServlet" method="get">
 			<input type="submit" value="戻る">
 		</form>
-		<form action="SubscriptionOrderServlet" method="post">
-			<input type="hidden" name="next" value="orderCommit"> <input
-				type="submit" value="確定">
-		</form>
+		
 	</main>
 	<%@ include file="../../../inc/userFooter.jsp"%>
 </body>

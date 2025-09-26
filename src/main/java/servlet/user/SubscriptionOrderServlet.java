@@ -61,36 +61,36 @@ public class SubscriptionOrderServlet extends HttpServlet {
 	    System.out.println("next = " + next);
 
 	    // デバッグ用に例外を投げてみる
-	    if ("orderCommit".equals(next)) {
-	        throw new RuntimeException("ここまで来たよ！");
-	    }
+//	    if ("orderCommit".equals(next)) {
+//	        throw new RuntimeException("ここまで来たよ！");
+//	    }
 	    
 		HttpSession session = request.getSession();
 		switch (next) {
 		case "orderCommit" -> { // 注文確定処理
             UserAccount account = (UserAccount) session.getAttribute("account");
             List<Order> cart = (List<Order>) session.getAttribute("cart");
-            
-            System.out.println("=== Debug: 注文登録処理開始 ===");
-            if (account != null) {
-                System.out.println("ユーザーID: " + account.getUserId());
-                System.out.println("ユーザー名: " + account.getName());
-            } else {
-                System.out.println("account が null です");
-            }
-
-            if (cart != null) {
-                System.out.println("カート内商品数: " + cart.size());
-                for (Order item : cart) {
-                    System.out.println("商品ID: " + item.getProductId()
-                                       + " / 数量: " + item.getNum()
-                                       + " / 商品名: " + item.getProductName()
-                                       + " / 金額: " + item.getAmount());
-                }
-            } else {
-                System.out.println("cart が null です");
-            }
-            
+//     デバック用       
+//            System.out.println("=== Debug: 注文登録処理開始 ===");
+//            if (account != null) {
+//                System.out.println("ユーザーID: " + account.getUserId());
+//                System.out.println("ユーザー名: " + account.getName());
+//            } else {
+//                System.out.println("account が null です");
+//            }
+//
+//            if (cart != null) {
+//                System.out.println("カート内商品数: " + cart.size());
+//                for (Order item : cart) {
+//                    System.out.println("商品ID: " + item.getProductId()
+//                                       + " / 数量: " + item.getNum()
+//                                       + " / 商品名: " + item.getProductName()
+//                                       + " / 金額: " + item.getAmount());
+//                }
+//            } else {
+//                System.out.println("cart が null です");
+//            }
+//            処理用
             if (account != null && cart != null && !cart.isEmpty()) {
                 OrdersService ordersService = new OrdersService();
                 boolean success = ordersService.insertOrder(account.getUserId(), cart);
