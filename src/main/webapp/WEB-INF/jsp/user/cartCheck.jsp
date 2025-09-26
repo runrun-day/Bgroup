@@ -25,7 +25,7 @@
 			${account.address}<br> 
 			${account.tel}<br>
 	
-			<table>
+			<table class="table_non">
 				<tr>
 					<td>商品</td>
 					<td>個数</td>
@@ -50,12 +50,14 @@
 				</c:forEach>
 			</table>
 			<p>合計 ${totalAmount} 円</p>
-			<input type="submit" value="確定">
+			<div class="btn-two" reverse>
+			<input class="action-button" type="submit" value="確定">
 		</form>
 		
 		<form action="ConfirmContentServlet" method="get">
-			<input type="submit" value="戻る">
+			<input class="return-button" type="submit" value="戻る">
 		</form>
+		</div>
 		
 	</main>
 	<%@ include file="../../../inc/userFooter.jsp"%>
