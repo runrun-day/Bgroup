@@ -12,7 +12,7 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
     <main>
-        <h1>ユーザー検索</h1>
+        <h1 class="title left">ユーザー検索</h1>
 		<!--ユーザーが見つからない場合のエラー表示-->
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
@@ -20,14 +20,19 @@
 
         <form action="UserSearchServlet" method="post">
         	<input type="hidden" name="next"value="search">
-            <label for="tel">電話番号</label><br>
-            <input type="text" id="tel" name="tel" required><br><br>
-   			<input  class="action-button" type="submit" value="検索">
+            <div class="text-box">
+            	<label for="tel">電話番号</label>
+            </div>
+            <input class="form-wide" type="text" id="tel" name="tel" required><br><br>
+   			
+   			<div class="btn-two reverse">
+   			<input class="action-button" type="submit" value="検索">
         </form>
         
         <form action="UserSearchServlet" method="get">
-        	<input type="hidden" name="next"value="">
-			<input type="submit" value="戻る">
+        	<input type="hidden" name="next"value="back_3">
+			<input class="return-button"type="submit" value="戻る">
+			</div>
 		</form>
     </main>
 

@@ -42,10 +42,14 @@ font-size: 0.875em;
 
 /*main*/
 main{
+	display:flex;
+	justify-content: center;
+	flex-direction:column;
+	align-items:center;
+	
 	padding: 50px;
 	width: 740px;
 	margin: 0 auto;
-	text-align:center;
 }
 
 .login{
@@ -65,6 +69,9 @@ main{
 /*見出し*/
 .title{
 	font-size: 20px;
+	display:flex;
+	justify-content:flex-start;
+	width:100%;
 }
 
 /*テキスト*/
@@ -88,10 +95,7 @@ main{
   background-color: #0056b3;
 }
 
-/*トップボタンのみ*/
-.top-button{
-	
-}
+
 
 
 /*テーブルボタンのみ*/
@@ -114,23 +118,37 @@ main{
 	margin-top: 20px; /*上に余白を入れる*/
 }
 
+/* 戻るボタン */
+.return-button {
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
 /*ログイン+トップボタン*/
 .login-button,
 .top-button{
 	background-color: #4d9407;
 }
 
+.login-button{
+	display:flex;
+	justify-content:center;
+}
+
+
 /*新規登録ボタン*/
 .signup-button{
 background-color: #d1971b;
 }
 
-
-
 /*ボタン1個の時の配置*/
 .btn-one{
 	display: flex;
 	justify-content: center; /* 横方向中央寄せ */
+	align-items:center;
 	margin-top: 20px;
 }
 
@@ -141,13 +159,15 @@ background-color: #d1971b;
 	gap: 50px;
 }
 
-/*左寄せボタン*/
+
+
+/*右寄せボタン*/
 .top-button{
 	display: flex;
-	justify-content: center;
-	background-color:red;
+	justify-content: flex-start;
+	background-color:blue;
 }
-
+ 
 /*ログアウトボタン*/
 .logout-button{
 background-color: #6bb38e;
@@ -219,20 +239,161 @@ th {
 	width: 20%;
 }
 
+
 /*テキスト位置*/
 .center{
+	display:flex;
 	justify-content: center;
-	text-align: center;
 }
 
 .left{
-	justify-content: left;
-	text-align: left;
+	display:flex;
+	justify-content:flex-start;
 	padding-left:20px;
 }
 
 .right{
-	justify-content: right;
-	text-align: right;
-	padding-right:20px;
+/* text-align:right;*/
+	
+	display:flex;
+	justify-content:flex-end;
+
 }
+
+/*酒匂追加コード*/
+
+.text-box{
+	display:flex;
+	justify-content:start;
+	gap:10px;
+
+}
+
+.form-wide{
+	width:300px;
+}
+
+.form-narrow{
+	width:50px;
+}
+
+/*トップボタンのみ*/
+.login-box{
+	display:flex;
+	justify-content:flex-end;
+	align-items:flex-end;
+	gap:10px;
+	width:100%;
+	padding-top:50px;
+}
+
+/*ボタン2個の時の配置 逆向き-酒匂追加*/
+.btn-two.reverse{
+	display: flex;
+	justify-content: center;
+	flex-direction:row-reverse;
+	gap: 50px;
+	
+}
+
+
+/* -------- ↓管理者メニュー追加文 -------- */
+
+/*main*/
+main.container {
+	width : 90%;
+	padding : 10px;  上下左右10px
+	margin: 0 auto;  中央 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/*見出し*/
+.left.heading  {
+	/* font-size: 20px; */
+	width : 12%;
+	height : 30px;
+	padding-left : 0;
+	margin : 0 10px 0; /* 上下0px(上寄せ) 左右10px */
+}
+
+/* メニューコンテナ */
+.admin-container {
+	width : 60%;
+	min-width : 90px;
+	display : inline-block;
+	align-items: center;
+	text-align: center;
+	margin : auto 10px;
+}
+
+/* メニューボタン */
+.action-button.menu {
+	width : 100%; 
+	min-width : 300px;
+	height : 65px;
+	font-weight: bold;
+	font-size: clamp(1rem, 5vw, 2.2rem);
+	margin : 0 0 5px 0;	
+	text-align: center;
+}
+
+/*ログアウト*/
+.logout-form {
+	width : 15%;
+	margin: auto 5px 5px 5px;
+	text-align : right;
+}
+
+.logout-button {
+	width : 100%;
+	min-width : 100px;
+	height : 50px;
+	text-align: center;
+	font-size: clamp( 0.8rem, 5vw, 1.2rem);
+	background-color: #0056b3;
+}
+
+/* 一覧表示 */
+.admin-container > .table-button{
+	 background-color: #007bff;
+	 color: white;
+	 border: none;
+	 padding: 5px 10px;
+	 cursor: pointer;
+	 border-radius: 4px;
+}
+
+ .admin-container > table {
+	border: 2px solid #333;
+ 	margin: 0;
+ 	width: 600px;
+}
+
+
+th,td{
+  border: 1px solid #999;
+  padding: 10px;
+  text-align: center;
+
+}
+
+td.name {
+	width : 600px;
+	text-align: left;
+}
+/* 注文一覧 */
+.tr-under {
+	border-bottom: 2px solid #999;
+}
+
+
+/*.td-button {
+	border: 1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 60px;
+}確認中-酒匂*/
+
+/* -------- ↑管理者メニュー追加文 -------- */

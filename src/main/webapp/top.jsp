@@ -11,34 +11,32 @@
 </head>
 <body>
 	  <%@ include file="inc/userHeader.jsp" %>	 
-	<main id="container">
+	<main id="container" >
 	<!--エラー時の表示処理-->
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
-		<form action="LoginServlet" method="post" name="next" value="login">
+		<form action="LoginServlet" method="post">
 			メールアドレス<br>
-			<input type="text" name="mail" value="" required><br>
+			<input type="text" name="mail" value=""  required><br>
 			パスワード<br>
 			<input type="password" name="password" value="" required><br>
 		 	<input type="hidden" name="next" value="login">
-			<div class="login">
-				<input class="btn-two" type="submit" class="login-button" value="ログイン">
-			</div>
+			<div class="btn-two" reverse>
+				<input class="login-button" type="submit" value="ログイン">
 		</form>
 	
-		<div class="login">
-			<form action="LoginServlet" method="post" name="next" value="signup">
+			<form action="LoginServlet" method="post" >
 				<input type="hidden" name="next" value="signup">
-				<input class="btn-two" type="submit" class="signup-button" value="新規登録">
+				<input class="signup-button" type="submit" value="新規登録">
 			</form>
 		</div>
 
-		<div class="adminlogin">
-			<form action="AdminLoginServlet" method="get">
-				<input type="submit" class="login-button" value="管理者ログイン">
+<!--		<div class="adminlogin">-->
+			<form class="login-box" action="AdminLoginServlet" method="get">
+				<input class="top-button " type="submit" value="管理者ログイン">
 			</form>
-		</div>	
+<!--		</div>	-->
 		
 	</main>
 

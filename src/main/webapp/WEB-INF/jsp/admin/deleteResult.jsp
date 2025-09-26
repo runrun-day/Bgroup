@@ -11,10 +11,11 @@
 	<%@ include file="../../../inc/adminHeader.jsp"%>
 
 	<main>
-	
 		<p class="result-message">商品を削除しました！</p>
-		<a class="btn" href="ProductListServlet">ホームに戻る</a>
-		 
+		
+		<div class="btn-one">
+		<a class="home-button" href="ProductListServlet">ホームに戻る</a>
+		</div> 
 	</main>
 
 	<%@ include file="../../../inc/adminFooter.jsp"%>

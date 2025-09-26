@@ -40,7 +40,7 @@ public class UserSearchServlet extends HttpServlet {
 			case "back_2" ->{
 				nextPage = "WEB-INF/jsp/admin/searchResult.jsp";
 			}
-			default -> {
+			case "back_3" -> {
 				nextPage = "WEB-INF/jsp/admin/adminMenu.jsp";
             }
 			}

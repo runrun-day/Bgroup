@@ -82,6 +82,7 @@ public class AdminMenuRoutingServlet extends HttpServlet {
 				nextPage ="WEB-INF/jsp/admin/userSearch.jsp";
 			}
 			case "dashboard" ->{//ダッシュボード
+				nextPage ="WEB-INF/jsp/admin/dashboard.jsp";
 			}
 			
 
