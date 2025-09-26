@@ -16,5 +16,14 @@ public class ProductService {
 		return dao.getProducts();
 	}
 
+	public Product getProductByName(String name) {
+	    List<Product> products = getProducts(); // 全商品取得
+	    for (Product p : products) {
+	        if (p.getName().equals(name)) {
+	            return p;
+	        }
+	    }
+	    return null; // 見つからない場合
+	}
 
 }

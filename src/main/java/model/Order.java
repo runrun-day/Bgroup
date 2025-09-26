@@ -61,6 +61,7 @@ public class Order implements Serializable {
 		    this.amount = amount;
 		    this.span = span;
 		}
+		
 	
 	// ゲッターセッター
 	public int getOrderProductId() {
