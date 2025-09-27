@@ -48,11 +48,11 @@
 		<div class="btn-two" reverse>
 			<form action="SignUpServlet" method="post" name="next" value="commit">
 					<input type="hidden" name="next" value="commit">
-					<input type="submit" value="確定">
+					<input class="action-button" type="submit" value="確定">
 			</form>
 			<form action="SignUpServlet" method="post" name="next" value="back">
 					<input type="hidden" name="next" value="back">
-					<input type="submit" value="戻る">
+					<input class="return-button" type="submit" value="戻る">
 			</form>
 		</div>
 	</main>

@@ -34,7 +34,7 @@ CREATE TABLE `order_detail` (
   KEY `product_id` (`product_id`),
   CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
   CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (1,1,1,2),(2,1,3,1),(3,2,2,1),(4,2,4,3),(5,3,5,2),(6,4,6,1),(7,4,1,1),(8,5,3,4),(9,5,5,1),(10,6,2,2),(11,6,6,3),(12,7,1,1),(13,8,3,2),(14,8,5,2),(15,9,4,1),(16,9,2,3),(17,10,6,2),(18,10,5,1),(19,11,1,2),(20,11,3,3),(21,12,4,2),(22,12,6,1),(23,13,2,1),(24,13,5,1),(25,14,1,3),(26,14,3,1),(27,15,6,1),(28,15,5,2);
+INSERT INTO `order_detail` VALUES (1,1,2,1),(2,1,5,2),(3,2,1,3),(4,3,3,1),(5,3,4,2),(6,4,2,1),(7,4,6,1),(8,5,5,1),(9,5,1,1),(29,1,2,1),(30,1,5,2),(31,2,1,3),(32,3,3,1),(33,3,4,2),(34,4,2,1),(35,4,6,1),(36,5,5,1),(37,5,1,1);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`order_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'2025-05-05 10:30:00'),(2,2,'2025-05-12 14:20:00'),(3,3,'2025-05-15 09:10:00'),(4,4,'2025-05-22 18:00:00'),(5,5,'2025-06-01 11:15:00'),(6,6,'2025-06-05 16:45:00'),(7,1,'2025-06-12 10:00:00'),(8,2,'2025-06-25 15:30:00'),(9,3,'2025-07-03 17:50:00'),(10,4,'2025-07-15 08:25:00'),(11,5,'2025-07-22 12:40:00'),(12,6,'2025-08-02 13:55:00'),(13,1,'2025-08-10 09:30:00'),(14,3,'2025-08-20 16:20:00'),(15,4,'2025-08-28 19:10:00');
+INSERT INTO `orders` VALUES (1,1,'2025-09-01 10:15:00'),(2,2,'2025-09-02 11:20:30'),(3,3,'2025-09-03 14:05:45'),(4,1,'2025-09-05 09:30:00'),(5,4,'2025-09-06 16:45:10'),(16,1,'2025-09-01 10:15:00'),(17,2,'2025-09-02 11:20:30'),(18,3,'2025-09-03 14:05:45'),(19,1,'2025-09-05 09:30:00'),(20,4,'2025-09-06 16:45:10'),(21,2,'2025-09-02 11:20:30'),(22,5,'2025-09-06 16:45:10'),(23,3,'2025-09-03 14:05:45');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,13 +111,11 @@ DROP TABLE IF EXISTS `regular_service`;
 CREATE TABLE `regular_service` (
   `regular_service_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
-  `span` int NOT NULL,
   `start_date` datetime NOT NULL,
   PRIMARY KEY (`regular_service_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `regular_service_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-  CONSTRAINT `regular_service_chk_1` CHECK ((`span` between 1 and 3))
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `regular_service_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +124,7 @@ CREATE TABLE `regular_service` (
 
 LOCK TABLES `regular_service` WRITE;
 /*!40000 ALTER TABLE `regular_service` DISABLE KEYS */;
-INSERT INTO `regular_service` VALUES (1,1,1,'2025-05-05 10:30:00'),(2,2,2,'2025-05-12 14:20:00'),(3,3,3,'2025-05-15 09:10:00'),(4,4,1,'2025-06-01 11:15:00'),(5,5,2,'2025-06-25 15:30:00'),(6,6,3,'2025-07-03 17:50:00');
+INSERT INTO `regular_service` VALUES (1,2,'2025-09-02 11:20:30'),(2,5,'2025-09-06 16:45:10'),(3,3,'2025-09-03 14:05:45');
 /*!40000 ALTER TABLE `regular_service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,12 +140,13 @@ CREATE TABLE `regular_service_detail` (
   `regular_service_id` int NOT NULL,
   `product_id` int NOT NULL,
   `num` int NOT NULL,
+  `span` int NOT NULL,
   PRIMARY KEY (`regular_service_detail_id`),
   KEY `regular_service_id` (`regular_service_id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `regular_service_detail_ibfk_1` FOREIGN KEY (`regular_service_id`) REFERENCES `regular_service` (`regular_service_id`) ON DELETE CASCADE,
   CONSTRAINT `regular_service_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +155,7 @@ CREATE TABLE `regular_service_detail` (
 
 LOCK TABLES `regular_service_detail` WRITE;
 /*!40000 ALTER TABLE `regular_service_detail` DISABLE KEYS */;
-INSERT INTO `regular_service_detail` VALUES (1,1,1,2),(2,1,3,1),(3,2,2,1),(4,3,5,2),(5,3,4,1),(6,4,6,1),(7,5,3,3),(8,5,5,1),(9,6,2,2),(10,6,6,3);
+INSERT INTO `regular_service_detail` VALUES (1,1,1,1,1),(2,1,4,2,1),(3,2,2,1,2),(4,2,5,3,2),(5,3,3,1,3),(6,3,6,2,3);
 /*!40000 ALTER TABLE `regular_service_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,4 +198,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-22 10:19:29
+-- Dump completed on 2025-09-27  0:42:22

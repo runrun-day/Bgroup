@@ -44,7 +44,7 @@
 					<th>パスワード</th>
 					<td>●●●●●●●●●●●●</td>
 				</tr>
-				<td colspan="2">
+			</table>
 					<form action="UserSearchServlet" method="post" name="next" value="deletCheck">
 							<input type="hidden" name="next" value="deletCheck">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
@@ -57,8 +57,7 @@
 						<input class="return-button" type="submit" value="戻る">
 						</div>
 					</form>
-				</td>
-			</table>
+
 		</div>
 	</main>
 	

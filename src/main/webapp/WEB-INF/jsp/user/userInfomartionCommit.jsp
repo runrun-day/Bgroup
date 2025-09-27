@@ -12,7 +12,7 @@
 		
 	<main>
 		<p class="result-message">ユーザー情報修正しました！</p><br>
-		 <a class="home-botton" href="UserEditServlet">ホームに戻る</a>
+		 <a class="home-button" href="UserEditServlet">ホームに戻る</a>
 	</main>
 
 	<%@ include file="../../../inc/userFooter.jsp"%>

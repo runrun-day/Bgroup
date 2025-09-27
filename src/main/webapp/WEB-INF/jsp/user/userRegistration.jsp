@@ -30,10 +30,10 @@
 				<input class="form-wide" type="email" name="email" value="${form.email}"	required><br>
 				
 				<div class="text-box"><p>郵便番号 -(ハイフン)なし7桁</p></div>  
-				<input class="form-wide" type="text" name="postcode"	value="${form.postcode}" required> <br>
+				<input class="form-wide" type="text" pattern="^[0-9]+$" name="postcode"	value="${form.postcode}" required> <br>
 				
 				<div class="text-box"><p>電話 -(ハイフン)なし</p></div>
-				<input class="form-wide" type="text" name="tel" value="${form.tel}" required><br>
+				<input class="form-wide" type="text" pattern="^[0-9]+$" name="tel" value="${form.tel}" required><br>
 				
 				<div class="text-box"><p>住所</p></div> 
 				<input class="form-wide" type="text" name="address" value="${form.address}" required><br>
@@ -49,7 +49,7 @@
 
 					<form action="LoginServlet" method="post" name="next" value="back">
 						<input type="hidden" name="next" value="back">
-						<input class="return-button" type="submit" value="戻る"><br>
+						<input class="return-button" type="submit" value="戻る">
 					</form>
 				</div>
 	</main>

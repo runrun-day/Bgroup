@@ -11,7 +11,8 @@
 	font-size: 1.5em;
 }
 .link form{
-
+	display:flex;
+	justify-content: flex-end;
 }
 
 input.nonbtn {
@@ -33,10 +34,10 @@ input.nonbtn:hover {
 <div class="link">
     <p>ようこそ、${account.name}さん！</p>
     <form action="MenuNavigationServlet" method="post">
-			<input type="submit" class="nonbtn" name="next" value="カート">
-			<input type="submit" class="nonbtn" name="next" value="注文履歴">
-			<input type="submit" class="nonbtn" name="next" value="定期便">
-			<input type="submit" class="nonbtn" name="next" value="ユーザー情報">
+			<input class="nonbtn" type="submit"  name="next" value="カート">
+			<input class="nonbtn" type="submit" name="next" value="注文履歴">
+			<input class="nonbtn" type="submit" name="next" value="定期便">
+			<input class="nonbtn" type="submit" name="next" value="ユーザー情報">
 	</form>
 </div>
 </header>

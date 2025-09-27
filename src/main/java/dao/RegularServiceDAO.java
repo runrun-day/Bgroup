@@ -55,9 +55,9 @@ public class RegularServiceDAO {
         		+ "A.num AS quantity,\r\n"
         		+ "C.price,\r\n"
         		+ "(A.num * C.price) AS subtotal,\r\n"
-        		+ "B.span AS span\r\n"
+        		+ "A.span AS span\r\n"
         		+ "from regular_service_detail as A\r\n"
-        		+ "join shop.regular_service as B\r\n"
+        		+ "join regular_service as B\r\n"
         		+ "on A.regular_service_id = B.regular_service_id\r\n"
         		+ "join products as C\r\n"
         		+ "on A.product_id = C.product_id\r\n"
@@ -92,14 +92,19 @@ public class RegularServiceDAO {
 	public List<RegularService> getOrdersByUser(int userId) {
 		List<RegularService> list = new ArrayList<>();
 
-		String sql = "SELECT r.regular_service_id, "
-				+ "d.regular_service_detail_id, r.start_date, "
-				+ "p.name AS product_name, d.num, p.price, "
-				+ "(d.num * p.price) AS subtotal, r.span "
-				+ "FROM regular_service r "
-				+ "JOIN regular_service_detail d ON r.regular_service_id = d.regular_service_id "
-				+ "JOIN products p ON d.product_id = p.product_id "
-				+ "WHERE r.user_id = ? "
+		String sql = "SELECT r.regular_service_id, \r\n"
+				+ "d.regular_service_detail_id,\r\n"
+				+ "r.start_date, \r\n"
+				+ "p.name AS product_name,\r\n"
+				+ "d.num, p.price, \r\n"
+				+ "(d.num * p.price) AS subtotal,\r\n"
+				+ "d.span \r\n"
+				+ "FROM regular_service r \r\n"
+				+ "JOIN regular_service_detail d\r\n"
+				+ "ON r.regular_service_id = d.regular_service_id \r\n"
+				+ "JOIN products p\r\n"
+				+ "ON d.product_id = p.product_id \r\n"
+				+ "WHERE r.user_id = ? \r\n"
 				+ "ORDER BY r.start_date DESC";
 
 		try (Connection conn = DBManager.getConnection();
@@ -177,20 +182,7 @@ public class RegularServiceDAO {
 		                }
 		            }
 		        }
-		        
-		        System.out.println("=== Debug: OrdersDAO.insertOrder ===");
-		        System.out.println("userId: " + userId);
-
-		        // orders INSERT の直後
-		        System.out.println("新規 orderId = " + rsorderId);
-
-		        // order_detail INSERT の直前
-		        for (Order item : cart) {
-		            System.out.println("Detail登録 → orderId=" + rsorderId
-		                               + " / productId=" + item.getProductId()
-		                               + " / num=" + item.getNum());
-		        }
-
+		       
 		        try (PreparedStatement ps = conn.prepareStatement(sqlDetail)) {
 		            for (Order item : cart) {
 		                ps.setInt(1, rsorderId);

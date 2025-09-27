@@ -39,7 +39,7 @@
 					<th>パスワード</th>
 					<td>●●●●●●●●●●●●</td>
 				</tr>
-				<td class=""colspan="2">
+				</table>
 					<form action="UserSearchServlet" method="post">
 							<input type="hidden" name="next" value="deletCommit">
 							<input type="hidden" name="userId" value="${userInfo.userId}">
@@ -52,8 +52,6 @@
 						<input class="return-button" type="submit" value="戻る">
 						</div>
 					</form>
-				</td>
-			</table>
 	</main>
 
 	<%@ include file="../../../inc/adminFooter.jsp" %>  

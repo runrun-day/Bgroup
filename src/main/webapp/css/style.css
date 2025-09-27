@@ -176,7 +176,8 @@ main{
 .action-button{
 	background-color:blue;
 	margin: 20px 30px 10px;
-	width:50px;	
+/*	ボタン文字見切れていたので行ったんグレーアウトしてます 牛島*/
+/*	width:50px;	*/
 	transform: scale(1.5);
 }
 
