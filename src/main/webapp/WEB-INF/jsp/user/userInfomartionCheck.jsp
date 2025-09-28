@@ -18,8 +18,8 @@
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
 		</c:if>
 
-		<div class="">
-			<h1>ユーザー情報確認</h1>
+
+			<h1 class="center">ユーザー情報確認</h1>
 			<table>
 				<tr>
 					<th>氏名</label></th>
@@ -46,7 +46,7 @@
 					<td>●●●●●●●●●●●●</td>
 				</tr>
 				</table>
-				<div class="btn-two" reverse>
+				<div class="btn-two reverse">
 					<form action="SubscriptionOrderServlet" method="post">
 						<input type="hidden" name="next" value="update">
 						<input class="action-button" type="submit" value="確定">
@@ -56,7 +56,7 @@
 						<input class="return-button" type="submit" value="戻る">
 					</form>
 				</div>
-		</div>
+
 	</main>
 
 	  <%@ include file="../../../inc/userFooter.jsp" %>

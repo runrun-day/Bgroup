@@ -66,7 +66,7 @@
 				<input type="hidden" name="span_${item.productId}"
 					value="${item.span}">
 			</c:forEach>
-			<div class="btn-two" reverse>
+			<div class="btn-two reverse">
 			<input class="action-button" type="submit" value="注文する">
 		</form>
 		

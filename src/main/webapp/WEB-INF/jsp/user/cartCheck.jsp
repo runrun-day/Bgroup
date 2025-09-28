@@ -23,7 +23,7 @@
 	
 		<form action="SubscriptionOrderServlet" method="post">
 			<input type="hidden" name="next" value="orderCommit"> 
-			<p>注文確認</p>
+			<div class="title"><p>注文確認</p></div>
 			${account.name}さん<br> 
 			〒${account.postcode}<br>
 			${account.address}<br> 
@@ -53,8 +53,9 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<p>合計 ${totalAmount} 円</p>
-			<div class="btn-two" reverse>
+			<div class="right"><p>合計 ${totalAmount} 円</p></div>
+			
+			<div class="btn-two reverse">
 			<input class="action-button" type="submit" value="確定">
 		</form>
 		

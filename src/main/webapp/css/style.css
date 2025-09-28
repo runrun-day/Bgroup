@@ -7,6 +7,26 @@ color: #333;
 font-size: 0.875em;
 }
 
+main{
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	flex-direction:column;
+	
+	padding: 50px;
+	margin: 0 auto;
+/*	width: 740px; */
+}
+
+main.container {
+	width : 90%;
+	padding : 10px;  上下左右10px
+	margin: 0 auto;  中央 
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
 .link form {
   display: inline-block;  /* 横並びになる */
   margin-right: 10px;     /* 間隔調整 */
@@ -52,18 +72,6 @@ header.right > p{
 	font-weight:bold;
 }
 
-/*main*/
-main{
-	display:flex;
-	justify-content: center;
-	flex-direction:column;
-	align-items:center;
-	
-	padding: 50px;
-	width: 740px;
-	margin: 0 auto;
-}
-
 .login{
 	display: flex;
 	justify-content: center;
@@ -90,7 +98,7 @@ main{
 
 /*結果メッセージ*/
 .result-message{
-	font-size: 	50px;	
+	font-size: 	40px;	
 }
 
 
@@ -101,7 +109,7 @@ main{
 	align-items:center;
 	
 	height:30px;
-	padding: 5px 10px;
+/*	padding: 5px 10px; */
 	border-radius: 4px;	
 	border: none;
 	cursor: pointer;
@@ -112,7 +120,7 @@ main{
 
 [class*=button]:hover{
   background-color: #0056b3;
-}
+ }
 
 /*新規登録ボタン*/
 .signup-button{
@@ -167,7 +175,8 @@ main{
 /*ホームボタンのみ*/
 .home-button{
 	background-color:blue;
-	margin: 20px 30px 10px ;
+	margin: 20px 30px 10px; 
+	width:100px;
 	transform: scale(2);/*拡大*/
 }
 
@@ -175,45 +184,37 @@ main{
 .return-button,
 .action-button{
 	background-color:blue;
-	margin: 20px 30px 10px;
+/*	margin: 20px 30px 10px;
 /*	ボタン文字見切れていたので行ったんグレーアウトしてます 牛島*/
 /*	width:50px;	*/
 	transform: scale(1.5);
 }
-
 
 .cart-button{
 	background-color: #54d3be;
 }
 
 /*ボタン位置共通*/
-[class*=btn]{
+[class*=btn],
+.home-button{
 	display: flex;
 	justify-content: center;
 	align-items:center;
 	
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-bottom: 20px;
-	gap: 40px;
+
 }
 	
-/*ボタン1個の時の配置
-.btn-one{
-	margin-top: 20px;
-	margin-bottom: 30px;
-}*/
-
-/*ボタン2個の時の配置
-.btn-two{
-
-}*/
+/*ボタン2個の時の配置*/
+[class*=btn-two]{
+	gap: 70px;
+}
 
 /*ボタン2個の時の配置 逆向き*/
 .btn-two.reverse{		
 	flex-direction:row-reverse;
 }
-
-
 
 /*全テーブル*/
 table{
@@ -221,8 +222,7 @@ table{
 	border-collapse: collapse;  /* 罫線を重ねる */
 	width: 100%;
 	max-width: 700px;
-	margin: 16px auto;
-	
+	margin: 16px auto;	
 }
 
 th,
@@ -236,18 +236,10 @@ th {
 	text-align: center;
 }
 
-/* td{
-	border: 2px solid #333; 
-	border-collapse: collapse;  /*罫線を重ねる*/
-	/* justify-content: left;
-	text-align: left;
-	
-} */ 
 
 /*画面構成2-テーブル*/
 .cartIn{
 	width: 100%;
-	
 }
 
 .boder-box{
@@ -267,7 +259,6 @@ th {
 
 .num-items {
 	width: 20%;
-
 }
 
 .num-items input {
@@ -278,9 +269,70 @@ th {
 	width: 20%;
 }
 
+/* 注文一覧 */
+.tr-under > th {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+
+.td-button {
+	border:1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 30px;
+}
+
+/*画面構成6,7-テーブル*/
+.table_non,
+.table_non th,
+.table_non td {
+  border: none;
+}
 
 
+/* 画面構成17-テーブル */
+.admin-container{
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+	width : 100%;
+	min-width : 90px;
+	margin:0;
+	/*margin : auto 10px;*/
+}
+.admin-container > .table-button{
+	 background-color: #007bff;
+	 color: white;
+/*	 border: none;*/
+	 padding: 5px 10px;
+	 cursor: pointer;
+	 border-radius: 4px;
+}
 
+ .admin-container > table {
+	border: 1px solid #333;
+ 	margin: 0 auto;
+ 	width: 600px;
+	text-align: center;
+}
+
+ .admin-container > tr,th,td{
+  border: 1px solid #999;
+  padding: 10px;
+  text-align: center;
+}
+
+td.name {
+	width : 600px;
+	text-align: left;
+}
+.td-detail {
+	border:1px solid #999;
+	padding: 10px;
+	text-align: center;
+	width : 30px;
+}
 
 /*テキスト位置*/
 .center{
@@ -327,80 +379,6 @@ div.text-box > label{
 
 
 
-
-
-
-/* -------- ↓管理者メニュー追加文 -------- */
-
-/*main*/
-main.container {
-	width : 90%;
-	padding : 10px;  上下左右10px
-	margin: 0 auto;  中央 
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-
-
-/* 画面構成17-テーブル */
-.admin-container{
-	display:flex;
-	justify-content:center;
-	flex-direction:column;
-	width : 100%;
-	min-width : 90px;
-	margin:0;
-	/*margin : auto 10px;*/
-}
-.admin-container > .table-button{
-	 background-color: #007bff;
-	 color: white;
-/*	 border: none;*/
-	 padding: 5px 10px;
-	 cursor: pointer;
-	 border-radius: 4px;
-}
-
- .admin-container > table {
-	border: 1px solid #333;
- 	margin: 0 auto;
- 	width: 600px;
-	text-align: center;
-}
-
- .admin-container > tr,th,td{
-  border: 1px solid #999;
-  padding: 10px;
-  text-align: center;
-}
-
-td.name {
-	width : 600px;
-	text-align: left;
-}
-.td-detail {
-	border:1px solid #999;
-	padding: 10px;
-	text-align: center;
-	width : 30px;
-}
-
-/* 注文一覧 */
-.tr-under > th {
-	border-top: none;
-	border-right: none;
-	border-left: none;
-}
-
-.td-button {
-	border:1px solid #999;
-	padding: 10px;
-	text-align: center;
-	width : 30px;
-}
-
 /*渡邉さん追加コード*/
 .underline {
       border-bottom: 2px solid #b3b1b1;
@@ -410,7 +388,6 @@ td.name {
 
 /*牛島さん変更*/
 input.nonbtn {
-
   background: none;        /* 背景なし */
   border: none;            /* 枠線なし */
   color: #0070c9;          
@@ -427,10 +404,3 @@ input.nonbtn:hover {
   color: #005799;
   text-decoration: underline;
 }
-/*
-.table_non,
-.table_non th,
-.table_non td {
-  border: none;
-}
- -------- ↑管理者メニュー追加文 -------- */

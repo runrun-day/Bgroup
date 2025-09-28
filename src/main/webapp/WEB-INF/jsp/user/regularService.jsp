@@ -10,13 +10,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<style>
-.table_non,
-.table_non th,
-.table_non td {
-  border: none;
-}
-</style>
+
 <body>
 
 	<jsp:include page="../../../inc/loginUserHeader.jsp" />

@@ -16,7 +16,7 @@
 		<p>ログイン画面より再度ログインをお願いします。</p>
 		
 		<form action="SignUpServlet" method="get" name="next" value="back">
-		 <a class="home-button" href="SubscriptionOrderServlet?next=non">ホームに戻る</a>
+		<a class="home-button" href="SubscriptionOrderServlet?next=non">ホームに戻る</a>
 			
 		</form>
 		</main>

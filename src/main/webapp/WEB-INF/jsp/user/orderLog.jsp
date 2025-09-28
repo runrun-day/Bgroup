@@ -8,13 +8,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>注文履歴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<style>
-.underline {
-      border-bottom: 2px solid #b3b1b1;
-      padding:10px;
-	  width:700px;
-	  }
-</style>
+
 </head>
 <body>
 	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>

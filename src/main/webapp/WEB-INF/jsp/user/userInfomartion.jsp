@@ -24,21 +24,28 @@
 
 		<form action="UserEditServlet" method="post">
 			<input type="hidden" name="next" value="check"> 
-			名前<br>
+			<div class="text-box">名前</div>
 			<input class="form-wide" type="text" name="name" value="${account.name}" required><br> 
-			メールアドレス<br>
+			
+			<div class="text-box">メールアドレス</div>
 			<input class="form-wide" type="email" name="email" value="${account.email}" required><br>
-			郵便番号 -(ハイフン)なし7桁<br> 
+			
+			<div class="text-box">郵便番号 -(ハイフン)なし7桁</div> 
 			<input class="form-wide" type="text" name="postcode" value="${account.postcode}" required><br>
-			電話 -(ハイフン)なし<br>
+			
+			<div class="text-box">電話 -(ハイフン)なし</div>
 			<input class="form-wide" type="text" name="tel" value="${account.tel}" required><br> 
-			住所<br>
+			
+			<div class="text-box">住所</div>
 			<input class="form-wide" type="text" name="address" value="${account.address}" required><br> 
-			パスワード<br>
+			
+			<div class="text-box">パスワード</div>
 			<input class="form-wide" type="password" name="passward" value=""required><br> 
-			確認用パスワード<br> 
+			
+			<div class="text-box">確認用パスワード</div> 
 			<input class="form-wide" type="password" name="passward2" value="" required><br>
-			<div class="btn-two" reverse>
+			
+			<div class="btn-two reverse">
 				<input type="submit" value="修正" class="action-button">
 		</form>
 
