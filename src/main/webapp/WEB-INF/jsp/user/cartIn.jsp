@@ -24,16 +24,17 @@
 						<input type="hidden" name="productId" value="${item.productId}">
 						${item.productName} 数量
 						<input class="form-narrow" type="number"name="num_${item.productId}" value="${item.num}" min="1">
-						
-						定期便</div>
+						<span class="regular">
+						定期便
 						<input type="checkbox" name="regular_${item.productId}"value="true" ${item.regularService ? "checked" : ""}> 
 						
 						定期期間
-						<select class="form-narrow" name="span_${item.productId}"  disabled>
+						<select class="form-narrow" name="span_${item.productId}" disabled>
 							<option value="1" ${item.span == 1 ? "selected" : ""}>1</option>
 							<option value="2" ${item.span == 2 ? "selected" : ""}>2</option>
 							<option value="3" ${item.span == 3 ? "selected" : ""}>3</option>
 						</select> ヶ月
+						</span>
 					</form>
 				</td>
 				<td>
