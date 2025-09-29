@@ -24,7 +24,7 @@
 		<form action="SubscriptionOrderServlet" method="post">
 			<input type="hidden" name="next" value="orderCommit"> 
 
-			<h2 class="title">注文確認</h2>
+			<h1 class="title">注文確認</h1>
 			${account.name}さん<br> 
 			〒${account.postcode}<br>
 			${account.address}<br> 
