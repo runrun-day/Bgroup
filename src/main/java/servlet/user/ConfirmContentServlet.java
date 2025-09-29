@@ -59,6 +59,7 @@ public class ConfirmContentServlet extends HttpServlet {
 					System.out.println("商品ID: " + productId);
 					System.out.println("num param: " + request.getParameter("num_" + productId));
 					System.out.println("regular param: " + request.getParameter("regular_" + productId));
+					
 					System.out.println("span param: " + request.getParameter("span_" + productId));
 
 					// パラメータ取得
@@ -75,6 +76,7 @@ public class ConfirmContentServlet extends HttpServlet {
 
 					// 定期便チェック
 					item.setRegularService("true".equals(regularStr));
+					System.out.println("regular param: " + item.isRegularService());
 
 					// 定期期間
 					if ("true".equals(regularStr) && spanStr != null && !spanStr.isEmpty()) {
