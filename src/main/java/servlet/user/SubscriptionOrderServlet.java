@@ -1,6 +1,9 @@
 package servlet.user;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +73,17 @@ public class SubscriptionOrderServlet extends HttpServlet {
 		case "orderCommit" -> { // 注文確定処理
             UserAccount account = (UserAccount) session.getAttribute("account");
             List<Order> cart = (List<Order>) session.getAttribute("cart");
+            List<Order> commitCart = new ArrayList<>();
+//			タイムゾーンを日本時間(JST)にする
+			ZonedDateTime jstTime = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+			Timestamp now = Timestamp.valueOf(jstTime.toLocalDateTime());
+			
+			for(Order order : cart) {
+				order.setOrderDate(now);
+				commitCart.add(order);
+        		}
+			
+            
 //     デバック用       
 //            System.out.println("=== Debug: 注文登録処理開始 ===");
 //            if (account != null) {
@@ -91,16 +105,16 @@ public class SubscriptionOrderServlet extends HttpServlet {
 //                System.out.println("cart が null です");
 //            }
 //            処理用
-            if (account != null && cart != null && !cart.isEmpty()) {
+            if (account != null && commitCart != null && !commitCart.isEmpty()) {
                 OrdersService ordersService = new OrdersService();
                 RegularServiceLogic regularServiceLogic = new RegularServiceLogic();
 //              通常注文insert
-                boolean order_success = ordersService.insertOrder(account.getUserId(), cart);
+                boolean order_success = ordersService.insertOrder(account.getUserId(), commitCart);
                 System.out.println("通常注文" + order_success);
 //              定期便用リスト作成
                 List<Order> rsOrder = new ArrayList<>();
 //              通常注文から定期便チェックtrueのもののみrsOrderrリストへ追加
-                for(Order order : cart) {
+                for(Order order : commitCart) {
                 	System.out.println(order.toString());
             		if(order.isRegularService()) {
             			rsOrder.add(order);

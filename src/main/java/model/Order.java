@@ -51,6 +51,17 @@ public class Order implements Serializable {
 		this.regularService = regularService;
 		this.span = span;
 	}
+	public Order(String userName, String productName, int num, int price, int amount,
+			boolean regularService, int span) {
+		this.num = num;
+		this.userName = userName;
+		this.productName = productName;
+		this.price = price;
+		this.amount = amount;
+		this.regularService = regularService;
+		this.span = span;
+	}
+	
 	// userIdごとの履歴取得用
 		public Order(int orderId, Timestamp orderDate, String productName, int num, int price, int amount,int span) {
 		    this.orderId = orderId;

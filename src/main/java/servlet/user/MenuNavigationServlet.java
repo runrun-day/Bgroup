@@ -2,8 +2,6 @@ package servlet.user;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -171,12 +169,10 @@ public class MenuNavigationServlet extends HttpServlet {
 			boolean regularService = false;
 			span = 0;
 
-//			タイムゾーンを日本時間(JST)にする
-			ZonedDateTime jstTime = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-			Timestamp now = Timestamp.valueOf(jstTime.toLocalDateTime());
+;
 
 			// Order インスタンス作成
-			Order newItem = new Order("", now, productName, num, price, amount, regularService, span);
+			Order newItem = new Order("", productName, num, price, amount, regularService, span);
 			newItem.setProductId(productId); // ←ここ追加！！
 
 			boolean exists = false;
