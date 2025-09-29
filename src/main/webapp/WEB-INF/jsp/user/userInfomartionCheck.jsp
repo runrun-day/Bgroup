@@ -12,7 +12,7 @@
 <body>
 	  <jsp:include page="../../../inc/loginUserHeader.jsp"/>
 
-<<main>
+<main>
 	<!--エラー時の表示処理-->
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red;"><c:out value="${errorMsg}" /></p>
