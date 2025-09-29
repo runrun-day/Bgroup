@@ -23,6 +23,7 @@
 						<input type="hidden" name="productId" value="${item.productId}">
 						${item.productName} 数量
 						<input class="form-narrow" type="number"name="num_${item.productId}" value="${item.num}" min="1">
+<!--						<span class="regular">-->
 						定期便 
 						<input type="checkbox" name="regular_${item.productId}"value="true" ${item.regularService ? "checked" : ""}> 
 						定期期間
@@ -31,6 +32,7 @@
 							<option value="2" ${item.span == 2 ? "selected" : ""}>2</option>
 							<option value="3" ${item.span == 3 ? "selected" : ""}>3</option>
 						</select> ヶ月
+<!--						</span>-->
 					</form>
 				</td>
 				<td>
@@ -46,13 +48,26 @@
 		</table>
 		</c:forEach>
 		
+
 		<script>
+<!--		//teikibinクラス内のinput要素をまとめて取得-->
+<!--		document.querySelectorAll('.regular input').forEach(checkbox => {-->
+<!--			//チェックボックスが変更になったら-->
+<!--			checkbox.addEventListener('change', (e) => {-->
+<!--				const isChecked = e.target.checked;-->
+<!--				//チェックボックスに隣接したセレクトボックスを取得-->
+<!--				const select = e.target.closest('.regular').querySelector('select');-->
+<!--				// チェックONなら有効化、OFFなら無効化-->
+<!--				select.disabled = !isChecked;-->
+		
 		// changeイベントで自動submit
 		document.querySelectorAll(".cart-form input, .cart-form select").forEach(el => {
 		  el.addEventListener("change", function() {
 		    this.form.submit();
 		  });
 		});
+
+
 		</script>
 	<div class="btn-two reverse">
 
@@ -67,7 +82,6 @@
 				<input type="hidden" name="span_${item.productId}"
 					value="${item.span}">
 			</c:forEach>
-
 			<input class="action-button" type="submit" value="注文する">
 		</form>
 		
