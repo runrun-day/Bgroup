@@ -28,7 +28,7 @@
 						定期便
 						<input type="checkbox" name="regular_${item.productId}"value="true" ${item.regularService ? "checked" : ""}> 
 						
-						定期期間
+						定期期間 
 						<select class="form-narrow" name="span_${item.productId}" disabled>
 							<option value="1" ${item.span == 1 ? "selected" : ""}>1</option>
 							<option value="2" ${item.span == 2 ? "selected" : ""}>2</option>
