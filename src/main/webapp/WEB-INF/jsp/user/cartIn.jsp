@@ -14,6 +14,7 @@
 	<jsp:include page="../../../inc/loginUserHeader.jsp" />
 	<main>
 		<c:forEach var="item" items="${cart}">
+	
 		<table class="table_non">
 			<tr>
 				<td>
@@ -23,10 +24,12 @@
 						<input type="hidden" name="productId" value="${item.productId}">
 						${item.productName} 数量
 						<input class="form-narrow" type="number"name="num_${item.productId}" value="${item.num}" min="1">
-						定期便 
+						
+						定期便</div>
 						<input type="checkbox" name="regular_${item.productId}"value="true" ${item.regularService ? "checked" : ""}> 
+						
 						定期期間
-						<select class="form-narrow" name="span_${item.productId}">
+						<select class="form-narrow" name="span_${item.productId}"  disabled>
 							<option value="1" ${item.span == 1 ? "selected" : ""}>1</option>
 							<option value="2" ${item.span == 2 ? "selected" : ""}>2</option>
 							<option value="3" ${item.span == 3 ? "selected" : ""}>3</option>
@@ -34,6 +37,7 @@
 					</form>
 				</td>
 				<td>
+			</div>
 					<!-- 削除専用フォーム -->
 					<form action="${pageContext.request.contextPath}/MenuNavigationServlet" method="post" style="display: inline;">
 						<input type="hidden" name="next" value="deleteCart"> 
@@ -46,15 +50,6 @@
 		</table>
 		</c:forEach>
 		
-		<script>
-  // changeイベントで自動submit
-  document.querySelectorAll(".cart-form input, .cart-form select").forEach(el => {
-    el.addEventListener("change", function() {
-      this.form.submit();
-    });
-  });
-</script>
-
 		<form action="ConfirmContentServlet" method="post">
 			<input type="hidden" name="next" value="order">
 
@@ -76,7 +71,22 @@
 		</div>
 
 	</main>
-
+	
 	<%@ include file="../../../inc/userFooter.jsp"%>
+	
+	<script>
+
+	//teikibinクラス内のinput要素をまとめて取得
+	document.querySelectorAll('.regular input').forEach(checkbox => {
+		//チェックボックスが変更になったら
+		checkbox.addEventListener('change', (e) => {
+			const isChecked = e.target.checked;
+			//チェックボックスに隣接したセレクトボックスを取得
+			const select = e.target.closest('.regular').querySelector('select');
+			// チェックONなら有効化、OFFなら無効化
+			select.disabled = !isChecked;
+		});
+	});
+	</script>
 </body>
 </html>

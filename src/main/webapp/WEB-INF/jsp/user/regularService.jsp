@@ -16,10 +16,10 @@
 	<jsp:include page="../../../inc/loginUserHeader.jsp" />
 
 	<main>
-		<h1 class="title left">定期便注文一覧</h1>
+		<h1 class="center">定期便注文一覧</h1>
 		
 		<c:forEach var="entry" items="${regularServiceList}">
-			<p class="title left">注文日：${entry.key}</p>
+			<p class="center">注文日：${entry.key}</p>
 			<table class="table_non">
 			<tr>
 			<td>

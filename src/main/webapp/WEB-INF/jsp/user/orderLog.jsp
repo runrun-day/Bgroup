@@ -15,9 +15,9 @@
 	
 	<main>
 		
-		<h1 class="title left">注文履歴一覧</h1>
+		<h1 class="center">注文履歴一覧</h1>
 		<c:forEach var="entry" items="${orderHistoryMap}">
-	    <p class="title left">注文日：${entry.key}</p>
+	    <p class="center">注文日：${entry.key}</p>
 	    <table class="table_non"> 
 	        <tr>
 	            <td>商品名</td>
