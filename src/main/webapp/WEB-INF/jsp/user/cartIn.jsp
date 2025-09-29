@@ -46,18 +46,15 @@
 		</table>
 		</c:forEach>
 		
-<!--		<script>-->
-<!--		// changeイベントで自動submit-->
-<!--		document.querySelectorAll(".cart-form input, .cart-form select").forEach(el => {-->
-<!--		  el.addEventListener("change", function() {-->
-<!--		    this.form.submit();-->
-<!--		  });-->
-<!--		});-->
-<!--		</script>-->
-
-		<form action="MenuNavigationServlet" method="get">
-			<input class="return-button" type="submit" value="戻る">
-		</form>
+		<script>
+		// changeイベントで自動submit
+		document.querySelectorAll(".cart-form input, .cart-form select").forEach(el => {
+		  el.addEventListener("change", function() {
+		    this.form.submit();
+		  });
+		});
+		</script>
+	<div class="btn-two reverse">
 
 		<form action="ConfirmContentServlet" method="post">
 			<input type="hidden" name="next" value="order">
@@ -70,13 +67,14 @@
 				<input type="hidden" name="span_${item.productId}"
 					value="${item.span}">
 			</c:forEach>
-			<div class="btn-two" reverse>
+
 			<input class="action-button" type="submit" value="注文する">
 		</form>
 		
-		
-		</div>
-
+		<form action="MenuNavigationServlet" method="get">
+			<input class="return-button" type="submit" value="戻る">
+		</form>
+	</div>
 	</main>
 
 	<%@ include file="../../../inc/userFooter.jsp"%>
